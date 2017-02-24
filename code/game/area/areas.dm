@@ -2,6 +2,7 @@
 #define DOORALERT_ATMOS 1
 #define DOORALERT_FIRE  2
 
+
 var/area/space_area
 
 /area

@@ -2091,8 +2091,6 @@
 #include "code\WorkInProgress\Animus\EditorRUS\instruments\instrument_data\organ.dm"
 #include "code\WorkInProgress\Animus\EditorRUS\instruments\instrument_data\piano.dm"
 #include "code\WorkInProgress\Animus\EditorRUS\instruments\real_instruments\synthesizer.dm"
-#include "code\WorkInProgress\Bay12\copier.dm"
-#include "code\WorkInProgress\Bay12\shredder.dm"
 #include "code\WorkInProgress\Cael_Aislinn\sculpture.dm"
 #include "code\WorkInProgress\Cael_Aislinn\Rust\areas.dm"
 #include "code\WorkInProgress\Cael_Aislinn\Rust\circuits.dm"

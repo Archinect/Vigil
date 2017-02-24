@@ -428,6 +428,15 @@ its easier to just keep the beam vertical.
 /atom/proc/can_mech_drill()
 	return acidable()
 
+/atom/proc/isinspace()
+	if(istype(get_turf(src), /turf/space))
+		return 1
+	else
+		return 0
+
+/mob/proc/canUseTopic() //TODO: once finished, place these procs on the respective mob files
+	return
+
 /atom/proc/blob_act(destroy = 0)
 	//DEBUG to_chat(pick(player_list),"blob_act() on [src] ([src.type])")
 	if(flags & INVULNERABLE)
