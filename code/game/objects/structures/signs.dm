@@ -292,3 +292,113 @@
 
 /obj/structure/sign/russian/staff_only
 	icon_state = "RU_staff_only"
+
+/obj/structure/sign/portrait
+	name = "Clear Portrait"
+	desc = "Stay Animus. Stay Robust."
+	icon = 'icons/obj/portraits.dmi'
+	icon_state = "clear"
+	var/blesses = 1
+
+/obj/structure/sign/portrait/rodger
+	name = "Rodger Wheeler's Portrait"
+	desc = "Красивое мужественное лицо сурово взирает на вас с картины. Этот человек внушает страх, уважение и необъ&#255;снимо сильную симпатию."
+	icon_state = "portrait-rodger"
+
+/obj/structure/sign/portrait/rodger/attackby(var/obj/item/weapon/W, mob/living/user, params)
+	if(istype(W,/obj/item/weapon/extinguisher))
+		if(blesses > 0)
+			user << "<span class='userdanger'>¤ Боги благовол&#255;т вам!</span>"
+			new /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/milky(user.loc)
+			blesses--
+		else
+			user.visible_message("<span class='warning'>¤ Вам на миг почудилось, будто [user] ударило молнией. Боги не люб&#255;т жадин.</span>", \
+								 "<span class='userdanger'>¤ Боги не оценили вашу жадность!</span>")
+			playsound(loc, 'sound/effects/sparks1.ogg', 50, 1)
+			user.adjustBrainLoss(5)
+			user.Weaken(3)
+
+/obj/structure/sign/portrait/ruben
+	name = "Ruben Mills Portrait"
+	desc = "Какой н&#255;шечка! Томный образ этого оба&#255;тельного джентльмена делает ваши трусики насквозь мокрыми."
+	icon_state = "portrait-ruben1"
+
+/obj/structure/sign/portrait/ruben/attackby(var/obj/item/weapon/W, mob/living/user, params)
+	if(istype(W,/obj/item/weapon/extinguisher))
+		if(blesses > 0)
+			user << "<span class='userdanger'>¤ Боги благовол&#255;т вам!</span>"
+			new /obj/item/clothing/head/collectable/kitty(user.loc)
+			blesses--
+		else
+			user.visible_message("<span class='warning'>¤ Вам на миг почудилось, будто [user] ударило молнией. Боги не люб&#255;т жадин.</span>", \
+								 "<span class='userdanger'>¤ Боги не оценили вашу жадность!</span>")
+			playsound(loc, 'sound/effects/sparks1.ogg', 50, 1)
+			user.adjustBrainLoss(5)
+			user.Weaken(3)
+
+/obj/structure/sign/portrait/bisher
+	name = "Unknown's Portrait"
+	desc = "Гордый взгл&#255;д бывалого солдата, армейска&#255; выправка, мускулиста&#255; ше&#255;. Вы почти ощущаете запах напалма, источаемый портретом."
+	icon_state = "portrait-bishehlop"
+
+/obj/structure/sign/portrait/bisher/attackby(var/obj/item/weapon/W, mob/living/user, params)
+	if(istype(W,/obj/item/weapon/extinguisher))
+		if(blesses > 0)
+			user << "<span class='userdanger'>¤ Боги благовол&#255;т вам!</span>"
+			new /obj/item/clothing/glasses/eyepatch(user.loc)
+			blesses--
+		else
+			user.visible_message("<span class='warning'>¤ Вам на миг почудилось, будто [user] ударило молнией. Боги не люб&#255;т жадин.</span>", \
+								 "<span class='userdanger'>¤ Боги не оценили вашу жадность!</span>")
+			playsound(loc, 'sound/effects/sparks1.ogg', 50, 1)
+			user.adjustBrainLoss(5)
+			user.Weaken(3)
+
+/obj/structure/sign/portrait/bisher/examine(mob/user)
+	..()
+	user.emote("salute")
+
+/obj/structure/sign/portrait/delaverte
+	name = "Santiago Delaverte's Portrait"
+	desc = "Picture of the Great Comediant in his funniest role."
+	icon_state = "delaverte"
+
+/obj/structure/sign/portrait/enzosokal1
+	name = "Enzo Sokal's Portrait"
+	desc = "The best of the best CE and scientist. One of the SS13 Project founders."
+	icon_state = "enzosokal1"
+
+/obj/structure/sign/portrait/enzosokal2
+	name = "Enzo Sokal's Portrait"
+	desc = "The best of the best CE and scientist. One of the SS13 Project founders."
+	icon_state = "enzosokal2"
+
+/obj/structure/sign/portrait/georgemellon
+	name = "George Mellon's Portrait"
+	desc = "Honorfull picture of the NanoTrasen SEO Director. Stay Robust my friends."
+	icon_state = "georgemellon"
+
+/obj/structure/sign/portrait/kenzi
+	name = "Kenzie Powers Portrait"
+	desc = "The brilliant chemist, which loved to wear schoolgirl suit."
+	icon_state = "kenzi"
+
+/obj/structure/sign/portrait/derelictmonster
+	name = "Mystical Portrait"
+	desc = "You thought he blinked a couple of seconds ago.."
+	icon_state = "derelictmonster"
+
+/obj/structure/sign/portrait/becket
+	name = "Mystical Portrait"
+	desc = "One of the youngest detectives, ever worked on the Space Station 13 project. Her mind and body helped her to win in the Robust Tournament in the Jule of 2411. We will remember it forever."
+	icon_state = "kate_becket"
+
+/obj/structure/sign/portrait/morganjames
+	name = "Portrait of the Morgan James"
+	desc = "Honorfull picture of old NanoTrasen SEO Director. Stay Robust my friends."
+	icon_state = "morganjames"
+
+/obj/structure/sign/portrait/quin
+	name = "Quinn Tey's Portrait"
+	desc = "One of the mad scientists, which restored the AI technology. Will stay in our hearts."
+	icon_state = "quin"
