@@ -309,14 +309,13 @@
 	if(istype(W,/obj/item/weapon/extinguisher))
 		if(blesses > 0)
 			user << "<span class='userdanger'>¤ Боги благовол&#255;т вам!</span>"
-			new /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/milky(user.loc)
+			new /obj/item/weapon/reagent_containers/food/drinks/milk(user.loc)
 			blesses--
 		else
 			user.visible_message("<span class='warning'>¤ Вам на миг почудилось, будто [user] ударило молнией. Боги не люб&#255;т жадин.</span>", \
 								 "<span class='userdanger'>¤ Боги не оценили вашу жадность!</span>")
 			playsound(loc, 'sound/effects/sparks1.ogg', 50, 1)
 			user.adjustBrainLoss(5)
-			user.Weaken(3)
 
 /obj/structure/sign/portrait/ruben
 	name = "Ruben Mills Portrait"
@@ -334,7 +333,6 @@
 								 "<span class='userdanger'>¤ Боги не оценили вашу жадность!</span>")
 			playsound(loc, 'sound/effects/sparks1.ogg', 50, 1)
 			user.adjustBrainLoss(5)
-			user.Weaken(3)
 
 /obj/structure/sign/portrait/bisher
 	name = "Unknown's Portrait"
@@ -352,7 +350,6 @@
 								 "<span class='userdanger'>¤ Боги не оценили вашу жадность!</span>")
 			playsound(loc, 'sound/effects/sparks1.ogg', 50, 1)
 			user.adjustBrainLoss(5)
-			user.Weaken(3)
 
 /obj/structure/sign/portrait/bisher/examine(mob/user)
 	..()
