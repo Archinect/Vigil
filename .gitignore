@@ -18,7 +18,6 @@ info.json
 *.swp
 
 #ignore any files in config/, except those in subdirectories.
-/config/*
 !/config/*/*
 
 # OpenBYOND-generated crap
