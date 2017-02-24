@@ -287,6 +287,7 @@
 			<option value='?_src_=vars;godmode=\ref[D]'>Toggle Godmode</option>
 			<option value='?_src_=vars;build_mode=\ref[D]'>Toggle Build Mode</option>
 			<option value='?_src_=vars;make_skeleton=\ref[D]'>Make 2spooky</option>
+			<option value='?_src_=vars;fix_nano=\ref[src]'>Fix NanoUI</option>
 			<option value='?_src_=vars;direct_control=\ref[D]'>Assume Direct Control</option>
 			<option value='?_src_=vars;drop_everything=\ref[D]'>Drop Everything</option>
 			<option value='?_src_=vars;regenerateicons=\ref[D]'>Regenerate Icons</option>
@@ -993,6 +994,22 @@ body
 			to_chat(usr, "This can only be done to instances of type /mob")
 			return
 		M.regenerate_icons()
+
+	else if(href_list["fix_nano"])
+		if(!check_rights(R_DEBUG)) return
+
+		var/mob/H = locate(href_list["fix_nano"])
+
+		if(!istype(H) || !H.client)
+			usr << "This can only be done on mobs with clients"
+			return
+
+		nanomanager.send_resources(H.client)
+
+		usr << "Resource files sent"
+		H << "Your NanoUI Resource files have been refreshed"
+
+		log_admin("[key_name(usr)] resent the NanoUI resource files to [key_name(H)] ")
 
 	else if(href_list["adjustDamage"] && href_list["mobToDamage"])
 		if(!check_rights(R_DEBUG|R_ADMIN|R_FUN))

@@ -155,6 +155,14 @@ nanoui is used to open and update nano browser uis
   *
   * @return nothing
   */
+
+/datum/nanoui/proc/reinitialise(template, new_initial_data)
+	if(template)
+		add_template("main", template)
+	if(new_initial_data)
+		set_initial_data(new_initial_data)
+	open()
+
 /datum/nanoui/proc/update_status(var/push_update = 0)
 	if (check_interactive())
 		set_status(STATUS_INTERACTIVE, push_update) // interactive (green visibility)
