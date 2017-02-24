@@ -261,14 +261,30 @@ proc/slur(phrase)
 	while(counter>=1)
 		newletter=copytext(phrase,(leng-counter)+1,(leng-counter)+2)
 		if(rand(1,3)==3)
-			if(lowertext(newletter)=="o")
-				newletter="u"
-			if(lowertext(newletter)=="s")
-				newletter="ch"
-			if(lowertext(newletter)=="a")
-				newletter="ah"
-			if(lowertext(newletter)=="c")
-				newletter="k"
+			if(lowertext(newletter)=="а")
+				newletter="аа"
+			if(lowertext(newletter)=="у")
+				newletter="уу"
+			if(lowertext(newletter)=="ш")
+				newletter="с"
+			if(lowertext(newletter)=="и")
+				newletter="ыы"
+			if(lowertext(newletter)=="о")
+				newletter="а"
+			if(lowertext(newletter)=="м")
+				newletter="ме"
+			if(lowertext(newletter)=="н")
+				newletter="не"
+			if(lowertext(newletter)=="с")
+				newletter="щ"
+			if(lowertext(newletter)=="ц")
+				newletter="ч"
+			if(lowertext(newletter)=="р")
+				newletter="г"
+			if(lowertext(newletter)=="ю")
+				newletter="йу"
+			if(lowertext(newletter)=="€")
+				newletter="йа"
 		switch(rand(1,15))
 			if(1,3,5,8)
 				newletter="[lowertext(newletter)]"
@@ -283,14 +299,14 @@ proc/slur(phrase)
 	return newphrase
 
 /proc/stutter(n)
-	var/te = n
+	var/te = rhtml_decode(n)
 	var/t = ""//placed before the message. Not really sure what it's for.
 	n = length(n)//length of the entire word
 	var/p = null
 	p = 1//1 is the start of any word
 	while(p <= n)//while P, which starts at 1 is less or equal to N which is the length.
 		var/n_letter = copytext(te, p, p + 1)//copies text from a certain distance. In this case, only one letter at a time.
-		if (prob(80) && (ckey(n_letter) in list("b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z")))
+		if (prob(80) && (ckey(n_letter) in list("б","в","г","д","к","л","м","н","п","р","с","т","ч","ш","щ","й","ф","х","ц","n","s")))
 			if (prob(10))
 				n_letter = text("[n_letter]-[n_letter]-[n_letter]-[n_letter]")//replaces the current letter with this instead.
 			else
@@ -324,15 +340,15 @@ proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 fo
 	return returntext
 
 /proc/derpspeech(message, stuttering)
-	message = replacetext(message, " am ", " ")
-	message = replacetext(message, " is ", " ")
-	message = replacetext(message, " are ", " ")
+	message = replacetext(message, "ты", "те")
+	message = replacetext(message, " в ", " ")
+	message = replacetext(message, " он ", " кон ")
 	message = replacetext(message, "you", "u")
-	message = replacetext(message, "help", "halp")
+	message = replacetext(message, "помогите", "памагите")
 	message = replacetext(message, "grief", "griff")
-	message = replacetext(message, "space", "spess")
-	message = replacetext(message, "carp", "crap")
-	message = replacetext(message, "reason", "raisin")
+	message = replacetext(message, "космос", " ќ—ћј—")
+	message = replacetext(message, "карп", "царп")
+	message = replacetext(message, "охрана", "караул")
 	if(prob(50))
 		message = uppertext(message)
 		message += "[stutter(pick("!", "!!", "!!!"))]"
@@ -490,7 +506,7 @@ proc/is_blind(A)
 	for(var/mob/M in targets)
 		var/turf/targetturf = get_turf(M)
 		if((targetturf.z == sourceturf.z))
-			M.show_message("<span class='info'>[bicon(I)] [message]</span>", 1)
+			M.show_message("<span class='info'>[bicon(I)] [russian_html2text(message)]</span>", 1)
 
 /mob/proc/get_survive_objective()
 	return new /datum/objective/survive

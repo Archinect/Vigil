@@ -3124,7 +3124,7 @@
 		if( src.open )
 			return
 
-		var/t = copytext(sanitize(input("Enter what you want to add to the tag:", "Write", null, null) as text|null), 1, MAX_MESSAGE_LEN)
+		var/t = sanitize_russian(stripped_input("Enter what you want to add to the tag:", "Write", null, null))
 		if (!Adjacent(user) || user.stat)
 			return
 

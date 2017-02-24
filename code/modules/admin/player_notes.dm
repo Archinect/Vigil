@@ -126,6 +126,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 		P.author = "Adminbot"
 		P.rank = "Friendly Robot"
 	P.content = note
+	note = sanitize_russian(input(usr,"Enter your note:","Enter some text",null), 1)
 	P.timestamp = "[copytext(full_date,1,day_loc)][day_string][copytext(full_date,day_loc+2)]"
 
 	infos += P

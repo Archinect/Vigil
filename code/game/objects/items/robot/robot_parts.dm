@@ -248,7 +248,7 @@
 			to_chat(user, "<span class='notice'>The MMI must go in after everything else!</span>")
 
 	if (istype(W, /obj/item/weapon/pen))
-		var/t = stripped_input(user, "Enter new robot name", src.name, src.created_name, MAX_NAME_LEN)
+		var/t = sanitize_russian(stripped_input(user, "Enter new robot name", src.name, src.created_name, MAX_NAME_LEN))
 		if (!t)
 			return
 		if (!in_range(src, usr) && src.loc != usr)

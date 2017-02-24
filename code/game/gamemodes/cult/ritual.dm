@@ -404,8 +404,16 @@ var/global/list/rune_list = list() // HOLY FUCK WHY ARE WE LOOPING THROUGH THE W
 			alert("The cloth of reality can't take that much of a strain. Remove some runes first!")
 			return
 		else
-			switch(alert("You open the tome",,"Read it","Scribe a rune", "Notes")) //Fuck the "Cancel" option. Rewrite the whole tome interface yourself if you want it to work better. And input() is just ugly. - K0000
+			switch(alert("You open the tome","Commune","Read it","Scribe a rune", "Notes")) //Fuck the "Cancel" option. Rewrite the whole tome interface yourself if you want it to work better. And input() is just ugly. - K0000
 				if("Cancel")
+					return
+				if("Commune")
+					if(usr.get_active_hand() != src)
+						return
+					var/input = sanitize_russian(stripped_input(usr, "Please choose a message to tell to the other acolytes.", "Voice of Blood", ""))
+					if(!input)
+						return
+					cultist_commune(user, 1, 0, input)
 					return
 				if("Read it")
 					if(usr.get_active_hand() != src)

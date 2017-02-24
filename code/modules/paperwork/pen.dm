@@ -146,8 +146,8 @@ var/paperwork_library
 					t = SFA.Run(t,user,paper)
 				if(count%100 == 0)
 					sleep(1) //too much for us.
-		t = replacetext(t, "\[sign\]", "<font face=\"Times New Roman\"><i>[user.real_name]</i></font>")
-		t = replacetext(t, "\[field\]", "<span class=\"paper_field\"></span>")
+		t = sanitize_russian(replacetext(t, "\[sign\]", "<font face=\"Times New Roman\"><i>[user.real_name]</i></font>"))
+		t = sanitize_russian(replacetext(t, "\[field\]", "<span class=\"paper_field\"></span>"))
 	return "<span style=\"[style];color:[P.color]\">[t]</span>"
 
 /datum/writing_style/pen/New()

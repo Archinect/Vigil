@@ -18,6 +18,26 @@
 			return 0
 	return 1
 
+/proc/cultist_commune(var/mob/living/user, var/clear = 0, var/say = 0, var/message)
+	if(!message)
+		return
+	if(say)
+		user.say("O bidai nabora se[pick("'","`")]sma!")
+	else
+		user.whisper("O bidai nabora se[pick("'","`")]sma!")
+	sleep(10)
+	if(say)
+		user.say(message)
+	else
+		user.whisper(message)
+	var/rendered = "<span class='boldannounce'><i>[(ishuman(user) ? "Acolyte" : "Construct")] [user]:</i> [message]</span>"
+	for(var/mob/M in mob_list)
+		if(iscultist(M))
+			M << rendered
+		if(isobserver(M))
+			M << "<a href='?src=\ref[M];follow=\ref[user]'>(F)</a>[rendered]"
+	log_say("[user.real_name]/[user.key] : [message]")
+
 //Objectives revamped in February 2015 by Deity Link #vgstation
 
 //Cult round flow:

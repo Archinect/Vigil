@@ -69,17 +69,78 @@
 		i = findtext(Haystack, Needle, i + 1, End)
 
 //Removes a few problematic characters
-/proc/sanitize_simple(var/t,var/list/repl_chars = list("\n"="#","\t"="#","ï¿½"="ï¿½"))
+/proc/sanitize_simple(var/t,var/list/repl_chars = list("\n"="#", "\t"="#", "ÿ"="&#255;"))
 	for(var/char in repl_chars)
 		var/index = findtext(t, char)
 		while(index)
 			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index+1)
-			index = findtext(t, char)
+			index = findtext(t, char, index+1)
 	return t
+
+/proc/sanitize_russian(var/msg, var/html = 0)
+    var/rep
+    if(html)
+        rep = "&#1103;"
+    else
+        rep = "&#255;"
+    var/index = findtext(msg, "ÿ")
+    while(index)
+        msg = copytext(msg, 1, index) + rep + copytext(msg, index + 1)
+        index = findtext(msg, "ÿ")
+    return msg
 
 //Runs byond's sanitization proc along-side sanitize_simple
 /proc/sanitize(var/t,var/list/repl_chars = null)
-	return html_encode(sanitize_simple(t,repl_chars))
+	return rhtml_encode(sanitize_simple(t,repl_chars))
+
+/proc/text2list(text, delimiter="\n")
+	var/delim_len = length(delimiter)
+	if(delim_len < 1) return list(text)
+	. = list()
+	var/last_found = 1
+	var/found
+	do
+		found = findtext(text, delimiter, last_found, 0)
+		. += copytext(text, last_found, found)
+		last_found = found + delim_len
+	while(found)
+
+/proc/rhtml_encode(var/msg, var/html = 0)
+	var/rep
+	if(html)
+		rep = "&#x44F;"
+	else
+		rep = "&#255;"
+	var/list/c = text2list(msg, "ÿ")
+	if(c.len == 1)
+		return msg
+	var/out = ""
+	var/first = 1
+	for(var/text in c)
+		if(!first)
+			out += rep
+		first = 0
+		out += rhtml_encode(text)
+	return out
+
+/proc/rhtml_decode(var/msg, var/html = 0)
+	var/rep
+	if(html)
+		rep = "&#x44F;"
+	else
+		rep = "&#255;"
+	var/list/c = text2list(msg, "ÿ")
+	if(c.len == 1)
+		return msg
+	var/out = ""
+	var/first = 1
+	for(var/text in c)
+		if(!first)
+			out += rep
+			first = 0
+		out += rhtml_decode(text)
+
+	return out
 
 //Runs sanitize and strip_html_simple
 //I believe strip_html_simple() is required to run first to prevent '<' from displaying as '&lt;' after sanitize() calls byond's html_encode()
@@ -89,7 +150,7 @@
 //Runs byond's sanitization proc along-side strip_html_simple
 //I believe strip_html_simple() is required to run first to prevent '<' from displaying as '&lt;' that html_encode() would cause
 /proc/adminscrub(var/t,var/limit=MAX_MESSAGE_LEN)
-	return copytext((html_encode(strip_html_simple(t))),1,limit)
+	return copytext((rhtml_encode(strip_html_simple(t))),1,limit)
 
 /proc/reverse_text(txt)
   var/i = length(txt)+1
@@ -112,8 +173,8 @@
 		switch(text2ascii(text, i))
 			if(62, 60, 92, 47)
 				return // rejects the text if it contains these bad characters: <, >, \ or /
-			if(127 to 255)
-				return // rejects weird letters like ï¿½
+		//	if(127 to 255)
+		//		return // rejects weird letters like ï¿½
 			if(0 to 31)
 				return // more weird stuff
 			if(32)
@@ -122,12 +183,16 @@
 				non_whitespace = TRUE
 
 	if(non_whitespace)
-		return text // only accepts the text if it has some non-spaces
+		return sanitize_russian(text) // only accepts the text if it has some non-spaces
 
 // Used to get a sanitized input.
 /proc/stripped_input(var/mob/user, var/message = "", var/title = "", var/default = "", var/max_length=MAX_MESSAGE_LEN)
 	var/name = input(user, message, title, default)
 	return strip_html_simple(name, max_length)
+
+/proc/stripped_multiline_input(var/mob/user, var/message = "", var/title = "", var/default = "", var/max_length=MAX_MESSAGE_LEN)
+	var/name = input(user, message, title, default) as message|null
+	return strip_html_properly(name, max_length)
 
 //Filters out undesirable characters from names
 /proc/reject_bad_name(var/t_in, var/allow_numbers=0, var/max_length=MAX_NAME_LEN)
@@ -282,6 +347,12 @@ proc/checkhtml(var/t)
 		if (text2ascii(text, i) > 32)
 			return copytext(text, i)
 	return ""
+
+proc/russian_html2text(msg)
+    return replacetext(msg, "&#1103;", "&#255;")
+
+proc/russian_text2html(msg)
+	return replacetext(msg, "&#255;", "&#1103;")
 
 //Returns a string with reserved characters and spaces after the last letter removed
 /proc/trim_right(text)

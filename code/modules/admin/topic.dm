@@ -316,7 +316,7 @@
 			if("1")
 				if ((!( ticker ) || emergency_shuttle.location))
 					return
-				var/justification = stripped_input(usr, "Please input a reason for the shuttle call. You may leave it blank to not have one.", "Justification") as text|null
+				var/justification = sanitize_russian(stripped_input(usr, "Please input a reason for the shuttle call. You may leave it blank to not have one.", "Justification")) as text|null
 				emergency_shuttle.incall()
 				captain_announce("The emergency shuttle has been called. It will arrive in [round(emergency_shuttle.timeleft()/60)] minutes.[justification ? " Justification : '[justification]'" : ""]")
 				log_admin("[key_name(usr)] called the Emergency Shuttle")
@@ -491,13 +491,13 @@
 				mins = min(525599,mins)
 				minutes = CMinutes + mins
 				duration = GetExp(minutes)
-				reason = input(usr,"Reason?","reason",reason2) as text|null
+				reason = sanitize_russian(input(usr,"Reason?","reason",reason2), 1)
 				if(!reason)
 					return
 			if("No")
 				temp = 0
 				duration = "Perma"
-				reason = input(usr,"Reason?","reason",reason2) as text|null
+				reason = sanitize_russian(input(usr,"Reason?","reason",reason2), 1)
 				if(!reason)
 					return
 
@@ -545,7 +545,7 @@
 								return
 							if(mins >= 525600)
 								mins = 525599
-							var/reason = input(usr,"Reason?","reason","Shinposting") as text|null
+							var/reason = sanitize_russian(input(usr,"Reason?","reason","Shinposting"), 1)
 							if(!reason)
 								return
 							ban_unban_log_save("[usr.client.ckey] has banned [M.ckey]. - Reason: [reason] - This will be removed in [mins] minutes.")
@@ -562,7 +562,7 @@
 							message_admins("<span class='warning'>[usr.client.ckey] has ooc banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.</span>")
 
 						if("No")
-							var/reason = input(usr,"Reason?","reason","Shinposting") as text|null
+							var/reason = sanitize_russian(input(usr,"Reason?","reason","Shinposting"), 1)
 							if(!reason)
 								return
 							to_chat(M, "<span class='warning'><BIG><B>You have been ooc banned by [usr.client.ckey].\nReason: [reason].</B></BIG></span>")
@@ -616,7 +616,7 @@
 		else
 			switch(alert("Appearance ban [M.ckey]?",,"Yes","No", "Cancel"))
 				if("Yes")
-					var/reason = input(usr,"Reason?","reason","Metafriender") as text|null
+					var/reason = sanitize_russian(input(usr,"Reason?","reason","Metafriender"), 1)
 					if(!reason)
 						return
 					ban_unban_log_save("[key_name(usr)] appearance banned [key_name(M)]. reason: [reason]")
@@ -1073,7 +1073,7 @@
 					var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
 					if(!mins)
 						return
-					var/reason = input(usr,"Reason?","Please State Reason","") as text|null
+					var/reason = sanitize_russian(input(usr,"Reason?","Please State Reason",""), 1)
 					if(!reason)
 						return
 
@@ -1089,7 +1089,7 @@
 							msg = job
 						else
 							msg += ", [job]"
-					notes_add(M.ckey, "Banned  from [msg] - [reason]")
+					notes_add(M.ckey, "Banned  from [msg] - [russian_text2html(reason)]")
 					message_admins("<span class='notice'>[key_name_admin(usr)] banned [key_name_admin(M)] from [msg] for [mins] minutes</span>", 1)
 					to_chat(M, "<span class='warning'><BIG><B>You have been jobbanned by [usr.client.ckey] from: [msg].</B></BIG></span>")
 					to_chat(M, "<span class='danger'>The reason is: [reason]</span>")
@@ -1097,11 +1097,11 @@
 					href_list["jobban2"] = 1 // lets it fall through and refresh
 					return 1
 				if("No")
-					var/reason = input(usr,"Reason?","Please State Reason","") as text|null
+					var/reason = sanitize_russian(input(usr,"Reason?","Please State Reason",""), 1)
 					if(reason)
 						var/msg
 						for(var/job in notbannedlist)
-							ban_unban_log_save("[key_name(usr)] perma-jobbanned [key_name(M)] from [job]. reason: [reason]")
+							ban_unban_log_save("[key_name(usr)] perma-jobbanned [key_name(M)] from [job]. reason: [russian_text2html(reason)]")
 							log_admin("[key_name(usr)] perma-banned [key_name(M)] from [job]")
 							feedback_inc("ban_job",1)
 							DB_ban_record(BANTYPE_JOB_PERMA, M, -1, reason, job)
@@ -1111,7 +1111,7 @@
 								msg = job
 							else
 								msg += ", [job]"
-						notes_add(M.ckey, "Banned  from [msg] - [reason]")
+						notes_add(M.ckey, "Banned  from [msg] - [russian_text2html(reason)]")
 						message_admins("<span class='notice'>[key_name_admin(usr)] banned [key_name_admin(M)] from [msg]</span>", 1)
 						to_chat(M, "<span class='warning'><BIG><B>You have been jobbanned by [usr.client.ckey] from: [msg].</B></BIG></span>")
 						to_chat(M, "<span class='danger'>The reason is: [reason]</span>")
@@ -1217,7 +1217,7 @@
 					return
 				if(mins >= 525600)
 					mins = 525599
-				var/reason = input(usr,"Reason?","reason","Griefer") as text|null
+				var/reason = sanitize_russian(input(usr,"Reason?","reason","Griefer"), 1)
 				if(!reason)
 					return
 				AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
@@ -1237,7 +1237,7 @@
 				del(M.client)
 				//del(M)	// See no reason why to delete mob. Important stuff can be lost. And ban can be lifted before round ends.
 			if("No")
-				var/reason = input(usr,"Reason?","reason","Griefer") as text|null
+				var/reason = sanitize_russian(input(usr,"Reason?","reason","Griefer"), 1)
 				if(!reason)
 					return
 				switch(alert(usr,"IP ban?",,"Yes","No","Cancel"))
@@ -1467,7 +1467,7 @@
 		if(!ismob(M))
 			to_chat(usr, "this can only be used on instances of type /mob")
 
-		var/speech = input("What will [key_name(M)] say?.", "Force speech", "")// Don't need to sanitize, since it does that in say(), we also trust our admins.
+		var/speech = sanitize_russian(input("What will [key_name(M)] say?.", "Force speech", ""), 1)// Don't need to sanitize, since it does that in say(), we also trust our admins.
 		if(!speech)
 			return
 		M.say(speech)
@@ -2233,7 +2233,7 @@
 			to_chat(usr, "<span class='warning'>This mob type cannot be replied to.</span>")
 			return
 
-		var/input = input(src.owner, "Please enter a message to reply to [key_name(M)] via their [receive_type].","Outgoing message from Central Command", "")
+		var/input = sanitize_russian(input(src.owner, "Please enter a message to reply to [key_name(M)] via their [receive_type].","Outgoing message from Central Command", ""), 1)
 		if(!input)
 			return
 
@@ -2260,7 +2260,7 @@
 			to_chat(usr, "<span class='warning'>This mob type cannot be replied to.</span>")
 			return
 
-		var/input = input(src.owner, "Please enter a message to reply to [key_name(M)] via their [receive_type].","Outgoing message from The Syndicate", "")
+		var/input = sanitize_russian(input(src.owner, "Please enter a message to reply to [key_name(M)] via their [receive_type].","Outgoing message from The Syndicate", ""), 1)
 		if(!input)
 			return
 
@@ -2275,18 +2275,18 @@
 		if(P.img)
 			usr << browse_rsc(P.img.img, "tmp_photo.png")
 			info_2 = "<img src='tmp_photo.png' width='192' style='-ms-interpolation-mode:nearest-neighbor' /><br>"
-		usr << browse("<HTML><HEAD><TITLE>Centcomm Fax Message</TITLE></HEAD><BODY>[info_2][P.info][P.stamps]</BODY></HTML>", "window=Centcomm Fax Message")
+		usr << browse(sanitize_russian("<HTML><HEAD><TITLE>Centcomm Fax Message</TITLE></HEAD><BODY>[info_2][P.info][P.stamps]</BODY></HTML>", "window=Centcomm Fax Message"))
 
 	else if(href_list["CentcommFaxReply"])
 		var/mob/living/carbon/human/H = locate(href_list["CentcommFaxReply"])
 
 		output_to_msay("<span class = 'bold'>[key_name_admin(src.owner)] is replying to a fax message from [key_name_admin(H)].</span>")
 
-		var/sent = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcomm", "") as message|null
+		var/sent = sanitize_russian(input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcomm", ""), 1)
 		if(!sent)
 			return
 
-		var/sentname = input(src.owner, "Pick a title for the report", "Title") as text|null
+		var/sentname = sanitize_russian(input(src.owner, "Pick a title for the report", "Title"), 1)
 
 		var/obj/item/weapon/paper/replyfax = SendFax(sent, sentname, centcomm = 1)
 		if(!istype(replyfax))
@@ -3492,7 +3492,7 @@
 		src.access_news_network()
 
 	else if(href_list["ac_set_channel_name"])
-		src.admincaster_feed_channel.channel_name = strip_html_simple(input(usr, "Provide a Feed Channel Name", "Network Channel Handler", ""))
+		src.admincaster_feed_channel.channel_name = sanitize_russian(stripped_input(usr, "Provide a Feed Channel Name", "Network Channel Handler", ""))
 		while (findtext(src.admincaster_feed_channel.channel_name," ") == 1)
 			src.admincaster_feed_channel.channel_name = copytext(src.admincaster_feed_channel.channel_name,2,length(src.admincaster_feed_channel.channel_name)+1)
 		src.access_news_network()
@@ -3531,7 +3531,7 @@
 		src.access_news_network()
 
 	else if(href_list["ac_set_new_message"])
-		src.admincaster_feed_message.body = adminscrub(input(usr, "Write your Feed story", "Network Channel Handler", ""))
+		src.admincaster_feed_message.body = adminscrub(sanitize_russian(stripped_input(usr, "Write your Feed story", "Network Channel Handler", "")))
 		while (findtext(src.admincaster_feed_message.body," ") == 1)
 			src.admincaster_feed_message.body = copytext(src.admincaster_feed_message.body,2,length(src.admincaster_feed_message.body)+1)
 		src.access_news_network()
@@ -3585,13 +3585,13 @@
 		src.access_news_network()
 
 	else if(href_list["ac_set_wanted_name"])
-		src.admincaster_feed_message.author = adminscrub(input(usr, "Provide the name of the Wanted person", "Network Security Handler", ""))
+		src.admincaster_feed_message.author = adminscrub(sanitize_russian(stripped_input(usr, "Provide the name of the Wanted person", "Network Security Handler", "")))
 		while (findtext(src.admincaster_feed_message.author," ") == 1)
 			src.admincaster_feed_message.author = copytext(admincaster_feed_message.author,2,length(admincaster_feed_message.author)+1)
 		src.access_news_network()
 
 	else if(href_list["ac_set_wanted_desc"])
-		src.admincaster_feed_message.body = adminscrub(input(usr, "Provide the a description of the Wanted person and any other details you deem important", "Network Security Handler", ""))
+		src.admincaster_feed_message.body = adminscrub(sanitize_russian(stripped_input(usr, "Provide the a description of the Wanted person and any other details you deem important", "Network Security Handler", "")))
 		while (findtext(src.admincaster_feed_message.body," ") == 1)
 			src.admincaster_feed_message.body = copytext(src.admincaster_feed_message.body,2,length(src.admincaster_feed_message.body)+1)
 		src.access_news_network()
@@ -3698,7 +3698,7 @@
 		src.access_news_network()
 
 	else if(href_list["ac_set_signature"])
-		src.admincaster_signature = adminscrub(input(usr, "Provide your desired signature", "Network Identity Handler", ""))
+		src.admincaster_signature = adminscrub(sanitize_russian(stripped_input(usr, "Provide your desired signature", "Network Identity Handler", "")))
 		src.access_news_network()
 
 	else if(href_list["populate_inactive_customitems"])
@@ -3734,7 +3734,7 @@
 
 	if(href_list["add_player_info"])
 		var/key = href_list["add_player_info"]
-		var/add = input("Add Player Info") as null|text
+		var/add = sanitize_russian(stripped_input("Add Player Info"), 1)
 		if(!add)
 			return
 
@@ -4162,7 +4162,7 @@
 			to_chat(usr, "Please create a shuttle docking port (/obj/docking_port/shuttle) in this area!")
 			return
 
-		var/name = input(usr, "Please name the new shuttle", "Shuttlify", A.name) as text|null
+		var/name = sanitize_russian(stripped_input(usr, "Please name the new shuttle", "Shuttlify", A.name), 1)
 
 		if(!name)
 			to_chat(usr, "Shuttlifying cancelled.")

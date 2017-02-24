@@ -39,6 +39,7 @@
 	icon_closed = "bodybag_closed"
 	icon_opened = "bodybag_open"
 	density = 0
+	var/label
 
 
 /obj/structure/closet/body_bag/attackby(W as obj, mob/user as mob)
@@ -49,8 +50,19 @@
 		S.use(5)
 		new /obj/structure/morgue(src.loc)
 		qdel(src)
-	else if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/device/flashlight/pen))
-		set_tiny_label(user)
+	else if (istype(W, /obj/item/weapon/pen))
+		label = sanitize_russian(stripped_input(user, "What would you like the label to be?", name, null, 53))
+		if(user.get_active_hand() != W)
+			return
+		if(!in_range(src, user) && loc != user)
+			return
+		if(label)
+			name = "body bag - "
+			name += label
+			overlays += "bodybag_label"
+		else
+			name = "body bag"
+		return
 	else if(iswirecutter(W))
 		remove_label()
 		to_chat(user, "<span class='notice'>You cut the tag off the bodybag.</span>")
