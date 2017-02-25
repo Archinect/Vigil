@@ -1228,6 +1228,39 @@
 /obj/structure/disposalpipe/sortjunction/Genetics
 	sort_tag = DISP_GENETICS
 
+/obj/structure/disposalpipe/sortjunction/CaptainOffice
+	sort_tag = DISP_CAPTAIN
+
+/obj/structure/disposalpipe/sortjunction/LawOffice
+	sort_tag = DISP_LAW
+
+/obj/structure/disposalpipe/sortjunction/HeadsOfStuffMeetingRoom
+	sort_tag = DISP_MEETING
+
+/obj/structure/disposalpipe/sortjunction/DetectiveOffice
+	sort_tag = DISP_DETECTIVE
+
+/obj/structure/disposalpipe/sortjunction/LockerRoom
+	sort_tag = DISP_LOCKER
+
+/obj/structure/disposalpipe/sortjunction/Xenobiology
+	sort_tag = DISP_XENO
+
+/obj/structure/disposalpipe/sortjunction/Toxin
+	sort_tag = DISP_TOXIN
+
+/obj/structure/disposalpipe/sortjunction/Morgue
+	sort_tag = DISP_MORGUE
+
+/obj/structure/disposalpipe/sortjunction/AftPrimaryHallway
+	sort_tag = DISP_AFT
+
+/obj/structure/disposalpipe/sortjunction/Arrivals
+	sort_tag = DISP_ARRIVALS
+
+/obj/structure/disposalpipe/sortjunction/CaptainQuarters
+	sort_tag = DISP_CAPTAINQ
+
 /obj/structure/disposalpipe/sortjunction/Genetics/mirrored
 	icon_state = "pipe-j2s"
 

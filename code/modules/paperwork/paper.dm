@@ -29,6 +29,9 @@
 
 	var/log=""
 	var/obj/item/weapon/photo/img
+	var/const/deffont = "Verdana"
+	var/const/signfont = "Times New Roman"
+	var/const/crayonfont = "Comic Sans MS"
 
 //lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
 
