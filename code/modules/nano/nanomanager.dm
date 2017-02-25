@@ -35,6 +35,16 @@
 
 	asset_files = list(
 		'nano/css/icons.css',
+		"code/modules/html_interface/jquery.min.js",
+		"goon/browserassets/js/json2.min.js",
+		"goon/browserassets/js/browserOutput.js",
+		"goon/browserassets/css/fonts/fontawesome-webfont.eot",
+		"goon/browserassets/css/fonts/fontawesome-webfont.svg",
+		"goon/browserassets/css/fonts/fontawesome-webfont.ttf",
+		"goon/browserassets/css/fonts/fontawesome-webfont.woff",
+		"goon/browserassets/css/font-awesome.css",
+		"goon/browserassets/css/browserOutput.css",
+		"goon/browserassets/html/browserOutput.html",
 		'nano/uiBackground.fla',
 		'nano/NTLogoRevised.fla',
 		'nano/mapbase2000.png',

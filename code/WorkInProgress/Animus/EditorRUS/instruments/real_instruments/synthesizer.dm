@@ -9,7 +9,6 @@
 				var/datum/sample_pair/pair = cond.instrument.sample_map[n2t(which)]
 				what.file = pair.sample
 
-
 #define LESSER 1
 #define EQUAL 2
 #define GREATER 3
