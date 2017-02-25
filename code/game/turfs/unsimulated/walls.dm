@@ -71,3 +71,9 @@ turf/unsimulated/wall/splashscreen
 /turf/unsimulated/wall/cult/cultify()
 	return
 
+turf/unsimulated/wall/fullscreen
+	name = "Space Station 13"
+	icon = 'icons/misc/animus.dmi'
+	icon_state = "title"
+	plane = EFFECTS_PLANE
+	canSmoothWith = null
