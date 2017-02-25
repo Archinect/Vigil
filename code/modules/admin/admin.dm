@@ -917,7 +917,7 @@ var/global/floorIsLava = 0
 	if(!check_rights(0))
 		return
 
-	var/message = sanitize_russian(input("Global message to send:", "Admin Announce", null, null)  as message)
+	var/message = sanitize(input("Global message to send:", "Admin Announce", null, null)  as message)
 
 	if(!message)
 		return

@@ -92,7 +92,7 @@
 	var/heldname = "default name"
 
 /obj/item/borg/upgrade/rename/attack_self(mob/user as mob)
-	heldname = sanitize_russian(stripped_input(user, "Enter new robot name", "Robot Reclassification", heldname, MAX_NAME_LEN))
+	heldname = sanitize(stripped_input(user, "Enter new robot name", "Robot Reclassification", heldname, MAX_NAME_LEN))
 
 /obj/item/borg/upgrade/rename/attempt_action(var/mob/living/silicon/robot/R,var/mob/living/user)
 	if(..())

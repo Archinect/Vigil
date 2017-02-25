@@ -783,7 +783,7 @@
 /obj/effect/rune/proc/communicate()
 	. = 1 // Default output is 1. If the rune is deleted it will return 1
 	var/mob/user = usr
-	var/input = sanitize_russian(stripped_input(user, "Please choose a message to tell to the other acolytes.", "Voice of Blood", ""))
+	var/input = sanitize(stripped_input(user, "Please choose a message to tell to the other acolytes.", "Voice of Blood", ""))
 	if(!input)
 		if (istype(src))
 			fizzle()

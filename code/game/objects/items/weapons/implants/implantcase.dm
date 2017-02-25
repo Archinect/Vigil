@@ -24,7 +24,7 @@
 	attackby(obj/item/weapon/I as obj, mob/user as mob)
 		..()
 		if(istype(I, /obj/item/weapon/pen))
-			var/t = sanitize_russian(stripped_input(user, "What would you like the label to be?", name, null))
+			var/t = sanitize(stripped_input(user, "What would you like the label to be?", name, null))
 			if(!in_range(src, user) && loc != user)
 				return
 			if(t)

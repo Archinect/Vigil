@@ -34,25 +34,13 @@
 	return t
 
 //Removes a few problematic characters
-/proc/sanitize_simple(var/t,var/list/repl_chars = list("\n"="#", "\t"="#", "ÿ"="&#1103;"))
+/proc/sanitize_simple(var/t,var/list/repl_chars = list("\n"="#","\t"="#","ï¿½"="ï¿½"))
 	for(var/char in repl_chars)
 		var/index = findtext(t, char)
 		while(index)
 			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index+1)
-			index = findtext(t, char, index+1)
+			index = findtext(t, char)
 	return t
-
-proc/sanitize_russian(var/msg, var/html = 0)
-    var/rep
-    if(html)
-        rep = "&#1103;"
-    else
-        rep = "&#255;"
-    var/index = findtext(msg, "ÿ")
-    while(index)
-        msg = copytext(msg, 1, index) + rep + copytext(msg, index + 1)
-        index = findtext(msg, "ÿ")
-    return msg
 
 proc/russian_html2text(msg)
     return replacetext(msg, "&#1103;", "&#255;")
@@ -88,7 +76,7 @@ proc/russian_text2html(msg)
 			if(0 to 31)		return			//more weird stuff
 			if(32)			continue		//whitespace
 			else			non_whitespace = 1
-	if(non_whitespace)		return sanitize_russian(text)		//only accepts the text if it has some non-spaces
+	if(non_whitespace)		return sanitize(text)		//only accepts the text if it has some non-spaces
 
 // Used to get a sanitized input.
 /proc/stripped_input(var/mob/user, var/message = "", var/title = "", var/default = "", var/max_length=MAX_MESSAGE_LEN)

@@ -69,7 +69,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 				if(t)
 					candidate.role = copytext(sanitize(t),1,MAX_MESSAGE_LEN)
 			if("ooc")
-				t = sanitize_russian(stripped_input("Enter any OOC comments", "pAI OOC Comments", candidate.comments), 1)
+				t = sanitize(stripped_input("Enter any OOC comments", "pAI OOC Comments", candidate.comments), 1)
 				if(t)
 					candidate.comments = copytext(sanitize(t),1,MAX_MESSAGE_LEN)
 			if("save")
