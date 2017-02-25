@@ -1551,10 +1551,6 @@
 			return global.media_receivers;
 		if("media_transmitters")
 			return global.media_transmitters;
-		if("migration_controller_mysql")
-			return global.migration_controller_mysql;
-		if("migration_controller_sqlite")
-			return global.migration_controller_sqlite;
 		if("valid_abandoned_crate_types")
 			return global.valid_abandoned_crate_types;
 		if("material_list")
@@ -3360,10 +3356,6 @@
 			global.media_receivers=newval
 		if("media_transmitters")
 			global.media_transmitters=newval
-		if("migration_controller_mysql")
-			global.migration_controller_mysql=newval
-		if("migration_controller_sqlite")
-			global.migration_controller_sqlite=newval
 		if("valid_abandoned_crate_types")
 			global.valid_abandoned_crate_types=newval
 		if("material_list")

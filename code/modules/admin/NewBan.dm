@@ -60,12 +60,10 @@ var/savefile/Banlist
 
 /proc/LoadBans()
 
-
 	Banlist = new("data/banlist.bdb")
 	log_admin("Loading Banlist")
 
-	if (!length(Banlist.dir))
-		log_admin("Banlist is empty.")
+	if (!length(Banlist.dir)) log_admin("Banlist is empty.")
 
 	if (!Banlist.dir.Find("base"))
 		log_admin("Banlist missing base dir.")
