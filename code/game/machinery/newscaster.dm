@@ -1243,7 +1243,7 @@ obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
 /obj/machinery/newscaster/proc/newsAlert(channel)   //This isn't Agouri's work, for it is ugly and vile.
 	var/turf/T = get_turf(src)                      //Who the fuck uses spawn(600) anyway, jesus christ
 	if(channel)
-		say("Breaking news from [russian_html2text(channel)]!")
+		say("Breaking news from [rhtml_decode(channel)]!")
 		src.alert = 1
 		src.update_icon()
 		spawn(300)

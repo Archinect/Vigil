@@ -1089,7 +1089,7 @@
 							msg = job
 						else
 							msg += ", [job]"
-					notes_add(M.ckey, "Banned  from [msg] - [russian_text2html(reason)]")
+					notes_add(M.ckey, "Banned  from [msg] - [rhtml_encode(reason)]")
 					message_admins("<span class='notice'>[key_name_admin(usr)] banned [key_name_admin(M)] from [msg] for [mins] minutes</span>", 1)
 					to_chat(M, "<span class='warning'><BIG><B>You have been jobbanned by [usr.client.ckey] from: [msg].</B></BIG></span>")
 					to_chat(M, "<span class='danger'>The reason is: [reason]</span>")
@@ -1101,7 +1101,7 @@
 					if(reason)
 						var/msg
 						for(var/job in notbannedlist)
-							ban_unban_log_save("[key_name(usr)] perma-jobbanned [key_name(M)] from [job]. reason: [russian_text2html(reason)]")
+							ban_unban_log_save("[key_name(usr)] perma-jobbanned [key_name(M)] from [job]. reason: [rhtml_encode(reason)]")
 							log_admin("[key_name(usr)] perma-banned [key_name(M)] from [job]")
 							feedback_inc("ban_job",1)
 							DB_ban_record(BANTYPE_JOB_PERMA, M, -1, reason, job)
@@ -1111,7 +1111,7 @@
 								msg = job
 							else
 								msg += ", [job]"
-						notes_add(M.ckey, "Banned  from [msg] - [russian_text2html(reason)]")
+						notes_add(M.ckey, "Banned  from [msg] - [rhtml_encode(reason)]")
 						message_admins("<span class='notice'>[key_name_admin(usr)] banned [key_name_admin(M)] from [msg]</span>", 1)
 						to_chat(M, "<span class='warning'><BIG><B>You have been jobbanned by [usr.client.ckey] from: [msg].</B></BIG></span>")
 						to_chat(M, "<span class='danger'>The reason is: [reason]</span>")

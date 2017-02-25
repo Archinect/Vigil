@@ -42,12 +42,6 @@
 			index = findtext(t, char)
 	return t
 
-proc/russian_html2text(msg)
-    return replacetext(msg, "&#1103;", "&#255;")
-
-proc/russian_text2html(msg)
-	return replacetext(msg, "&#255;", "&#1103;")
-
 //Runs byond's sanitization proc along-side sanitize_simple
 /proc/sanitize(var/t,var/list/repl_chars = null)
 	t = replacetext(t, "\proper", "")
@@ -72,7 +66,7 @@ proc/russian_text2html(msg)
 	for(var/i=1, i<=length(text), i++)
 		switch(text2ascii(text,i))
 			if(62,60,92,47)	return			//rejects the text if it contains these bad characters: <, >, \ or /
-	//		if(127 to 255)	return			//rejects weird letters like i??
+			if(127 to 255)	return			//rejects weird letters like i??
 			if(0 to 31)		return			//more weird stuff
 			if(32)			continue		//whitespace
 			else			non_whitespace = 1
