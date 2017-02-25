@@ -2074,6 +2074,7 @@
 #include "code\WorkInProgress\buildmode.dm"
 #include "code\WorkInProgress\explosion_particles.dm"
 #include "code\WorkInProgress\periodic_news.dm"
+#include "code\WorkInProgress\Animus\clock.dm"
 #include "code\WorkInProgress\Animus\reimu_hakkureis_donations.dm"
 #include "code\WorkInProgress\Animus\synthesizer.dm"
 #include "code\WorkInProgress\Animus\turntable.dm"

@@ -108,6 +108,9 @@
 		else
 			..()
 
+/obj/machinery/computer/aiupload/newscreen
+	icon_state = "aimainframe"
+	circuit = "/obj/item/weapon/circuitboard/aiupload"
 
 	attack_hand(var/mob/user as mob)
 		if(istype(user,/mob/dead))
@@ -243,3 +246,7 @@
 		else
 			to_chat(usr, "[src.current.name] selected for law changes.")
 		return
+
+/obj/machinery/computer/borgupload/newscreen
+	icon_state = "aimainframe"
+	circuit = "/obj/item/weapon/circuitboard/borgupload"
