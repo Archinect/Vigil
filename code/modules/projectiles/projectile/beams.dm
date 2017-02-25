@@ -295,7 +295,7 @@ var/list/beam_master = list()
 /obj/item/projectile/beam/captain
 	name = "captain laser"
 	icon_state = "laser_old"
-	damage = 40
+	damage = 75
 	linear_movement = 0
 
 /obj/item/projectile/beam/retro

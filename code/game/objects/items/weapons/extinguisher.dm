@@ -9,11 +9,11 @@
 	hitsound = 'sound/weapons/smash.ogg'
 	flags = FPRINT
 	siemens_coefficient = 1
-	throwforce = 10
+	throwforce = 12
 	w_class = W_CLASS_MEDIUM
 	throw_speed = 2
 	throw_range = 10
-	force = 10.0
+	force = 14.0
 	starting_materials = list(MAT_IRON = 90) // TODO: Check against autolathe.
 	w_type = RECYK_METAL
 	melt_temperature = MELTPOINT_STEEL

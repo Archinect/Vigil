@@ -57,7 +57,7 @@
 	equip_cooldown = 8
 	name = "\improper CH-PS \"Immolator\" Laser"
 	icon_state = "mecha_laser"
-	energy_drain = 30
+	energy_drain = 50
 	projectile = /obj/item/projectile/beam
 	fire_sound = 'sound/weapons/Laser.ogg'
 
@@ -65,7 +65,7 @@
 	equip_cooldown = 15
 	name = "\improper CH-LC \"Solaris\" Laser Cannon"
 	icon_state = "mecha_laser"
-	energy_drain = 60
+	energy_drain = 85
 	projectile = /obj/item/projectile/beam/heavylaser
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 

@@ -501,3 +501,33 @@ var/global/list/paper_folding_results = list ( \
 /obj/item/weapon/paper/outoforder
 	name = "paper- 'OUT OF ORDER'"
 	info = "<B>OUT OF ORDER</B>"
+
+/obj/item/weapon/documents
+	name = "secret documents"
+	desc = "\"Top Secret\" documents printed on special copy-protected paper."
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "docs_generic"
+	item_state = "paper"
+
+/obj/item/weapon/documents/nanotrasen
+	desc = "\"Top Secret\" Nanotrasen documents printed on special copy-protected paper. It is filled with complex diagrams and lists of names, dates and coordinates."
+	icon_state = "docs_verified"
+
+/obj/item/weapon/documents/syndicate
+	desc = "\"Top Secret\" documents printed on special copy-protected paper. It details sensitive Syndicate operational intelligence."
+
+/obj/item/weapon/documents/syndicate/red
+	name = "'Red' secret documents"
+	desc = "\"Top Secret\" documents printed on special copy-protected paper. It details sensitive Syndicate operational intelligence. These documents are marked \"Red\"."
+	icon_state = "docs_red"
+
+/obj/item/weapon/documents/syndicate/blue
+	name = "'Blue' secret documents"
+	desc = "\"Top Secret\" documents printed on special copy-protected paper. It details sensitive Syndicate operational intelligence. These documents are marked \"Blue\"."
+	icon_state = "docs_blue"
+
+/obj/item/weapon/documents/barlicense
+	name = "bartender license"
+	desc = "This license printed on special copy-protected paper."
+	icon_state = "barlicense"
+	item_state = "paper"

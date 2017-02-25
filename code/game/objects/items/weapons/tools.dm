@@ -39,7 +39,7 @@
 	flags = FPRINT
 	siemens_coefficient = 1
 	slot_flags = SLOT_BELT
-	force = 5.0
+	force = 7.0
 	throwforce = 7.0
 	w_class = W_CLASS_SMALL
 	starting_materials = list(MAT_IRON = 150)
@@ -216,8 +216,8 @@
 	slot_flags = SLOT_BELT
 
 	//Amount of OUCH when it's thrown
-	force = 3.0
-	throwforce = 5.0
+	force = 8.0
+	throwforce = 10.0
 	throw_speed = 1
 	throw_range = 5
 	w_class = W_CLASS_SMALL

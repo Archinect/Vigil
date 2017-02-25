@@ -3,6 +3,7 @@
 	desc = "You sit in this. Either by will or force."
 	icon_state = "chair"
 	sheet_amt = 1
+	anchored = 0
 	var/image/buckle_overlay = null // image for overlays when a mob is buckled to the chair
 	var/image/secondary_buckle_overlay = null // for those really complicated chairs
 	var/noghostspin = 0 //Set it to 1 if ghosts should NEVER be able to spin this
@@ -217,13 +218,16 @@
 /obj/structure/bed/chair/comfy/lime
 	icon_state = "comfychair_lime"
 
+/obj/structure/bed/chair/comfy/evac
+	name = "comfy chair"
+	icon_state = "schair"
+	anchored = 1
+
 //Office chairs
 
 /obj/structure/bed/chair/office
 	icon_state = "officechair_white"
 	sheet_amt = 1
-
-	anchored = 0
 
 /obj/structure/bed/chair/office/New()
 	..()
