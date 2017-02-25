@@ -781,3 +781,8 @@ var/list/number_units=list(
 //As far as SS13 is concerned this is write only data. You can't change something
 //in the json file and have it be reflected in the in game item/mob it came from.
 //(That's what things like savefiles are for) Note that this list is not shuffled.
+
+/proc/replace_characters(var/t,var/list/repl_chars)
+	for(var/char in repl_chars)
+		t = replacetext(t, char, repl_chars[char])
+	return t
