@@ -34,7 +34,7 @@
 	return t
 
 //Removes a few problematic characters
-/proc/sanitize_simple(var/t,var/list/repl_chars = list("\n"="#", "\t"="#", "ÿ"="&#255;"))
+/proc/sanitize_simple(var/t,var/list/repl_chars = list("\n"="#", "\t"="#", "ÿ"="&#1103;"))
 	for(var/char in repl_chars)
 		var/index = findtext(t, char)
 		while(index)
@@ -47,7 +47,7 @@ proc/sanitize_russian(var/msg, var/html = 0)
     if(html)
         rep = "&#1103;"
     else
-        rep = "&#255;"
+        rep = "&#1103;"
     var/index = findtext(msg, "ÿ")
     while(index)
         msg = copytext(msg, 1, index) + rep + copytext(msg, index + 1)
@@ -55,10 +55,10 @@ proc/sanitize_russian(var/msg, var/html = 0)
     return msg
 
 proc/russian_html2text(msg)
-    return replacetext(msg, "&#1103;", "&#255;")
+    return replacetext(msg, "&#1103;", "&#1103;")
 
 proc/russian_text2html(msg)
-	return replacetext(msg, "&#255;", "&#1103;")
+	return replacetext(msg, "&#1103;", "&#1103;")
 
 //Runs byond's sanitization proc along-side sanitize_simple
 /proc/sanitize(var/t,var/list/repl_chars = null)
@@ -668,7 +668,7 @@ var/list/number_units=list(
 	if(html)
 		rep = "&#x44F;"
 	else
-		rep = "&#255;"
+		rep = "&#1103;"
 	var/list/c = splittext(msg, "ÿ")
 	if(c.len == 1)
 		return msg
@@ -686,7 +686,7 @@ var/list/number_units=list(
 	if(html)
 		rep = "&#x44F;"
 	else
-		rep = "&#255;"
+		rep = "&#1103;"
 	var/list/c = splittext(msg, "ÿ")
 	if(c.len == 1)
 		return msg
