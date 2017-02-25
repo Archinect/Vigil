@@ -91,7 +91,7 @@
 	if(clumsy_check(usr) && prob(50))
 		to_chat(usr, "<span class='warning'>You cut yourself on [src].</span>")
 		return
-	var/n_name = sanitize_russian(stripped_input(usr, "What would you like to label the paper?", "Paper Labelling", null, MAX_NAME_LEN))
+	var/n_name = sanitize(stripped_input(usr, "What would you like to label the paper?", "Paper Labelling", null, MAX_NAME_LEN))
 	if((loc == usr && !usr.isUnconscious()))
 		name = "paper[(n_name ? text("- '[n_name]'") : null)]"
 	add_fingerprint(usr)
@@ -194,11 +194,11 @@
 	if(istype(i,/obj/item/weapon/pen))
 		//t = parsepencode(t, i, usr, iscrayon) // Encode everything from pencode to html
 		var/obj/item/weapon/pen/P=i
-		t=P.Format(sanitize_russian(user,t,src))
+		t=P.Format(sanitize(user,t,src))
 
 	else if(istype(i,/obj/item/toy/crayon))
 		var/obj/item/toy/crayon/C=i
-		t=C.Format(sanitize_russian(user,t,src))
+		t=C.Format(sanitize(user,t,src))
 
 	return t
 

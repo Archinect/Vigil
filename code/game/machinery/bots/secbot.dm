@@ -859,7 +859,7 @@ Auto Patrol: []"},
 			qdel(src)
 
 	else if(istype(W, /obj/item/weapon/pen))
-		var/t = sanitize_russian(stripped_input(user, "Enter new robot name", src.name, src.created_name),1,MAX_NAME_LEN)
+		var/t = sanitize(stripped_input(user, "Enter new robot name", src.name, src.created_name),1,MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, usr) && src.loc != usr)
@@ -1077,7 +1077,7 @@ Auto Patrol: []"},
 			qdel(src)
 
 	else if(istype(W, /obj/item/weapon/pen))
-		var/t = sanitize_russian(stripped_input(user, "Enter new robot name", src.name, src.created_name),1,MAX_NAME_LEN)
+		var/t = sanitize(stripped_input(user, "Enter new robot name", src.name, src.created_name),1,MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, usr) && src.loc != usr)

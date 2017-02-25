@@ -554,7 +554,7 @@ var/list/admin_verbs_mod = list(
 		to_chat(src, "<font color='red'>Error: warn(): No such ckey found.</font>")
 		return
 
-	var/warn_reason = sanitize_russian(stripped_input("Reason for warning?", "Admin abuuuuuuuse"), 1)
+	var/warn_reason = sanitize(stripped_input("Reason for warning?", "Admin abuuuuuuuse"), 1)
 	if(!warn_reason)
 		return
 	notes_add(warned_ckey,warn_reason,src.mob)
@@ -734,7 +734,7 @@ var/list/admin_verbs_mod = list(
 	set category = "Special Verbs"
 	set name = "OSay"
 	set desc = "Make an object say something"
-	var/message = sanitize_russian(input(usr, "What do you want the message to be?", "Make Sound") as text | null)
+	var/message = sanitize(input(usr, "What do you want the message to be?", "Make Sound") as text | null)
 	if(!message)
 		return
 	var/mob/living/M
