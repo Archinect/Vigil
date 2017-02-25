@@ -60,7 +60,6 @@ var/global/floorIsLava = 0
 		<br><br>\[
 		<a href='?_src_=vars;Vars=\ref[M]'>VV</a> -
 		<a href='?src=\ref[src];traitor=\ref[M]'>TP</a> -
-		<a href='?src=\ref[src];rapsheet=1;rsckey=[M.ckey]'>Bans</a> -
 		<a href='?src=\ref[usr];priv_msg=\ref[M]'>PM</a> -
 		<a href='?src=\ref[src];subtlemessage=\ref[M]'>SM</a> -
 		<a href='?src=\ref[src];adminplayerobservejump=\ref[M]'>JMP</a>\] </b><br>
@@ -259,41 +258,6 @@ var/global/floorIsLava = 0
 		return
 	PlayerNotesPage(1)
 
-/datum/admins/proc/checkCID()
-	set category = "Admin"
-	set name = "Lookup bans on Computer ID"
-
-	if(!usr)
-		return
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		to_chat(usr, "Error: you are not an admin!")
-		return
-	checkSessionKey()
-	var/cid = input("Type computer ID", "CID", 0) as num | null
-	if(cid)
-		usr << link(getVGPanel("rapsheet", admin = 1, query = list("cid" = cid)))
-//	to_chat(usr, link("[config.vgws_base_url]/index.php/rapsheet/?s=[sessKey]&cid=[cid]"))
-	return
-
-/datum/admins/proc/checkCKEY()
-	set category = "Admin"
-	set name = "Lookup bans on CKEY"
-
-	if(!usr)
-		return
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		to_chat(usr, "Error: you are not an admin!")
-		return
-	checkSessionKey()
-	var/ckey = lowertext(input("Type player ckey", "ckey", null) as text | null)
-	usr << link(getVGPanel("rapsheet", admin = 1, query = list("ckey" = ckey)))
-//	usr << link("[config.vgws_base_url]/index.php/rapsheet/?s=[sessKey]&ckey=[ckey]")
-	return
-
 /datum/admins/proc/PlayerNotesPage(page)
 	var/dat = "<B>Player notes</B><HR>"
 	var/savefile/S=new("data/player_notes.sav")
@@ -367,6 +331,7 @@ var/global/floorIsLava = 0
 	if(!noteslist.len)
 		noteslist["1"] = "No notes found for [key]"
 	return noteslist
+
 /datum/admins/proc/show_player_info(var/key as text)
 	set category = "Admin"
 	set name = "Show Player Notes"

@@ -6,8 +6,6 @@ var/list/admin_verbs_default = list(
 	/client/proc/hide_most_verbs,		/*hides all our hideable adminverbs*/
 	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
 	/client/proc/check_antagonists,		/*shows all antags*/
-	/datum/admins/proc/checkCID,
-	/datum/admins/proc/checkCKEY
 //	/client/proc/deadchat				/*toggles deadchat on/off*/
 	)
 var/list/admin_verbs_admin = list(
@@ -288,7 +286,6 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/show_player_info,
 	/client/proc/player_panel_new,
 	/client/proc/vv_marked_datum,
-	/datum/admins/proc/view_mob_attack_log /* Allow you to view attack logs since doing it in VV sucks */
 )
 /client/proc/add_admin_verbs()
 	if(holder)
