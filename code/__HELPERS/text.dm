@@ -748,13 +748,13 @@ proc/sanitize_local(var/text, var/mode = SANITIZE_BROWSER)
 
 /proc/rhtml_encode(var/msg, var/html = 0)
 	text = sanitize_local(text, SANITIZE_TEMP)
-	text = rhtml_encode(text)
+	text = html_encode(text)
 	text = sanitize_local(text)
 	return text
 
 /proc/rhtml_decode(var/msg, var/html = 0)
 	text = sanitize_local(text, SANITIZE_TEMP)
-	text = rhtml_decode(text)
+	text = html_decode(text)
 	text = sanitize_local(text)
 	return text
 
