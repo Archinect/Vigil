@@ -585,7 +585,7 @@
 		qdel(src)
 
 	else if(istype(W, /obj/item/weapon/pen))
-		var/t = sanitize(stripped_input(user, "Enter new robot name", src.name, src.created_name)) as text
+		var/t = sanitize_russian(stripped_input(user, "Enter new robot name", src.name, src.created_name)) as text
 		t = copytext(sanitize(t), 1, MAX_NAME_LEN)
 		if (!t)
 			return

@@ -4,59 +4,52 @@
 	icon_state = "clipboard"
 	item_state = "clipboard"
 	throwforce = 0
-	w_class = W_CLASS_SMALL
+	w_class = 2.0
 	throw_speed = 3
 	throw_range = 10
 	var/obj/item/weapon/pen/haspen		//The stored pen.
 	var/obj/item/weapon/toppaper	//The topmost piece of paper.
-	flags = FPRINT
 	slot_flags = SLOT_BELT
-	autoignition_temperature = AUTOIGNITION_WOOD
-	fire_fuel = 3
 
 /obj/item/weapon/clipboard/New()
-	. = ..()
 	update_icon()
 
 /obj/item/weapon/clipboard/MouseDrop(obj/over_object as obj) //Quick clipboard fix. -Agouri
-	if(ishuman(usr))
-		var/mob/M = usr
-		if(!(istype(over_object, /obj/screen/inventory) ))
-			return ..()
-
-		if(!M.incapacitated() && Adjacent(usr))
-			var/obj/screen/inventory/OI = over_object
-
-			if(OI.hand_index && M.put_in_hand_check(src, OI.hand_index))
-				M.u_equip(src, 0)
-				M.put_in_hand(OI.hand_index, src)
-				src.add_fingerprint(usr)
-			return
+	if(src.loc != over_object && !Adjacent(over_object) ) return 0
+	if(ishuman(usr) && over_object == usr )
+		add_fingerprint(usr)
+		return attack_self( usr )
 
 /obj/item/weapon/clipboard/update_icon()
-	overlays.len = 0
+	overlays.Cut()
 	if(toppaper)
 		overlays += toppaper.icon_state
 		overlays += toppaper.overlays
-	else
-		var/obj/item/weapon/photo/Ph = locate(/obj/item/weapon/photo) in src
-		if(Ph)
-			overlays += image(Ph.icon)
 	if(haspen)
-		overlays += image(icon, "clipboard_pen")
-	overlays += image(icon, "clipboard_over")
+		overlays += "clipboard_pen"
+	overlays += "clipboard_over"
 	return
 
 /obj/item/weapon/clipboard/attackby(obj/item/weapon/W as obj, mob/user as mob)
+
 	if(istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/weapon/photo))
-		if(user.drop_item(W, src))
-			if(istype(W, /obj/item/weapon/paper))
-				toppaper = W
-			to_chat(user, "<span class='notice'>You clip the [W] onto \the [src].</span>")
-			update_icon()
-	else if(toppaper)
-		toppaper.attackby(usr.get_active_hand(), usr)
+		user.drop_from_inventory(W, src)
+		if(istype(W, /obj/item/weapon/paper))
+			toppaper = W
+		user << "<span class='notice'>You clip the [W] onto \the [src].</span>"
 		update_icon()
+
+	else if(istype(W, /obj/item/weapon/pen))
+		if(!haspen)
+			usr.drop_from_inventory(W, src)
+			W.loc = src
+			haspen = W
+			usr << "<span class='notice'>You slot the pen into \the [src].</span>"
+
+	else if(istype(toppaper) && istype(W, /obj/item/weapon/pen))
+		toppaper.attackby(W, usr)
+		update_icon()
+
 	return
 
 /obj/item/weapon/clipboard/attack_self(mob/user as mob)
@@ -69,14 +62,14 @@
 	//The topmost paper. I don't think there's any way to organise contents in byond, so this is what we're stuck with.	-Pete
 	if(toppaper)
 		var/obj/item/weapon/paper/P = toppaper
-		dat += "<A href='?src=\ref[src];write=\ref[P]'>Write</A> <A href='?src=\ref[src];remove=\ref[P]'>Remove</A> - <A href='?src=\ref[src];read=\ref[P]'>[P.name]</A><BR><HR>"
+		dat += "<A href='?src=\ref[src];write=\ref[P]'>Write</A> <A href='?src=\ref[src];remove=\ref[P]'>Remove</A> <A href='?src=\ref[src];rename=\ref[P]'>Rename</A> - <A href='?src=\ref[src];read=\ref[P]'>[P.name]</A><BR><HR>"
 
 	for(var/obj/item/weapon/paper/P in src)
 		if(P==toppaper)
 			continue
-		dat += "<A href='?src=\ref[src];remove=\ref[P]'>Remove</A> - <A href='?src=\ref[src];top=\ref[P]'>Move to Top</A> - <A href='?src=\ref[src];read=\ref[P]'>[P.name]</A><BR>"
+		dat += "<A href='?src=\ref[src];remove=\ref[P]'>Remove</A> <A href='?src=\ref[src];rename=\ref[P]'>Rename</A> - <A href='?src=\ref[src];read=\ref[P]'>[P.name]</A><BR>"
 	for(var/obj/item/weapon/photo/Ph in src)
-		dat += "<A href='?src=\ref[src];remove=\ref[Ph]'>Remove</A> - <A href='?src=\ref[src];look=\ref[Ph]'>[Ph.name]</A><BR>"
+		dat += "<A href='?src=\ref[src];remove=\ref[Ph]'>Remove</A> <A href='?src=\ref[src];rename=\ref[Ph]'>Rename</A> - <A href='?src=\ref[src];look=\ref[Ph]'>[Ph.name]</A><BR>"
 
 	user << browse(dat, "window=clipboard")
 	onclose(user, "clipboard")
@@ -88,39 +81,36 @@
 	if((usr.stat || usr.restrained()))
 		return
 
-	if(usr.contents.Find(src))
+	if( (src.loc == usr) || (src.loc.Adjacent(usr)) )
 
 		if(href_list["pen"])
-			if(haspen)
-				haspen.forceMove(usr.loc)
+			if(istype(haspen) && (haspen.loc == src))
+				haspen.loc = usr.loc
 				usr.put_in_hands(haspen)
 				haspen = null
 
-		if(href_list["addpen"])
+		else if(href_list["addpen"])
 			if(!haspen)
-				if(istype(usr.get_active_hand(), /obj/item/weapon/pen))
-					var/obj/item/weapon/pen/W = usr.get_active_hand()
-					if(usr.drop_item(W, src))
-						haspen = W
-						to_chat(usr, "<span class='notice'>You slot the pen into \the [src].</span>")
+				var/obj/item/weapon/pen/W = usr.get_active_hand()
+				attackby(W, usr)
 
-		if(href_list["write"])
-			var/obj/item/P = locate(href_list["write"])
-			if(P && P.loc == src)
-				if(usr.get_active_hand())
-					P.attackby(usr.get_active_hand(), usr)
+		else if(href_list["write"])
+			var/obj/item/weapon/P = locate(href_list["write"])
 
-		if(href_list["remove"])
+			if(P && (P.loc == src) && istype(P, /obj/item/weapon/paper) && (P == toppaper) )
+
+				var/obj/item/I = usr.get_active_hand()
+
+				if(istype(I, /obj/item/weapon/pen))
+
+					P.attackby(I, usr)
+
+		else if(href_list["remove"])
 			var/obj/item/P = locate(href_list["remove"])
-			if(!(P.loc == src))
-				var/message = "<span class='warning'>[usr]([usr.key]) has tried to remove something it shouldn't from the clipboard<span>"
-				message_admins(message)
-				message += "[P]"
-				log_game(message)
-				admin_log.Add(message)
-				return
-			if(P)
-				P.forceMove(usr.loc)
+
+			if(P && (P.loc == src) && (istype(P, /obj/item/weapon/paper) || istype(P, /obj/item/weapon/photo)) )
+
+				P.loc = usr.loc
 				usr.put_in_hands(P)
 				if(P == toppaper)
 					toppaper = null
@@ -130,21 +120,40 @@
 					else
 						toppaper = null
 
-		if(href_list["read"])
-			var/obj/item/weapon/paper/P = locate(href_list["read"])
-			if(P)
-				P.show_text(usr)
+		else if(href_list["rename"])
+			var/obj/item/weapon/O = locate(href_list["rename"])
 
-		if(href_list["look"])
+			if(O && (O.loc == src))
+				if(istype(O, /obj/item/weapon/paper))
+					var/obj/item/weapon/paper/to_rename = O
+					to_rename.rename()
+
+				else if(istype(O, /obj/item/weapon/photo))
+					var/obj/item/weapon/photo/to_rename = O
+					to_rename.rename()
+
+		else if(href_list["read"])
+			var/obj/item/weapon/paper/P = locate(href_list["read"])
+
+			if(P && (P.loc == src) && istype(P, /obj/item/weapon/paper) )
+
+				if(!(ishuman(usr) || isobserver(usr) || issilicon(usr)))
+					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
+					onclose(usr, "[P.name]")
+				else
+					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>", "window=[P.name]")
+					onclose(usr, "[P.name]")
+
+		else if(href_list["look"])
 			var/obj/item/weapon/photo/P = locate(href_list["look"])
-			if(P)
+			if(P && (P.loc == src) && istype(P, /obj/item/weapon/photo) )
 				P.show(usr)
 
-		if(href_list["top"])
+		else if(href_list["top"]) // currently unused
 			var/obj/item/P = locate(href_list["top"])
-			if(P && (P.loc == src))
+			if(P && (P.loc == src) && istype(P, /obj/item/weapon/paper) )
 				toppaper = P
-				to_chat(usr, "<span class='notice'>You move [P.name] to the top.</span>")
+				usr << "<span class='notice'>You move [P.name] to the top.</span>"
 
 		//Update everything
 		attack_self(usr)

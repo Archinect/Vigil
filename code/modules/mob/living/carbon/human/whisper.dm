@@ -21,21 +21,21 @@
 	speech.message_classes.Add("whisper")
 
 	if(istype(speech.language))
-		speech.message = sanitize(copytext(speech.message,2+length(speech.language.key)))
+		speech.message = sanitize_russian(copytext(speech.message,2+length(speech.language.key)))
 	else
 		if(!isnull(speech.language))
 			//var/oldmsg = message
 			var/n = speech.language
-			speech.message = sanitize(copytext(speech.message,1+length(n)))
+			speech.message = sanitize_russian(copytext(speech.message,1+length(n)))
 			say_testing(src, "We tried to speak a language we don't have length = [length(n)], oldmsg = [oldmsg] parsed message = [speech.message]")
 			speech.language = null
 		speech.language = get_default_language()
 
-	speech.message = trim(sanitize(speech.message))
+	speech.message = trim(sanitize_russian(speech.message))
 	if(!can_speak(message))
 		return
 
-	speech.message = "[sanitize(message)]"
+	speech.message = "[sanitize_russian(message)]"
 
 	if (src.client)
 		if (src.client.prefs.muted & MUTE_IC)
@@ -81,7 +81,7 @@
 
 	listeners = null
 
-	speech.message = stars(sanitize(speech.message))
+	speech.message = stars(sanitize_russian(speech.message))
 
 	//rendered = "<span class='game say'><span class='name'>[GetVoice()]</span> (as [alt_name]) [whispers], <span class='message'>\"<i>[message]</i>\"</span></span>"
 	rendered = render_speech(speech)

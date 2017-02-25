@@ -535,7 +535,7 @@ var/list/mechtoys = list(
 			var/max_crates = round((account.money - total_money_req) / (P.cost + SUPPLY_TAX))
 			to_chat(usr, "<span class='warning'>You can only afford [max_crates] crates.</span>")
 			return
-		var/reason = sanitize(copytext(stripped_input(usr,"Reason:","Why do you require this item?",""), 1))
+		var/reason = sanitize_russian(copytext(stripped_input(usr,"Reason:","Why do you require this item?",""), 1))
 		if(world.time > timeout)
 			return
 		if(!reason)
@@ -759,7 +759,7 @@ var/list/mechtoys = list(
 			to_chat(usr, "<span class='warning'>You can only afford [max_crates] crates.</span>")
 			return
 		var/timeout = world.time + 600
-		var/reason = sanitize(copytext(stripped_input(usr, "Reason:", "Why do you require this item?", ""), 1))
+		var/reason = sanitize_russian(copytext(stripped_input(usr, "Reason:", "Why do you require this item?", ""), 1))
 		if(world.time > timeout)
 			return
 		if(!reason)

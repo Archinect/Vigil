@@ -3,11 +3,8 @@
 	desc = "A folder."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "folder"
-	w_class = W_CLASS_SMALL
+	w_class = 2
 	pressure_resistance = 2
-
-	autoignition_temperature = 522 // Kelvin
-	fire_fuel = 1
 
 /obj/item/weapon/folder/blue
 	desc = "A blue folder."
@@ -26,27 +23,31 @@
 	icon_state = "folder_white"
 
 /obj/item/weapon/folder/update_icon()
-	overlays.len = 0
+	overlays.Cut()
 	if(contents.len)
-		overlays += image(icon = icon, icon_state = "folder_paper")
+		overlays += "folder_paper"
 	return
 
 /obj/item/weapon/folder/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/weapon/photo))
-		if(user.drop_item(W, src))
-			to_chat(user, "<span class='notice'>You put the [W] into \the [src].</span>")
-			update_icon()
+	if(istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/weapon/photo) || istype(W, /obj/item/weapon/paper_bundle))
+		user.unEquip(W, src)
+		user << "<span class='notice'>You put the [W] into \the [src].</span>"
+		update_icon()
 	else if(istype(W, /obj/item/weapon/pen))
-		var/n_name = copytext(input(user, "What would you like to label the folder?", "Folder Labelling", null) as text, 1, MAX_NAME_LEN)
-		if((in_range(src,user) && user.stat == CONSCIOUS))
-			name = sanitize("folder[(n_name ? "- '[n_name]'" : null)]",1)
+		var/n_name = sanitizeSafe(input(usr, "What would you like to label the folder?", "Folder Labelling", null)  as text, MAX_NAME_LEN)
+		if((loc == usr && usr.stat == 0))
+			name = "folder[(n_name ? text("- '[n_name]'") : null)]"
 	return
 
 /obj/item/weapon/folder/attack_self(mob/user as mob)
 	var/dat = "<title>[name]</title>"
 
-	for(var/obj/item/I in src)
-		dat += sanitize("<A href='?src=\ref[src];remove=\ref[I]'>Remove</A> - <A href='?src=\ref[src];read=\ref[I]'>[I.name]</A><BR>", 1)
+	for(var/obj/item/weapon/paper/P in src)
+		dat += "<A href='?src=\ref[src];remove=\ref[P]'>Remove</A> <A href='?src=\ref[src];rename=\ref[P]'>Rename</A> - <A href='?src=\ref[src];read=\ref[P]'>[P.name]</A><BR>"
+	for(var/obj/item/weapon/photo/Ph in src)
+		dat += "<A href='?src=\ref[src];remove=\ref[Ph]'>Remove</A> <A href='?src=\ref[src];rename=\ref[Ph]'>Rename</A> - <A href='?src=\ref[src];look=\ref[Ph]'>[Ph.name]</A><BR>"
+	for(var/obj/item/weapon/paper_bundle/Pb in src)
+		dat += "<A href='?src=\ref[src];remove=\ref[Pb]'>Remove</A> <A href='?src=\ref[src];rename=\ref[Pb]'>Rename</A> - <A href='?src=\ref[src];browse=\ref[Pb]'>[Pb.name]</A><BR>"
 	user << browse(dat, "window=folder")
 	onclose(user, "folder")
 	add_fingerprint(usr)
@@ -57,36 +58,47 @@
 	if((usr.stat || usr.restrained()))
 		return
 
-	if(usr.contents.Find(src))
+	if(src.loc == usr)
 
 		if(href_list["remove"])
 			var/obj/item/P = locate(href_list["remove"])
-			if(!(istype(P, /obj/item/weapon/paper)) && !(istype(P, /obj/item/weapon/photo)))
-				var/message = "<span class='warning'>[usr]([usr.key]) has tried to remove something other than a paper/photo from a folder.<span>"
-				message_admins(message)
-				message += "[P]"
-				log_game(message)
-				admin_log.Add(message)
-				return
-			if(!(P in src.contents))
-				var/message = "<span class='warning'>[usr]([usr.key]) has tried to remove a paper/photo from a folder that didn't contain it.<span>"
-				message_admins(message)
-				message += "[P]"
-				log_game(message)
-				admin_log.Add(message)
-				return
-			if(P)
-				P.forceMove(usr.loc)
+			if(P && (P.loc == src) && istype(P))
+				P.loc = usr.loc
 				usr.put_in_hands(P)
 
-		if(href_list["read"])
+		else if(href_list["read"])
 			var/obj/item/weapon/paper/P = locate(href_list["read"])
-			if(P)
-				P.show_text(usr)
-		if(href_list["look"])
+			if(P && (P.loc == src) && istype(P))
+				if(!(ishuman(usr) || isobserver(usr) || issilicon(usr)))
+					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
+					onclose(usr, "[P.name]")
+				else
+					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>", "window=[P.name]")
+					onclose(usr, "[P.name]")
+		else if(href_list["look"])
 			var/obj/item/weapon/photo/P = locate(href_list["look"])
-			if(P)
+			if(P && (P.loc == src) && istype(P))
 				P.show(usr)
+		else if(href_list["browse"])
+			var/obj/item/weapon/paper_bundle/P = locate(href_list["browse"])
+			if(P && (P.loc == src) && istype(P))
+				P.attack_self(usr)
+				onclose(usr, "[P.name]")
+		else if(href_list["rename"])
+			var/obj/item/weapon/O = locate(href_list["rename"])
+
+			if(O && (O.loc == src))
+				if(istype(O, /obj/item/weapon/paper))
+					var/obj/item/weapon/paper/to_rename = O
+					to_rename.rename()
+
+				else if(istype(O, /obj/item/weapon/photo))
+					var/obj/item/weapon/photo/to_rename = O
+					to_rename.rename()
+
+				else if(istype(O, /obj/item/weapon/paper_bundle))
+					var/obj/item/weapon/paper_bundle/to_rename = O
+					to_rename.rename()
 
 		//Update everything
 		attack_self(usr)

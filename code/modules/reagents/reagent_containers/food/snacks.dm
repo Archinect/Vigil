@@ -3124,7 +3124,7 @@
 		if( src.open )
 			return
 
-		var/t = sanitize(stripped_input("Enter what you want to add to the tag:", "Write", null, null))
+		var/t = sanitize_russian(stripped_input("Enter what you want to add to the tag:", "Write", null, null))
 		if (!Adjacent(user) || user.stat)
 			return
 

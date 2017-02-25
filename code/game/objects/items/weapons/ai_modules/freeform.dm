@@ -44,7 +44,7 @@ By N3X15
 			to_chat(user, "<span class='notice'>Target law sector set to [priority].</span>")
 			break
 
-	law = copytext(sanitize(stripped_input(usr, "Please enter a new law for the AI.", "Freeform Law Entry", law)),1,MAX_MESSAGE_LEN)
+	law = copytext(sanitize_russian(stripped_input(usr, "Please enter a new law for the AI.", "Freeform Law Entry", law)),1,MAX_MESSAGE_LEN)
 	updateLaw()
 
 /obj/item/weapon/aiModule/freeform/upload(var/datum/ai_laws/laws, var/atom/target=null, var/mob/sender=null, var/notify_target=0)

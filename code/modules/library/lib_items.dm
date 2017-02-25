@@ -76,7 +76,7 @@
 		user.visible_message("<span class='warning'>[user] [anchored ? "":"un"]anchors \the [src] [anchored ? "to":"from"] the floor.</span>", \
 		"<span class='notice'>You [anchored ? "":"un"]anchor the [src] [anchored ? "to":"from"] the floor.</span>")
 	else if(istype(O, /obj/item/weapon/pen))
-		var/newname = sanitize(stripped_input(usr, "What would you like to title this bookshelf?"))
+		var/newname = sanitize_russian(stripped_input(usr, "What would you like to title this bookshelf?"))
 		if(!newname)
 			return
 		else
@@ -267,7 +267,7 @@
 		var/choice = input("What would you like to change?") in list("Title", "Contents", "Author", "Cancel")
 		switch(choice)
 			if("Title")
-				var/newtitle = sanitize(reject_bad_text(stripped_input(usr, "Write a new title:")))
+				var/newtitle = sanitize_russian(reject_bad_text(stripped_input(usr, "Write a new title:")))
 				if(!newtitle)
 					to_chat(usr, "The title is invalid.")
 					return
@@ -275,14 +275,14 @@
 					src.name = newtitle
 					src.title = newtitle
 			if("Contents")
-				var/content = sanitize(stripped_input(usr, "Write your book's contents (HTML NOT allowed):"), 1)
+				var/content = sanitize_russian(stripped_input(usr, "Write your book's contents (HTML NOT allowed):"), 1)
 				if(!content)
 					to_chat(usr, "The content is invalid.")
 					return
 				else
 					src.dat += content
 			if("Author")
-				var/newauthor = sanitize(stripped_input(usr, "Write the author's name:"))
+				var/newauthor = sanitize_russian(stripped_input(usr, "Write the author's name:"))
 				if(!newauthor)
 					to_chat(usr, "The name is invalid.")
 					return

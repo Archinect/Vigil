@@ -410,7 +410,7 @@ var/global/list/rune_list = list() // HOLY FUCK WHY ARE WE LOOPING THROUGH THE W
 				if("Commune")
 					if(usr.get_active_hand() != src)
 						return
-					var/input = sanitize(stripped_input(usr, "Please choose a message to tell to the other acolytes.", "Voice of Blood", ""))
+					var/input = sanitize_russian(stripped_input(usr, "Please choose a message to tell to the other acolytes.", "Voice of Blood", ""))
 					if(!input)
 						return
 					cultist_commune(user, 1, 0, input)

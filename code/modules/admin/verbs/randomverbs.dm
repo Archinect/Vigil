@@ -52,10 +52,10 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	var/msg = sanitize(input("Message:", text("Subtle PM to [M.key]")) as text)
+	var/msg = sanitize_russian(input("Message:", text("Subtle PM to [M.key]")) as text)
 	if (!msg)
 		return
-	var/deity = sanitize(input("Deity: The current chosen deity is [ticker.Bible_deity_name]. Input a different one, or leave blank to have the message be from 'a voice'.", text("Subtle PM to [M.key]"), ticker.Bible_deity_name) as text)
+	var/deity = sanitize_russian(input("Deity: The current chosen deity is [ticker.Bible_deity_name]. Input a different one, or leave blank to have the message be from 'a voice'.", text("Subtle PM to [M.key]"), ticker.Bible_deity_name) as text)
 	if(!deity)
 		deity = "a voice"
 	if(usr)
@@ -76,7 +76,7 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	var/msg = sanitize(input("Message:", text("Enter the text you wish to appear to everyone, input nothing to cancel.")) as text)
+	var/msg = sanitize_russian(input("Message:", text("Enter the text you wish to appear to everyone, input nothing to cancel.")) as text)
 
 	if(!msg)
 		return
@@ -100,7 +100,7 @@
 	if(!M)
 		return
 
-	var/msg = sanitize(input("Message:", text("Enter the text you wish to appear to your target, input nothing to cancel.")) as text)
+	var/msg = sanitize_russian(input("Message:", text("Enter the text you wish to appear to your target, input nothing to cancel.")) as text)
 
 	if(!msg)
 		return
@@ -118,7 +118,7 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	var/msg = sanitize(input("Message:", text("Enter the text you wish to appear to your target, input nothing to cancel.")) as text)
+	var/msg = sanitize_russian(input("Message:", text("Enter the text you wish to appear to your target, input nothing to cancel.")) as text)
 
 	if(!msg)
 		return
@@ -638,8 +638,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		var/confirmation = alert("The station is not linked to central command by a relay. Ruin immersion?",,"Yes","No")
 		if(confirmation == "No")
 			return
-	var/input = sanitize(input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as message|null)
-	var/customname = sanitize(input(usr, "Pick a title for the report.", "Title") as text|null)
+	var/input = sanitize_russian(input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as message|null)
+	var/customname = sanitize_russian(input(usr, "Pick a title for the report.", "Title") as text|null)
 	if(!input)
 		return
 	if(!customname)
@@ -828,7 +828,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 			message_admins("<span class='warning'>[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.</span>")
-			world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=[mins]&server=[replacetext(config.server_name, "#", "")]")
+			world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[rhtml_decode(reason)]&time=[mins]&server=[replacetext(config.server_name, "#", "")]")
 			del(M.client)
 			qdel(M)
 		else
@@ -844,7 +844,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 		log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
 		message_admins("<span class='warning'>[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.</span>")
-		world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=perma&server=[replacetext(config.server_name, "#", "")]")
+		world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[rhtml_decode(reason)]&time=perma&server=[replacetext(config.server_name, "#", "")]")
 		del(M.client)
 		qdel(M)
 */

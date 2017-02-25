@@ -842,7 +842,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				dat += {"<h4><span class='pda_icon pda_chatroom'></span> Nanotrasen Relay Chat</h4>
 					<h4><span class='pda_icon pda_menu'></span> Detected Channels</h4>: <li>"}
 				for(var/datum/chatroom/C in chatrooms)
-					dat += "<a href='byond://?src=\ref[src];pdachannel=[C.name]'>#[html_encode(lowertext(C.name))]"
+					dat += "<a href='byond://?src=\ref[src];pdachannel=[C.name]'>#[rhtml_encode(lowertext(C.name))]"
 					if(C.password != "")
 						dat += " <span class='pda_icon pda_locked'></span>"
 					dat += "</li>"
@@ -1713,10 +1713,10 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			if ("Edit")
 				var/n = stripped_multiline_input(U, "Please enter message", name, note)
 				if (in_range(src, U) && loc == U)
-					n = sanitize(adminscrub(n), 1, MAX_MESSAGE_LEN)
+					n = sanitize_russian(adminscrub(n), 1, MAX_MESSAGE_LEN)
 					if (mode == 1)
-						note = sanitize(n, 1)
-						notehtml = html_encode(note)
+						note = sanitize_russian(n, 1)
+						notehtml = rhtml_encode(note)
 
 						var/log = replacetext(n, "\n", "(new line)")//no intentionally spamming admins with 100 lines, nice try
 						log_say("[src] notes - [U] changed the text to: [log]")
@@ -1992,8 +1992,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 /obj/item/device/pda/proc/create_message(var/mob/living/U = usr, var/obj/item/device/pda/P)
 
 
-	var/t = sanitize(stripped_input(U, "Please enter message", name, null, MAX_MESSAGE_LEN), 1)
-	t = sanitize(copytext(stripped_input(t), 1, MAX_MESSAGE_LEN))
+	var/t = sanitize_russian(stripped_input(U, "Please enter message", name, null, MAX_MESSAGE_LEN), 1)
+	t = sanitize_russian(copytext(stripped_input(t), 1, MAX_MESSAGE_LEN))
 	if (!t || !istype(P))
 		return
 	if (!in_range(src, U) && loc != U)

@@ -94,7 +94,7 @@ Here it is: Buttbot.
 		user.drop_from_inventory(src)
 		qdel(src)
 	else if (istype(W, /obj/item/weapon/pen))
-		var/t = sanitize(stripped_input(user, "Enter new robot name", src.name, src.created_name))
+		var/t = sanitize_russian(stripped_input(user, "Enter new robot name", src.name, src.created_name))
 
 		if (!t)
 			return

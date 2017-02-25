@@ -1,7 +1,7 @@
 
 
 proc/Intoxicated(phrase)
-	phrase = html_decode(phrase)
+	phrase = rhtml_decode(phrase)
 	var/leng=length(phrase)
 	var/counter=length(phrase)
 	var/newphrase=""
@@ -31,7 +31,7 @@ proc/Intoxicated(phrase)
 	return newphrase
 
 proc/NewStutter(phrase,stunned)
-	phrase = html_decode(phrase)
+	phrase = rhtml_decode(phrase)
 
 	var/list/split_phrase = splittext(phrase," ") //Split it up into words.
 

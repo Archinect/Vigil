@@ -618,7 +618,7 @@
 /obj/item/weapon/firstaid_arm_assembly/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/weapon/pen))
-		var/t = sanitize(stripped_input(user, "Enter new robot name", name, created_name),1,MAX_NAME_LEN)
+		var/t = sanitize_russian(stripped_input(user, "Enter new robot name", name, created_name),1,MAX_NAME_LEN)
 		if (!t)
 			return
 		if (!in_range(src, usr) && loc != usr)

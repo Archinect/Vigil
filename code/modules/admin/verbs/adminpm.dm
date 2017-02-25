@@ -58,7 +58,7 @@
 
 	//get message text, limit it's length.and clean/escape html
 	if(!msg)
-		msg = sanitize(input(src, "Message:", "Private message to [key_name(C, 0, 0)]", "") as text | null)
+		msg = sanitize_russian(input(src, "Message:", "Private message to [key_name(C, 0, 0)]", "") as text | null)
 
 		if(!msg)
 			return
@@ -109,7 +109,7 @@
 			spawn(0)	//so we don't hold the caller proc up
 				var/sender = src
 				var/sendername = key
-				var/reply = sanitize(input(C, msg,"[recieve_pm_type] PM from-[sendername]", "") as text|null)		//show message and await a reply
+				var/reply = sanitize_russian(input(C, msg,"[recieve_pm_type] PM from-[sendername]", "") as text|null)		//show message and await a reply
 				if(C && reply)
 					if(sender)
 						C.cmd_admin_pm(sender,reply)										//sender is still about, let's reply to them

@@ -33,7 +33,7 @@
 //		to_chat(usr, "<span class='warning'>You cut yourself on the paper.</span>")
 	//	return
 
-	var/n_name = sanitize(stripped_input(usr, "What would you like to label the [src]?", "[src] Labelling", null), 1)
+	var/n_name = sanitize_russian(stripped_input(usr, "What would you like to label the [src]?", "[src] Labelling", null), 1)
 	if((loc == usr && !usr.isUnconscious()))
 		name = "[src][(n_name ? text("- '[n_name]'") : null)]"
 	add_fingerprint(usr)
