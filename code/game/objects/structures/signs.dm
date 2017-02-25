@@ -302,51 +302,51 @@
 
 /obj/structure/sign/portrait/rodger
 	name = "Rodger Wheeler's Portrait"
-	desc = "Красивое мужественное лицо сурово взирает на вас с картины. Этот человек внушает страх, уважение и необъ&#255;снимо сильную симпатию."
+	desc = "Красивое мужественное лицо сурово взирает на вас с картины. Этот человек внушает страх, уважение и необъ&#1103;снимо сильную симпатию."
 	icon_state = "portrait-rodger"
 
 /obj/structure/sign/portrait/rodger/attackby(var/obj/item/weapon/W, mob/living/user, params)
 	if(istype(W,/obj/item/weapon/extinguisher))
 		if(blesses > 0)
-			user << "<span class='userdanger'>¤ Боги благовол&#255;т вам!</span>"
+			user << "<span class='userdanger'>¤ Боги благовол&#1103;т вам!</span>"
 			new /obj/item/weapon/reagent_containers/food/drinks/milk(user.loc)
 			blesses--
 		else
-			user.visible_message("<span class='warning'>¤ Вам на миг почудилось, будто [user] ударило молнией. Боги не люб&#255;т жадин.</span>", \
+			user.visible_message("<span class='warning'>¤ Вам на миг почудилось, будто [user] ударило молнией. Боги не люб&#1103;т жадин.</span>", \
 								 "<span class='userdanger'>¤ Боги не оценили вашу жадность!</span>")
 			playsound(loc, 'sound/effects/sparks1.ogg', 50, 1)
 			user.adjustBrainLoss(5)
 
 /obj/structure/sign/portrait/ruben
 	name = "Ruben Mills Portrait"
-	desc = "Какой н&#255;шечка! Томный образ этого оба&#255;тельного джентльмена делает ваши трусики насквозь мокрыми."
+	desc = "Какой н&#1103;шечка! Томный образ этого оба&#1103;тельного джентльмена делает ваши трусики насквозь мокрыми."
 	icon_state = "portrait-ruben1"
 
 /obj/structure/sign/portrait/ruben/attackby(var/obj/item/weapon/W, mob/living/user, params)
 	if(istype(W,/obj/item/weapon/extinguisher))
 		if(blesses > 0)
-			user << "<span class='userdanger'>¤ Боги благовол&#255;т вам!</span>"
+			user << "<span class='userdanger'>¤ Боги благовол&#1103;т вам!</span>"
 			new /obj/item/clothing/head/collectable/kitty(user.loc)
 			blesses--
 		else
-			user.visible_message("<span class='warning'>¤ Вам на миг почудилось, будто [user] ударило молнией. Боги не люб&#255;т жадин.</span>", \
+			user.visible_message("<span class='warning'>¤ Вам на миг почудилось, будто [user] ударило молнией. Боги не люб&#1103;т жадин.</span>", \
 								 "<span class='userdanger'>¤ Боги не оценили вашу жадность!</span>")
 			playsound(loc, 'sound/effects/sparks1.ogg', 50, 1)
 			user.adjustBrainLoss(5)
 
 /obj/structure/sign/portrait/bisher
 	name = "Unknown's Portrait"
-	desc = "Гордый взгл&#255;д бывалого солдата, армейска&#255; выправка, мускулиста&#255; ше&#255;. Вы почти ощущаете запах напалма, источаемый портретом."
+	desc = "Гордый взгл&#1103;д бывалого солдата, армейска&#1103; выправка, мускулиста&#1103; ше&#1103;. Вы почти ощущаете запах напалма, источаемый портретом."
 	icon_state = "portrait-bishehlop"
 
 /obj/structure/sign/portrait/bisher/attackby(var/obj/item/weapon/W, mob/living/user, params)
 	if(istype(W,/obj/item/weapon/extinguisher))
 		if(blesses > 0)
-			user << "<span class='userdanger'>¤ Боги благовол&#255;т вам!</span>"
+			user << "<span class='userdanger'>¤ Боги благовол&#1103;т вам!</span>"
 			new /obj/item/clothing/glasses/eyepatch(user.loc)
 			blesses--
 		else
-			user.visible_message("<span class='warning'>¤ Вам на миг почудилось, будто [user] ударило молнией. Боги не люб&#255;т жадин.</span>", \
+			user.visible_message("<span class='warning'>¤ Вам на миг почудилось, будто [user] ударило молнией. Боги не люб&#1103;т жадин.</span>", \
 								 "<span class='userdanger'>¤ Боги не оценили вашу жадность!</span>")
 			playsound(loc, 'sound/effects/sparks1.ogg', 50, 1)
 			user.adjustBrainLoss(5)
