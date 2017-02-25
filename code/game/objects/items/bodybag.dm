@@ -51,7 +51,7 @@
 		new /obj/structure/morgue(src.loc)
 		qdel(src)
 	else if (istype(W, /obj/item/weapon/pen))
-		label = sanitize_russian(stripped_input(user, "What would you like the label to be?", name, null, 53))
+		label = sanitize(stripped_input(user, "What would you like the label to be?", name, null, 53))
 		if(user.get_active_hand() != W)
 			return
 		if(!in_range(src, user) && loc != user)

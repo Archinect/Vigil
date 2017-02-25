@@ -842,7 +842,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				dat += {"<h4><span class='pda_icon pda_chatroom'></span> Nanotrasen Relay Chat</h4>
 					<h4><span class='pda_icon pda_menu'></span> Detected Channels</h4>: <li>"}
 				for(var/datum/chatroom/C in chatrooms)
-					dat += "<a href='byond://?src=\ref[src];pdachannel=[C.name]'>#[html_encode(lowertext(C.name))]"
+					dat += "<a href='byond://?src=\ref[src];pdachannel=[C.name]'>#[rhtml_encode(lowertext(C.name))]"
 					if(C.password != "")
 						dat += " <span class='pda_icon pda_locked'></span>"
 					dat += "</li>"
@@ -1713,9 +1713,9 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			if ("Edit")
 				var/n = stripped_multiline_input(U, "Please enter message", name, note)
 				if (in_range(src, U) && loc == U)
-					n = sanitize_russian(adminscrub(n), 1, MAX_MESSAGE_LEN)
+					n = sanitize(adminscrub(n), 1, MAX_MESSAGE_LEN)
 					if (mode == 1)
-						note = sanitize_russian(n, 1)
+						note = sanitize(n, 1)
 						notehtml = rhtml_encode(note)
 
 						var/log = replacetext(n, "\n", "(new line)")//no intentionally spamming admins with 100 lines, nice try
@@ -1992,8 +1992,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 /obj/item/device/pda/proc/create_message(var/mob/living/U = usr, var/obj/item/device/pda/P)
 
 
-	var/t = sanitize_russian(stripped_input(U, "Please enter message", name, null, MAX_MESSAGE_LEN), 1)
-	t = sanitize_russian(copytext(stripped_input(t), 1, MAX_MESSAGE_LEN))
+	var/t = sanitize(stripped_input(U, "Please enter message", name, null, MAX_MESSAGE_LEN), 1)
+	t = sanitize(copytext(stripped_input(t), 1, MAX_MESSAGE_LEN))
 	if (!t || !istype(P))
 		return
 	if (!in_range(src, U) && loc != U)
@@ -2042,7 +2042,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		P.tnote += "<i><b>&larr; From <a href='byond://?src=\ref[P];choice=Message;target=\ref[src]'>[owner]</a> ([ownjob]):</b></i><br>[t]<br>"
 		for(var/mob/dead/observer/M in player_list)
 			if(M.stat == DEAD && M.client && (M.client.prefs.toggles & CHAT_GHOSTPDA)) // src.client is so that ghosts don't have to listen to mice
-				M.show_message("<span class='game say'>PDA Message - <span class='name'>[owner]</span> -> <span class='name'>[P.owner]</span>: <span class='message'>[russian_html2text(t)]</span></span>")
+				M.show_message("<span class='game say'>PDA Message - <span class='name'>[owner]</span> -> <span class='name'>[P.owner]</span>: <span class='message'>[rhtml_decode(t)]</span></span>")
 
 
 		if (prob(15)) //Give the AI a chance of intercepting the message
@@ -2068,7 +2068,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			L = get_holder_of_type(P, /mob/living/silicon)
 
 		if(L)
-			L << russian_html2text("\icon[P] <b>Message from [src.owner] ([ownjob]), </b>\"[russian_html2text(t)]\" (<a href='byond://?src=\ref[P];choice=Message;skiprefresh=1;target=\ref[src]'>Reply</a>)")
+			L << rhtml_decode("\icon[P] <b>Message from [src.owner] ([ownjob]), </b>\"[rhtml_decode(t)]\" (<a href='byond://?src=\ref[P];choice=Message;skiprefresh=1;target=\ref[src]'>Reply</a>)")
 
 		log_pda("[usr] (PDA: [src.name]) sent \"[t]\" to [P.name]")
 		P.overlays.len = 0

@@ -19,6 +19,7 @@ var/global/list/chemical_reagents_list				//list of all /datum/reagent datums in
 var/global/list/landmarks_list = list()				//list of all landmarks created
 var/global/list/surgery_steps = list()				//list of all surgery steps  |BS12
 var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
+var/global/list/localisation = list()
 
 // Posters
 var/global/list/datum/poster/poster_designs = typesof(/datum/poster) - /datum/poster - /datum/poster/goldstar

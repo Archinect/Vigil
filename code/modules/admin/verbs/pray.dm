@@ -7,7 +7,7 @@
 		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
 		return
 
-	msg = copytext(sanitize_russian(msg), 1, MAX_MESSAGE_LEN)
+	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
 	if(!msg)
 		return
 
@@ -32,12 +32,12 @@
 	feedback_add_details("admin_verb", "PR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /proc/Centcomm_announce(var/text , var/mob/Sender)
-	var/msg = copytext(sanitize_russian(text), 1, MAX_MESSAGE_LEN)
+	var/msg = copytext(sanitize(text), 1, MAX_MESSAGE_LEN)
 	msg = "<span class='notice'><b>  CENTCOMM: [key_name(Sender, 1)] (<A HREF='?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<A HREF='?_src_=holder;BlueSpaceArtillery=\ref[Sender]'>BSA</A>) (<A HREF='?_src_=holder;CentcommReply=\ref[Sender]'>RPLY</A>):</b> [msg]</span>"
 	send_prayer_to_admins(msg, 'sound/effects/msn.ogg')
 
 /proc/Syndicate_announce(var/text , var/mob/Sender)
-	var/msg = copytext(sanitize_russian(text), 1, MAX_MESSAGE_LEN)
+	var/msg = copytext(sanitize(text), 1, MAX_MESSAGE_LEN)
 	msg = "<span class='notice'><b>  SYNDICATE: [key_name(Sender, 1)] (<A HREF='?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<A HREF='?_src_=holder;BlueSpaceArtillery=\ref[Sender]'>BSA</A>) (<A HREF='?_src_=holder;SyndicateReply=\ref[Sender]'>RPLY</A>):</b> [msg]</span>"
 	send_prayer_to_admins(msg, 'sound/effects/inception.ogg')
 

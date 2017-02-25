@@ -279,11 +279,11 @@
 				dat += "Each property has 3 arguments: symbolic variable, operator and value.<br>"
 				dat += "Symbolic variable must be either O, L or N.<br>"
 				dat += "O is octave, L is line number, N is note number inside a line.<br>"
-				dat += html_encode("Logical operators allowed: <, =, >")+"<br>"
+				dat += rhtml_encode("Logical operators allowed: <, =, >")+"<br>"
 				dat += "Current value defined by symbolic variable is tested against some value according to defined operator.<br>"
 				dat += "Each property must be delimited by &<br>"
 				dat += "For example:<br>"
-				dat += html_encode("(O<3&L>5&N=10) | (N<10&L<10) -> guitar")+"<br>"
+				dat += rhtml_encode("(O<3&L>5&N=10) | (N<10&L<10) -> guitar")+"<br>"
 				dat += "Means \"Use an instrument with the ID \"guitar\" after 5th line on each 10th note if its octave is less than three<br>OR if it is before 10th line and appears before 10th note in this line<br><br>"
 
 			dat += coding ? compose_code(html=1) : ""

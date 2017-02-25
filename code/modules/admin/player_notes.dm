@@ -39,7 +39,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 			return
 
 	if(!note)
-		note = html_encode(input(usr,"Enter your note:","Enter some text",null) as message|null)
+		note = rhtml_encode(input(usr,"Enter your note:","Enter some text",null) as message|null)
 		if(!note)
 			return
 
@@ -126,7 +126,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 		P.author = "Adminbot"
 		P.rank = "Friendly Robot"
 	P.content = note
-	note = sanitize_russian(input(usr,"Enter your note:","Enter some text",null), 1)
+	note = sanitize(input(usr,"Enter your note:","Enter some text",null), 1)
 	P.timestamp = "[copytext(full_date,1,day_loc)][day_string][copytext(full_date,day_loc+2)]"
 
 	infos += P
