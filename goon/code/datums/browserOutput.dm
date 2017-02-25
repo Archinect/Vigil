@@ -277,7 +277,7 @@ For the main html chat area
 		message = sanitize_russian(message, "\n", "<br>")
 
 		// url_encode it TWICE, this way any UTF-8 characters are able to be decoded by the Javascript.
-		target << output(rhtml_encode(rhtml_encode(message)), "browseroutput:output")
+		target << output(rhtml_decode(rhtml_encode(message)), "browseroutput:output")
 
 /datum/log	//exists purely to capture to_chat() output
 	var/log = ""
