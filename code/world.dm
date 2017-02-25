@@ -76,7 +76,6 @@ var/savefile/panicfile
 	load_motd()
 	load_admins()
 	load_mods()
-	LoadBansjob()
 	if(config.usewhitelist)
 		load_whitelist()
 	if(config.usealienwhitelist)
@@ -112,8 +111,6 @@ var/savefile/panicfile
 		world.log << "Your server failed to establish a connection with the feedback database."
 	else
 		world.log << "Feedback database connection established."
-	migration_controller_mysql = new
-	migration_controller_sqlite = new ("players2.sqlite", "players2_empty.sqlite")
 
 	plmaster = new /obj/effect/overlay()
 	plmaster.icon = 'icons/effects/tile_effects.dmi'
