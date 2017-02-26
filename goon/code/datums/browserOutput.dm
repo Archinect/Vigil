@@ -340,7 +340,7 @@ For the main html chat area
 		message = replacetext(message, "þ", "&#1102;")
 		message = replacetext(message, "ÿ", "&#1103;")
 		message = replacetext(message, "&#255;", "&#1103;")
-		message = replacetext(message, "&#194;", "&#1103;")
+		message = replacetext(message, "¶", "&#1103;")
 		message = replacetext(message, "¸", "&#1105;")
 		message = replacetext(message, "¨", "&#1025;")
 
