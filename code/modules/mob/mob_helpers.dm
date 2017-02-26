@@ -261,35 +261,35 @@ proc/slur(phrase)
 	while(counter>=1)
 		newletter=copytext(phrase,(leng-counter)+1,(leng-counter)+2)
 		if(rand(1,3)==3)
-			if(lowertext(newletter)=="а")
+			if(lowertext_alt(newletter)=="а")
 				newletter="аа"
-			if(lowertext(newletter)=="у")
+			if(lowertext_alt(newletter)=="у")
 				newletter="уу"
-			if(lowertext(newletter)=="ш")
+			if(lowertext_alt(newletter)=="ш")
 				newletter="с"
-			if(lowertext(newletter)=="и")
+			if(lowertext_alt(newletter)=="и")
 				newletter="ыы"
-			if(lowertext(newletter)=="о")
+			if(lowertext_alt(newletter)=="о")
 				newletter="а"
-			if(lowertext(newletter)=="м")
+			if(lowertext_alt(newletter)=="м")
 				newletter="ме"
-			if(lowertext(newletter)=="н")
+			if(lowertext_alt(newletter)=="н")
 				newletter="не"
-			if(lowertext(newletter)=="с")
+			if(lowertext_alt(newletter)=="с")
 				newletter="щ"
-			if(lowertext(newletter)=="ц")
+			if(lowertext_alt(newletter)=="ц")
 				newletter="ч"
-			if(lowertext(newletter)=="р")
+			if(lowertext_alt(newletter)=="р")
 				newletter="г"
-			if(lowertext(newletter)=="ю")
+			if(lowertext_alt(newletter)=="ю")
 				newletter="йу"
-			if(lowertext(newletter)=="я")
+			if(lowertext_alt(newletter)=="я")
 				newletter="йа"
 		switch(rand(1,15))
 			if(1,3,5,8)
-				newletter="[lowertext(newletter)]"
+				newletter="[lowertext_alt(newletter)]"
 			if(2,4,6,15)
-				newletter="[uppertext(newletter)]"
+				newletter="[uppertext_alt(newletter)]"
 			if(7)
 				newletter+="'"
 			//if(9,10)	newletter="<b>[newletter]</b>"
@@ -350,7 +350,7 @@ proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 fo
 	message = replacetext(message, "карп", "царп")
 	message = replacetext(message, "охрана", "караул")
 	if(prob(50))
-		message = uppertext(message)
+		message = uppertext_alt(message)
 		message += "[stutter(pick("!", "!!", "!!!"))]"
 	if(!stuttering && prob(15))
 		message = stutter(message)

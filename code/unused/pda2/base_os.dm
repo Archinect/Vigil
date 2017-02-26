@@ -296,7 +296,7 @@
 							return
 						if(F.holder.read_only)
 							return
-						F.name = capitalize(lowertext(t))
+						F.name = capitalize(lowertext_alt(t))
 
 
 			else if(href_list["message_func"]) //Messenger specific topic junk

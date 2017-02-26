@@ -14,7 +14,7 @@
 		speech.message = replacetext(speech.message,"?","?!")
 		speech.message = replacetext(speech.message,"!","!!")
 
-		speech.message = uppertext(speech.message)
+		speech.message = uppertext_alt(speech.message)
 
 
 /datum/dna/gene/disability/speech/whisper

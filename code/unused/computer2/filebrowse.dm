@@ -120,7 +120,7 @@
 							return
 						if(F.holder.read_only)
 							return
-						F.name = capitalize(lowertext(t))
+						F.name = capitalize(lowertext_alt(t))
 						src.master.updateUsrDialog()
 						return
 

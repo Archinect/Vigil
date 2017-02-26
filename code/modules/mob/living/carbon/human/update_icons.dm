@@ -116,7 +116,7 @@ Please contact me on #coderbus IRC. ~Carn x
 /mob/living/carbon/human/proc/species_override_icon()
 	//overlays.len = 0
 	icon = species.override_icon
-	icon_state = "[lowertext(species.name)]_[gender][ (species.anatomy_flags & CAN_BE_FAT ? (mutations & M_FAT) ? "_fat" : "" : "") ]"
+	icon_state = "[lowertext_alt(species.name)]_[gender][ (species.anatomy_flags & CAN_BE_FAT ? (mutations & M_FAT) ? "_fat" : "" : "") ]"
 	//temporary fix for having mutations on top of overriden icons for like muton, horror, etc
 	overlays -= obj_overlays[MUTANTRACE_LAYER]
 

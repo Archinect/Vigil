@@ -170,7 +170,7 @@ var/const/VOX_DELAY = 600
 
 	var/total_word_len=0
 	for(var/word in words)
-		word = lowertext(trim(word))
+		word = lowertext_alt(trim(word))
 		if(!word)
 			words -= word
 			continue
@@ -243,7 +243,7 @@ var/list/vox_units=list(
 	return num2words(number, zero='sound/vox_fem/zero.ogg', minus='sound/vox_fem/minus.ogg', hundred='sound/vox_fem/hundred.ogg', digits=vox_digits, tens=vox_tens, units=vox_units)
 
 /proc/play_vox_word(var/word, var/z_level, var/mob/only_listener)
-	word = lowertext(word)
+	word = lowertext_alt(word)
 	if(vox_sounds[word])
 		return play_vox_sound(vox_sounds[word],z_level,only_listener)
 	return 0

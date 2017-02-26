@@ -20,7 +20,7 @@
 	if(!is_type_in_list(A, list(/obj/structure/table, /turf/simulated/floor)))
 		return 1
 
-	to_chat(user, "Dispensing [lowertext(name)]")
+	to_chat(user, "Dispensing [lowertext_alt(name)]")
 	playsound(get_turf(user), 'sound/machines/click.ogg', 10, 1)
 	new spawn_type(get_turf(A))
 

@@ -18,9 +18,9 @@ var/global/list/whitelisted_species = list("Human")
 		all_languages[L.name] = L
 	for (var/language_name in all_languages)
 		L = all_languages[language_name]
-		language_keys[":[lowertext(L.key)]"] = L
-		language_keys[".[lowertext(L.key)]"] = L
-		language_keys["#[lowertext(L.key)]"] = L
+		language_keys[":[lowertext_alt(L.key)]"] = L
+		language_keys[".[lowertext_alt(L.key)]"] = L
+		language_keys["#[lowertext_alt(L.key)]"] = L
 	for(. in (typesof(/datum/species)-/datum/species))
 		S = new .
 		all_species[S.name] = S
@@ -35,7 +35,7 @@ var/global/list/whitelisted_species = list("Human")
 
 	var/icobase = 'icons/mob/human_races/r_human.dmi'		// Normal icon set.
 	var/deform = 'icons/mob/human_races/r_def_human.dmi'	// Mutated icon set.
-	var/override_icon = null								// DMI for overriding the icon.  states: [lowertext(species.name)]_[gender][fat?"_fat":""]
+	var/override_icon = null								// DMI for overriding the icon.  states: [lowertext_alt(species.name)]_[gender][fat?"_fat":""]
 	var/eyes = "eyes_s"										// Icon for eyes.
 
 	var/primitive												// Lesser form, if any (ie. monkey for humans)

@@ -757,7 +757,7 @@ body
 					for(var/mob/M in range(T,7))
 						shake_camera(M, 4, 1)
 				if(flashy_level > 2)
-					to_chat(world, "<font size='15' color='red'><b>[uppertext(A.name)] HAS RISEN</b></font>")
+					to_chat(world, "<font size='15' color='red'><b>[uppertext_alt(A.name)] HAS RISEN</b></font>")
 			if("Stealthy")
 				A.alpha = 0
 				animate(A, alpha = 255, time = stealthy_level)

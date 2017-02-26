@@ -1034,10 +1034,10 @@
 /obj/structure/disposalpipe/sortjunction/New()
 	. = ..()
 	if(sortType && !sort_tag)
-		sort_tag = uppertext(map.default_tagger_locations[sortType])
+		sort_tag = uppertext_alt(map.default_tagger_locations[sortType])
 
 	else if(sort_tag)
-		sort_tag = uppertext(sort_tag)
+		sort_tag = uppertext_alt(sort_tag)
 
 	updatedir()
 	updatedesc()
@@ -1048,7 +1048,7 @@
 		var/obj/item/device/destTagger/O = I
 
 		if(O.currTag)// Tag set
-			sort_tag = uppertext(O.destinations[O.currTag])
+			sort_tag = uppertext_alt(O.destinations[O.currTag])
 			playsound(get_turf(src), 'sound/machines/twobeep.ogg', 100, 1)
 			to_chat(user, "<span class='notice'>Changed filter to [sort_tag]</span>")
 			updatedesc()

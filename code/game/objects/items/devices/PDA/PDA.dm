@@ -842,7 +842,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				dat += {"<h4><span class='pda_icon pda_chatroom'></span> Nanotrasen Relay Chat</h4>
 					<h4><span class='pda_icon pda_menu'></span> Detected Channels</h4>: <li>"}
 				for(var/datum/chatroom/C in chatrooms)
-					dat += "<a href='byond://?src=\ref[src];pdachannel=[C.name]'>#[rhtml_encode(lowertext(C.name))]"
+					dat += "<a href='byond://?src=\ref[src];pdachannel=[C.name]'>#[rhtml_encode(lowertext_alt(C.name))]"
 					if(C.password != "")
 						dat += " <span class='pda_icon pda_locked'></span>"
 					dat += "</li>"
@@ -1737,7 +1737,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				var/t = input(U, "Please enter new ringtone", name, ttone) as text
 				if (in_range(src, U) && loc == U)
 					if (t)
-						if(src.hidden_uplink && hidden_uplink.check_trigger(U, trim(lowertext(t)), trim(lowertext(lock_code))))
+						if(src.hidden_uplink && hidden_uplink.check_trigger(U, trim(lowertext_alt(t)), trim(lowertext_alt(lock_code))))
 							to_chat(U, "The PDA softly beeps.")
 							U << browse(null, "window=pda")
 							src.mode = 0

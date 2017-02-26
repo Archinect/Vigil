@@ -150,7 +150,7 @@
 		/** REVOLUTION ***/
 		text = "revolution"
 		if (ticker.mode.config_tag=="revolution")
-			text = uppertext(text)
+			text = uppertext_alt(text)
 		text = "<i><b>[text]</b></i>: "
 		if (assigned_role in command_positions)
 			text += "<b>HEAD</b>|officer|employee|headrev|rev"
@@ -182,7 +182,7 @@
 		/** CULT ***/
 		text = "cult"
 		if (ticker.mode.config_tag=="cult")
-			text = uppertext(text)
+			text = uppertext_alt(text)
 		text = "<i><b>[text]</b></i>: "
 		if (assigned_role in command_positions)
 			text += "<b>HEAD</b>|officer|employee|cultist"
@@ -203,7 +203,7 @@
 		/** WIZARD ***/
 		text = "wizard"
 		if (ticker.mode.config_tag=="wizard")
-			text = uppertext(text)
+			text = uppertext_alt(text)
 		text = "<i><b>[text]</b></i>: "
 		if (src in ticker.mode.wizards)
 
@@ -218,7 +218,7 @@
 		/** WIZARD'S APPRENTICES ***/
 		text = "apprentice"
 		if (ticker.mode.config_tag=="wizard")
-			text = uppertext(text)
+			text = uppertext_alt(text)
 		text = "<i><b>[text]</b></i>: "
 		if (src in ticker.mode.apprentices)
 
@@ -233,7 +233,7 @@
 		/** CHANGELING ***/
 		text = "changeling"
 		if (ticker.mode.config_tag=="changeling" || ticker.mode.config_tag=="traitorchan")
-			text = uppertext(text)
+			text = uppertext_alt(text)
 		text = "<i><b>[text]</b></i>: "
 		if (src in ticker.mode.changelings)
 			text += "<b>YES</b>|<a href='?src=\ref[src];changeling=clear'>no</a>"
@@ -253,7 +253,7 @@
 		/** VAMPIRE ***/
 		text = "vampire"
 		if (ticker.mode.config_tag=="vampire")
-			text = uppertext(text)
+			text = uppertext_alt(text)
 		text = "<i><b>[text]</b></i>: "
 		if (src in ticker.mode.vampires)
 			text += "<b>YES</b>|<a href='?src=\ref[src];vampire=clear'>no</a>"
@@ -272,7 +272,7 @@
 		/** NUCLEAR ***/
 		text = "nuclear"
 		if (ticker.mode.config_tag=="nuclear")
-			text = uppertext(text)
+			text = uppertext_alt(text)
 		text = "<i><b>[text]</b></i>: "
 		if (src in ticker.mode.syndicates)
 
@@ -292,7 +292,7 @@
 	/** TRAITOR ***/
 	text = "traitor"
 	if (ticker.mode.config_tag=="traitor" || ticker.mode.config_tag=="traitorchan")
-		text = uppertext(text)
+		text = uppertext_alt(text)
 	text = "<i><b>[text]</b></i>: "
 	if (src in ticker.mode.traitors)
 		text += "<b>TRAITOR</b>|<a href='?src=\ref[src];traitor=clear'>loyal</a>"
@@ -306,7 +306,7 @@
 	if (istype(current, /mob/living/carbon))
 		text = "monkey"
 		if (ticker.mode.config_tag=="monkey")
-			text = uppertext(text)
+			text = uppertext_alt(text)
 		text = "<i><b>[text]</b></i>: "
 		if (istype(current, /mob/living/carbon/human))
 			text += "<a href='?src=\ref[src];monkey=healthy'>healthy</a>|<a href='?src=\ref[src];monkey=infected'>infected</a>|<b>HUMAN</b>|other"
@@ -331,7 +331,7 @@
 	if (istype(current, /mob/living/silicon))
 		text = "silicon"
 		if (ticker.mode.config_tag=="malfunction")
-			text = uppertext(text)
+			text = uppertext_alt(text)
 		text = "<i><b>[text]</b></i>: "
 		if (istype(current, /mob/living/silicon/ai))
 			if (src in ticker.mode.malf_ai)
@@ -467,7 +467,7 @@
 		switch (new_obj_type)
 			if ("assassinate","protect","debrain", "harm", "brig")
 				//To determine what to name the objective in explanation text.
-				var/objective_type_capital = uppertext(copytext(new_obj_type, 1,2))//Capitalize first letter.
+				var/objective_type_capital = uppertext_alt(copytext(new_obj_type, 1,2))//Capitalize first letter.
 				var/objective_type_text = copytext(new_obj_type, 2)//Leave the rest of the text.
 				var/objective_type = "[objective_type_capital][objective_type_text]"//Add them together into a text string.
 

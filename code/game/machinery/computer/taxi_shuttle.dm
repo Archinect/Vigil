@@ -97,7 +97,7 @@ var/global/list/taxi_computers = list()
 		else
 			dat += "Additional information has not been provided."
 	else if(!shuttle.linked_area)
-		dat = "<h2><font color='red'>UNABLE TO FIND [uppertext(shuttle.name)]</font></h2>"
+		dat = "<h2><font color='red'>UNABLE TO FIND [uppertext_alt(shuttle.name)]</font></h2>"
 	else if(!shuttle.linked_port)	//User friendly interface
 		dat += "<h2><font color='red'>ERROR: Unable to find the docking port. Please contact tech support.</font></h2><br>"
 	else if(shuttle.moving)

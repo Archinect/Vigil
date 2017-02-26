@@ -137,11 +137,11 @@
 // String stuff
 /proc/n_lower(var/string)
 	if(istext(string))
-		return lowertext(string)
+		return lowertext_alt(string)
 
 /proc/n_upper(var/string)
 	if(istext(string))
-		return uppertext(string)
+		return uppertext_alt(string)
 
 /proc/time()
 	return world.time + (12 HOURS)

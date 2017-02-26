@@ -147,7 +147,7 @@
 
 			var/special_role_text
 			if(vampire.special_role)
-				special_role_text = lowertext(vampire.special_role)
+				special_role_text = lowertext_alt(vampire.special_role)
 			else
 				special_role_text = "antagonist"
 			if(vampire.total_TC)
@@ -211,7 +211,7 @@
 					count++
 			var/special_role_text
 			if(Mind.special_role)
-				special_role_text = lowertext(Mind.special_role)
+				special_role_text = lowertext_alt(Mind.special_role)
 			else
 				special_role_text = "antagonist"
 			if(Mind.total_TC)

@@ -32,7 +32,7 @@
 	var/message_say = "FOR NO RAISIN!"
 	if(user.mind)
 		if(user.mind.special_role)
-			var/role = lowertext(user.mind.special_role)
+			var/role = lowertext_alt(user.mind.special_role)
 			if(role == "traitor" || role == "syndicate")
 				message_say = "FOR THE SYNDICATE!"
 			else if(role == "changeling")

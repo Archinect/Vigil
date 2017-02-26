@@ -70,9 +70,9 @@
 		return "[pronoun] teeth are gone. "
 	else
 		if(parent.Adjacent(user))
-			return "[(initial_amount - amount)] of [lowertext(pronoun)] teeth are missing."
+			return "[(initial_amount - amount)] of [lowertext_alt(pronoun)] teeth are missing."
 		else
-			return "Some of [lowertext(pronoun)] teeth are missing. "
+			return "Some of [lowertext_alt(pronoun)] teeth are missing. "
 
 #define ALL_TEETH -1
 /datum/butchering_product/teeth/spawn_result(location, mob/parent, drop_amount = ALL_TEETH)

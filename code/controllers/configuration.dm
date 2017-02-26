@@ -226,10 +226,10 @@
 		var/value = null
 
 		if (pos)
-			name = lowertext(copytext(t, 1, pos))
+			name = lowertext_alt(copytext(t, 1, pos))
 			value = copytext(t, pos + 1)
 		else
-			name = lowertext(t)
+			name = lowertext_alt(t)
 
 		if (!name)
 			continue
@@ -407,7 +407,7 @@
 					var/prob_value = null
 
 					if (prob_pos)
-						prob_name = lowertext(copytext(value, 1, prob_pos))
+						prob_name = lowertext_alt(copytext(value, 1, prob_pos))
 						prob_value = copytext(value, prob_pos + 1)
 						if (prob_name in config.modes)
 							config.probabilities[prob_name] = text2num(prob_value)
@@ -657,10 +657,10 @@
 		var/value = null
 
 		if (pos)
-			name = lowertext(copytext(t, 1, pos))
+			name = lowertext_alt(copytext(t, 1, pos))
 			value = copytext(t, pos + 1)
 		else
-			name = lowertext(t)
+			name = lowertext_alt(t)
 
 		if (!name)
 			continue

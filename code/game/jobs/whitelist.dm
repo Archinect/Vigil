@@ -28,10 +28,10 @@ var/global/list/alien_whitelist = list()
 			if(!findtext(line,"-"))
 				continue
 			var/list/parts=splittext(line,"-")
-			var/ckey=trim(lowertext(parts[1]))
+			var/ckey=trim(lowertext_alt(parts[1]))
 			var/specieslist=splittext(parts[2],",")
 			for(var/species in specieslist)
-				species=lowertext(trim(species))
+				species=lowertext_alt(trim(species))
 				if(!(species in alien_whitelist))
 					alien_whitelist[species]=list()
 				if(!(ckey in alien_whitelist[species]))
@@ -45,7 +45,7 @@ var/global/list/alien_whitelist = list()
 	if(!config.usealienwhitelist)
 		return 1
 
-	species=lowertext(species)
+	species=lowertext_alt(species)
 
 	if(species == "human")
 		return 1
@@ -65,8 +65,8 @@ var/global/list/alien_whitelist = list()
 		return 1
 
 	// Occupation is in whitelist (for lizard janitors :V)
-	if("job=[lowertext(M.mind.assigned_role)]" in alien_whitelist[species]\
-	|| "job=[lowertext(M.mind.assigned_role)]" in alien_whitelist["all"])
+	if("job=[lowertext_alt(M.mind.assigned_role)]" in alien_whitelist[species]\
+	|| "job=[lowertext_alt(M.mind.assigned_role)]" in alien_whitelist["all"])
 		return 1
 
 	return 0
@@ -74,7 +74,7 @@ var/global/list/alien_whitelist = list()
 /proc/has_whitelist_entries(var/species)
 	if(!config.usealienwhitelist)
 		return 1
-	species=lowertext(species)
+	species=lowertext_alt(species)
 	return species in alien_whitelist
 
 #undef WHITELISTFILE

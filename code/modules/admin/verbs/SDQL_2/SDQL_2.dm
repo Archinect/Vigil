@@ -381,7 +381,7 @@
 		v = readglobal(expression[start])
 
 	else if (expression [start] == "{" && long)
-		if (lowertext(copytext(expression[start + 1], 1, 3)) != "0x")
+		if (lowertext_alt(copytext(expression[start + 1], 1, 3)) != "0x")
 			to_chat(usr, "<span class='danger'>Invalid pointer syntax: [expression[start + 1]]</span>")
 			return null
 		v = locate("\[[expression[start + 1]]]")

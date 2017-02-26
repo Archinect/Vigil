@@ -153,7 +153,7 @@
 			if(!O.currTag)
 				to_chat(user, "<span class='notice'>Select a destination first!</span>")
 				return
-			var/tag = uppertext(O.destinations[O.currTag])
+			var/tag = uppertext_alt(O.destinations[O.currTag])
 			to_chat(user, "<span class='notice'>*[tag]*</span>")
 			sortTag = tag
 			playsound(get_turf(src), 'sound/machines/twobeep.ogg', 100, 1)

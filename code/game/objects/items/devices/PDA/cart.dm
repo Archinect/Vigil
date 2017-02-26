@@ -652,7 +652,7 @@ Code:
 						if (ml.z != cl.z)
 							continue
 						var/direction = get_dir(src, M)
-						ldat += "Mop - <b>\[[ml.x-WORLD_X_OFFSET[ml.z]],[ml.y-WORLD_Y_OFFSET[ml.z]] ([uppertext(dir2text(direction))])\]</b> - [M.reagents.total_volume ? "Wet" : "Dry"]<br>"
+						ldat += "Mop - <b>\[[ml.x-WORLD_X_OFFSET[ml.z]],[ml.y-WORLD_Y_OFFSET[ml.z]] ([uppertext_alt(dir2text(direction))])\]</b> - [M.reagents.total_volume ? "Wet" : "Dry"]<br>"
 
 				if (!ldat)
 					menu += "None"
@@ -669,7 +669,7 @@ Code:
 						if (bl.z != cl.z)
 							continue
 						var/direction = get_dir(src, B)
-						ldat += "Bucket - <b>\[[bl.x-WORLD_X_OFFSET[bl.z]],[bl.y-WORLD_Y_OFFSET[bl.z]] ([uppertext(dir2text(direction))])\]</b> - Water level: [B.reagents.total_volume]/100<br>"
+						ldat += "Bucket - <b>\[[bl.x-WORLD_X_OFFSET[bl.z]],[bl.y-WORLD_Y_OFFSET[bl.z]] ([uppertext_alt(dir2text(direction))])\]</b> - Water level: [B.reagents.total_volume]/100<br>"
 
 				if (!ldat)
 					menu += "None"
@@ -686,7 +686,7 @@ Code:
 						if (bl.z != cl.z)
 							continue
 						var/direction = get_dir(src, B)
-						ldat += "Cleanbot - <b>\[[bl.x-WORLD_X_OFFSET[bl.z]],[bl.y-WORLD_Y_OFFSET[bl.z]] ([uppertext(dir2text(direction))])\]</b> - [B.on ? "Online" : "Offline"]<br>"
+						ldat += "Cleanbot - <b>\[[bl.x-WORLD_X_OFFSET[bl.z]],[bl.y-WORLD_Y_OFFSET[bl.z]] ([uppertext_alt(dir2text(direction))])\]</b> - [B.on ? "Online" : "Offline"]<br>"
 
 				if (!ldat)
 					menu += "None"

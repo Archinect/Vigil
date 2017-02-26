@@ -75,7 +75,7 @@
 	var/user_txt = (user ? "[user][user.ckey ? " ([user.ckey])" : ""]" : "\<NULL USER\>")
 	var/target_txt = (target ? "[target][target.ckey ? " ([target.ckey])" : ""]" : "\<NULL TARGET\>")
 	var/object_txt = (object ? " with \the [object]" : "")
-	var/intent_txt = (user ? " (INTENT: [uppertext(user.a_intent)])" : "")
+	var/intent_txt = (user ? " (INTENT: [uppertext_alt(user.a_intent)])" : "")
 	var/addition_txt = (addition ? " ([addition])" : "")
 
 	if (ismob(user))

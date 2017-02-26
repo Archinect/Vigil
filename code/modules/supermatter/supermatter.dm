@@ -182,7 +182,7 @@
 				offset=150
 
 				if(damage > emergency_point)
-					warning = "[uppertext(short_name)] INSTABILITY AT [stability]%. DELAMINATION IMMINENT - EVACUATE IMMEDIATELY."
+					warning = "[uppertext_alt(short_name)] INSTABILITY AT [stability]%. DELAMINATION IMMINENT - EVACUATE IMMEDIATELY."
 					offset=0
 					audio_sounds += list('sound/AI/supermatter_delam.ogg')
 					//audio_offset = 100
