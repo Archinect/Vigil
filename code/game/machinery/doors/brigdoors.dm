@@ -218,7 +218,7 @@
 			set_picture("ai_bsod")
 			return
 		if(src.timing)
-			var/disp1 = uppertext(id_tag)
+			var/disp1 = uppertext_alt(id_tag)
 			var/timeleft = timeleft()
 			var/disp2 = "[add_zero(num2text((timeleft / 60) % 60),2)]~[add_zero(num2text(timeleft % 60), 2)]"
 			spawn( 5 )

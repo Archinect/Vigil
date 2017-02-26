@@ -421,9 +421,9 @@
 				return
 			src.active1 = null
 			src.active2 = null
-			t1 = lowertext(t1)
+			t1 = lowertext_alt(t1)
 			for(var/datum/data/record/R in data_core.general)
-				if ((lowertext(R.fields["name"]) == t1 || t1 == lowertext(R.fields["id"])))
+				if ((lowertext_alt(R.fields["name"]) == t1 || t1 == lowertext_alt(R.fields["id"])))
 					src.active1 = R
 				else
 

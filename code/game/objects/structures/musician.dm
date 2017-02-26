@@ -89,7 +89,7 @@
 
 		for(var/line in lines)
 			//world << line
-			for(var/beat in splittext(lowertext(line), ","))
+			for(var/beat in splittext(lowertext_alt(line), ","))
 				//world << "beat: [beat]"
 				var/list/notes = splittext(beat, "/")
 				for(var/note in splittext(notes[1], "-"))

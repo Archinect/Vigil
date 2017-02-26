@@ -111,7 +111,7 @@
 			var/cur_line = 1
 			for (var/line in lines)
 				var/cur_note = 1
-				for (var/notes in text2list(lowertext(line), ","))
+				for (var/notes in text2list(lowertext_alt(line), ","))
 					var/list/components = text2list(notes, "/")
 					var/delta = components.len==2 && text2num(components[2]) ? text2num(components[2]) : 1
 					var/duration = max(round(sanitize_tempo(tempo / delta)), 1)

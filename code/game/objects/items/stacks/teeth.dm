@@ -72,7 +72,7 @@
 		if(ishuman(parent))
 			var/mob/living/carbon/human/H = parent
 			if(H.species)
-				parent_species_name = lowertext(H.species.name)
+				parent_species_name = lowertext_alt(H.species.name)
 			else
 				parent_species_name = "human"
 

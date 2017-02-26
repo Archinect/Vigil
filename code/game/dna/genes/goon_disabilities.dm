@@ -271,7 +271,7 @@
 				suffix = copytext(cword,length(cword)-1,length(cword)  )
 			if(length(cword))
 				rearranged += cword
-		speech.message = "[prefix][uppertext(jointext(rearranged," "))]!!"
+		speech.message = "[prefix][uppertext_alt(jointext(rearranged," "))]!!"
 
 // WAS: /datum/bioEffect/toxic_farts
 /datum/dna/gene/disability/toxic_farts

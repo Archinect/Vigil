@@ -119,7 +119,7 @@ STI KALY - blind
 	if(!L)
 		return
 
-	affected_mob.say("SCYAR NILA [uppertext(thearea.name)]!")
+	affected_mob.say("SCYAR NILA [uppertext_alt(thearea.name)]!")
 	affected_mob.forceMove(pick(L))
 
 	return

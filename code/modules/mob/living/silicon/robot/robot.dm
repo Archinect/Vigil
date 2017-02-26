@@ -372,8 +372,8 @@
 	if (custom_sprite == 1)
 		module_sprites["Custom"] = "[src.ckey]-[modtype]"
 
-	hands.icon_state = lowertext(modtype)
-	feedback_inc("cyborg_[lowertext(modtype)]",1)
+	hands.icon_state = lowertext_alt(modtype)
+	feedback_inc("cyborg_[lowertext_alt(modtype)]",1)
 	updatename()
 
 	if(modtype == "Medical" || modtype == "Security" || modtype == "Combat")

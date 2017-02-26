@@ -46,7 +46,7 @@
 
 		var/datum/job/J = H.mind.role_alt_title
 
-		switch(lowertext(new_religion)) //Let us begin going through the list of special religions we can give them. It's a long list, trust me. We assign them a bible name, a god and misc fun stuff
+		switch(lowertext_alt(new_religion)) //Let us begin going through the list of special religions we can give them. It's a long list, trust me. We assign them a bible name, a god and misc fun stuff
 			if("christianity")
 				B.name = "The Holy Bible"
 				deity_name = "Space Jesus"

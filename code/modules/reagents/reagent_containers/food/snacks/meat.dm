@@ -17,7 +17,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/meat/New(atom/A, var/mob/M)
 	..(A)
 	if(M)
-		if(uppertext(M.name) != "UNKNOWN")
+		if(uppertext_alt(M.name) != "UNKNOWN")
 			name = "[M.name] meat"
 		subjectname = M.name
 		if(istype(M, /mob/living/carbon/human))

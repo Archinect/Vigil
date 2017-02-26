@@ -352,7 +352,7 @@ var/global/list/math_circuit_operations_list = list("ADD", "SUBTRACT", "MULTIPLY
 		return
 
 	else if(value == VALUE_OPERATION) //Modifying operation
-		new_value = uppertext(new_value)
+		new_value = uppertext_alt(new_value)
 
 		if(!math_circuit_operations_list.Find(new_value)) //Not a valid operation
 			new_value = "ADD"

@@ -50,7 +50,7 @@ proc/colour2html(colour)
 		world.log << "Warning!  Could not find matching colour entry for '[colour]'."
 		return "#FFFFFF"
 
-	return ("#" + uppertext(html_colours["[colour]"]) )
+	return ("#" + uppertext_alt(html_colours["[colour]"]) )
 
 
 /*************************************/

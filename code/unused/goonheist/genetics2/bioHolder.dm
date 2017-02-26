@@ -168,16 +168,16 @@ var/list/bioEffectList = null
 
 	proc/AddNewPoolEffect(var/idToAdd)
 		for(var/datum/bioEffect/D in effectPool)
-			if(lowertext(D.id) == lowertext(idToAdd))
+			if(lowertext_alt(D.id) == lowertext_alt(idToAdd))
 				return 0
 		for(var/datum/bioEffect/D in effects)
 			// i guess we wouldnt want it in here either
-			if(lowertext(D.id) == lowertext(idToAdd))
+			if(lowertext_alt(D.id) == lowertext_alt(idToAdd))
 				return 0
 
 		for(var/bioEffect in bioEffectList)
 			var/datum/bioEffect/newEffect = new bioEffect()
-			if (lowertext(newEffect.id) == lowertext(idToAdd))
+			if (lowertext_alt(newEffect.id) == lowertext_alt(idToAdd))
 				effectPool.Add(newEffect)
 				return 1
 
@@ -333,12 +333,12 @@ var/list/bioEffectList = null
 			return
 
 		for(var/datum/bioEffect/D in effects)
-			if(lowertext(D.id) == lowertext(idToAdd))
+			if(lowertext_alt(D.id) == lowertext_alt(idToAdd))
 				return 0
 
 		for(var/bioEffect in bioEffectList)
 			var/datum/bioEffect/newEffect = new bioEffect()
-			if (lowertext(newEffect.id) == lowertext(idToAdd))
+			if (lowertext_alt(newEffect.id) == lowertext_alt(idToAdd))
 
 				for(var/datum/bioEffect/curr in effects)
 					if(curr.type == effectTypeMutantRace && newEffect.type == effectTypeMutantRace) //Can only have one mutant race.
@@ -361,7 +361,7 @@ var/list/bioEffectList = null
 
 	proc/RemoveEffect(var/id) //Removes an effect from this holder. Returns 1 on success else 0.
 		for(var/datum/bioEffect/D in effects)
-			if(lowertext(D.id) == lowertext(id))
+			if(lowertext_alt(D.id) == lowertext_alt(id))
 				D.OnRemove()
 				to_chat(if(lentext(D.msgLose) > 0) owner, "<span class='warning'>[D.msgLose]</span>")
 				return effects.Remove(D)
@@ -389,7 +389,7 @@ var/list/bioEffectList = null
 
 	proc/HasEffect(var/id) //Returns variant if this holder has an effect with the given ID else 0. Returns 1 if it has the effect with variant 0, special case for limb tone.
 		for(var/datum/bioEffect/D in effects)
-			if(lowertext(D.id) == lowertext(id))
+			if(lowertext_alt(D.id) == lowertext_alt(id))
 				if(D.variant == 0)
 					return 1
 				return D.variant
@@ -397,13 +397,13 @@ var/list/bioEffectList = null
 
 	proc/HasEffectInPool(var/id)
 		for(var/datum/bioEffect/D in effectPool)
-			if(lowertext(D.id) == lowertext(id))
+			if(lowertext_alt(D.id) == lowertext_alt(id))
 				return 1
 		return 0
 
 	proc/HasOneOfTheseEffects() //HasAnyEffect() was already taken :I
 		for (var/datum/bioEffect/D in effects)
-			if (lowertext(D.id) in args)
+			if (lowertext_alt(D.id) in args)
 				return (D.variant == 0 ? 1 : D.variant)
 
 		return 0
@@ -411,14 +411,14 @@ var/list/bioEffectList = null
 	proc/HasAllOfTheseEffects()
 		var/tally = 0 //We cannot edit the args list directly, so just keep a count.
 		for (var/datum/bioEffect/D in effects)
-			if (lowertext(D.id) in args)
+			if (lowertext_alt(D.id) in args)
 				tally++
 
 		return tally >= args.len
 
 	proc/GetEffect(var/id) //Returns the effect with the given ID if it exists else returns null.
 		for(var/datum/bioEffect/D in effects)
-			if(lowertext(D.id) == lowertext(id))
+			if(lowertext_alt(D.id) == lowertext_alt(id))
 				return D
 		return null
 
@@ -427,7 +427,7 @@ var/list/bioEffectList = null
 		for(var/datum/bioEffect/cooldown_reducer/D in effects)
 			divider = D.divider
 		for(var/datum/bioEffect/D in effects)
-			if(lowertext(D.id) == lowertext(id))
+			if(lowertext_alt(D.id) == lowertext_alt(id))
 				return D.cooldown * divider
 		return 0
 
@@ -438,7 +438,7 @@ var/list/bioEffectList = null
 			var/datum/bioEffect/instance = bioEffectList[T]
 			if(HasEffect(instance.id) || instance.isHidden)
 				continue
-			switch(lowertext(type))
+			switch(lowertext_alt(type))
 				if("good")
 					if(instance.isBad)
 						continue

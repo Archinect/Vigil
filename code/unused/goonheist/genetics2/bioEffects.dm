@@ -200,7 +200,7 @@
 							if ((copytext(enteredtext,1,6) == "say \"") && length(enteredtext) > 5)
 								winset(owner, "mainwindow.input", "text=\"\"")
 								if(prob(50))
-									owner:say(uppertext(copytext(enteredtext,6,0)))
+									owner:say(uppertext_alt(copytext(enteredtext,6,0)))
 								else
 									owner:say(copytext(enteredtext,6,0))
 		return

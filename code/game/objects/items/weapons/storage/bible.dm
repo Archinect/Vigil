@@ -52,7 +52,7 @@
 	else
 		M.LAssailant = user
 
-	log_attack("<font color='red'>[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>")
+	log_attack("<font color='red'>[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext_alt(user.a_intent)])</font>")
 
 	if(!chaplain) //The user is not a Chaplain. BLASPHEMY !
 		//Using the Bible as a member of the occult will get you smithed, aka holy cleansing fire. You'd have to be stupid to remotely consider it

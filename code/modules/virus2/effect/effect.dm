@@ -464,9 +464,9 @@
 			var/word = word_list[i]
 			if(punct)
 				word = copytext(word_list[i], 1, length(word_list[i]))
-			if(uppertext(word) == uppertext(x))
+			if(uppertext_alt(word) == uppertext_alt(x))
 				word_list[i] = virus_opposite_word_list[x] + punct
-			else if(uppertext(word) == uppertext(virus_opposite_word_list[x]))
+			else if(uppertext_alt(word) == uppertext_alt(virus_opposite_word_list[x]))
 				word_list[i] = x + punct
 
 	message = ""

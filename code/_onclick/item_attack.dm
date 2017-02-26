@@ -67,11 +67,11 @@ obj/item/proc/get_clamped_volume()
 		if(ismob(originator))
 			originator.lastattacked = M
 			M.lastattacker = originator
-			add_logs(originator, M, "attacked", object=I.name, addition="(INTENT: [uppertext(originator.a_intent)]) (DAMTYE: [uppertext(I.damtype)])")
+			add_logs(originator, M, "attacked", object=I.name, addition="(INTENT: [uppertext_alt(originator.a_intent)]) (DAMTYE: [uppertext_alt(I.damtype)])")
 	else
 		user.lastattacked = M
 		M.lastattacker = user
-		add_logs(user, M, "attacked", object=I.name, addition="(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)])")
+		add_logs(user, M, "attacked", object=I.name, addition="(INTENT: [uppertext_alt(user.a_intent)]) (DAMTYE: [uppertext_alt(I.damtype)])")
 
 	//spawn(1800)            // this wont work right
 	//	M.lastattacker = null

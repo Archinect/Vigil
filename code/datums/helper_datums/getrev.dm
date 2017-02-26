@@ -34,10 +34,10 @@ var/global/datum/getrev/revdata = new("config/svndir.txt")
 			var/name = null
 			var/value = null
 			if (pos)
-				name = lowertext(copytext(t, 1, pos))
+				name = lowertext_alt(copytext(t, 1, pos))
 				value = copytext(t, pos + 1)
 			else
-				name = lowertext(t)
+				name = lowertext_alt(t)
 			if(!name)
 				continue
 			switch(name)

@@ -309,7 +309,7 @@
 	if((!message || message == "") && message != 0)
 		message = "*beep*"
 	if(!source)
-		source = "[rhtml_encode(uppertext(S.id))]"
+		source = "[rhtml_encode(uppertext_alt(S.id))]"
 		hradio = new // sets the hradio as a radio intercom
 	if(!freq || (!isnum(freq) && text2num(freq) == null))
 		freq = 1459

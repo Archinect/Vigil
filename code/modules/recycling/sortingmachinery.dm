@@ -101,7 +101,7 @@
 		return 1
 
 	if(href_list["new_dest"] && mode)
-		var/newtag = uppertext(copytext(sanitize(input(usr, "Destination ID?","Add Destination") as text), 1, MAX_NAME_LEN))
+		var/newtag = uppertext_alt(copytext(sanitize(input(usr, "Destination ID?","Add Destination") as text), 1, MAX_NAME_LEN))
 		destinations |= newtag
 		interact(usr)
 		return 1
@@ -448,7 +448,7 @@
 	destinations = map.default_tagger_locations.Copy() //Here because BYOND.
 
 	for(var/i = 1, i <= destinations.len, i++)
-		destinations[i] = uppertext(destinations[i])
+		destinations[i] = uppertext_alt(destinations[i])
 
 	component_parts = newlist(
 		/obj/item/weapon/circuitboard/sorting_machine/destination,
@@ -517,7 +517,7 @@
 		return 1
 
 	if(href_list["add_dest"])
-		var/newtag = uppertext(copytext(sanitize(input(usr, "Destination ID?","Add Destination") as text), 1, MAX_NAME_LEN))
+		var/newtag = uppertext_alt(copytext(sanitize(input(usr, "Destination ID?","Add Destination") as text), 1, MAX_NAME_LEN))
 		destinations |= newtag
 		updateUsrDialog()
 		return 1

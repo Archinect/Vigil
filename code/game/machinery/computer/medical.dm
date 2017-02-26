@@ -440,9 +440,9 @@
 					return
 				src.active1 = null
 				src.active2 = null
-				t1 = lowertext(t1)
+				t1 = lowertext_alt(t1)
 				for(var/datum/data/record/R in data_core.medical)
-					if ((lowertext(R.fields["name"]) == t1 || t1 == lowertext(R.fields["id"]) || t1 == lowertext(R.fields["b_dna"])))
+					if ((lowertext_alt(R.fields["name"]) == t1 || t1 == lowertext_alt(R.fields["id"]) || t1 == lowertext_alt(R.fields["b_dna"])))
 						src.active2 = R
 					else
 						//Foreach continue //goto(3229)
