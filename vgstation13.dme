@@ -2075,6 +2075,7 @@
 #include "code\WorkInProgress\Animus\synthesizer.dm"
 #include "code\WorkInProgress\Animus\turntable.dm"
 #include "code\WorkInProgress\Animus\turntable_tracks.dm"
+#include "code\WorkInProgress\Animus\Architect\flash.dm"
 #include "code\WorkInProgress\Animus\EditorRUS\instruments\globals.dm"
 #include "code\WorkInProgress\Animus\EditorRUS\instruments\instruments.dm"
 #include "code\WorkInProgress\Animus\EditorRUS\instruments\real_instruments.dm"
