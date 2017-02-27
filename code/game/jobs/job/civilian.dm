@@ -8,8 +8,8 @@
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
-	access = list(access_hydroponics, access_bar, access_kitchen, access_morgue, access_weapons)
-	minimal_access = list(access_bar,access_weapons)
+	access = list(access_hydroponics, access_bar, access_kitchen, access_morgue, access_weapons, access_maint_tunnels)
+	minimal_access = list(access_bar,access_weapons,access_maint_tunnels)
 
 	pdaslot=slot_belt
 	pdatype=/obj/item/device/pda/bar
@@ -64,8 +64,8 @@
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
-	access = list(access_hydroponics, access_bar, access_kitchen, access_morgue)
-	minimal_access = list(access_kitchen, access_morgue, access_bar)
+	access = list(access_kitchen, access_morgue, access_maint_tunnels)
+	minimal_access = list(access_kitchen, access_morgue, access_bar, access_maint_tunnels)
 	alt_titles = list("Cook")
 
 	pdaslot=slot_belt
@@ -107,8 +107,8 @@
 	spawn_positions = 2
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
-	access = list(access_hydroponics, access_bar, access_kitchen, access_morgue) // Removed tox and chem access because STOP PISSING OFF THE CHEMIST GUYS // //Removed medical access because WHAT THE FUCK YOU AREN'T A DOCTOR YOU GROW WHEAT //Given Morgue access because they have a viable means of cloning.
-	minimal_access = list(access_hydroponics, access_morgue) // Removed tox and chem access because STOP PISSING OFF THE CHEMIST GUYS // //Removed medical access because WHAT THE FUCK YOU AREN'T A DOCTOR YOU GROW WHEAT //Given Morgue access because they have a viable means of cloning.
+	access = list(access_hydroponics, access_maint_tunnels) // Removed tox and chem access because STOP PISSING OFF THE CHEMIST GUYS // //Removed medical access because WHAT THE FUCK YOU AREN'T A DOCTOR YOU GROW WHEAT //Given Morgue access because they have a viable means of cloning.
+	minimal_access = list(access_hydroponics, access_maint_tunnels) // Removed tox and chem access because STOP PISSING OFF THE CHEMIST GUYS // //Removed medical access because WHAT THE FUCK YOU AREN'T A DOCTOR YOU GROW WHEAT //Given Morgue access because they have a viable means of cloning.
 	alt_titles = list("Hydroponicist", "Beekeeper", "Gardener")
 
 	pdaslot=slot_belt
@@ -248,7 +248,7 @@
 	selection_color = "#dddddd"
 	idtype = /obj/item/weapon/card/id/supply
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mint, access_mining, access_mining_station)
-	minimal_access = list(access_mining, access_mint, access_mining_station, access_mailsorting)
+	minimal_access = list(access_mining, access_mint, access_mining_station, access_mailsorting, access_maint_tunnels)
 
 	pdaslot=slot_belt
 	pdatype=/obj/item/device/pda/shaftminer
@@ -291,7 +291,7 @@
 	selection_color = "#dddddd"
 	idtype = /obj/item/weapon/card/id/clown
 	access = list(access_clown, access_theatre, access_maint_tunnels)
-	minimal_access = list(access_clown, access_theatre)
+	minimal_access = list(access_clown, access_theatre, access_maint_tunnels)
 	alt_titles = list("Jester")
 
 	pdaslot=slot_belt
@@ -338,7 +338,7 @@
 	selection_color = "#dddddd"
 	idtype = /obj/item/weapon/card/id/mime
 	access = list(access_mime, access_theatre, access_maint_tunnels)
-	minimal_access = list(access_mime, access_theatre)
+	minimal_access = list(access_mime, access_theatre, access_maint_tunnels)
 
 	pdaslot=slot_belt
 	pdatype=/obj/item/device/pda/mime
@@ -456,7 +456,7 @@
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
 	access = list(access_library, access_maint_tunnels)
-	minimal_access = list(access_library)
+	minimal_access = list(access_library, access_maint_tunnels)
 	alt_titles = list("Journalist", "Game Master")
 
 	pdaslot=slot_belt
@@ -508,8 +508,8 @@
 	spawn_positions = 2
 	supervisors = "Nanotrasen Law, CentComm Officals, and the station's captain."
 	selection_color = "#dddddd"
-	access = list(access_lawyer, access_court, access_heads, access_RC_announce, access_sec_doors, access_maint_tunnels, access_cargo, access_medical,  access_bar, access_kitchen, access_hydroponics)
-	minimal_access = list(access_lawyer, access_court, access_heads, access_RC_announce, access_sec_doors, access_cargo,  access_bar, access_kitchen)
+	access = list(access_lawyer, access_court, access_RC_announce, access_sec_doors, access_maint_tunnels)
+	minimal_access = list(access_lawyer, access_court, access_RC_announce, access_sec_doors, access_maint_tunnels)
 	alt_titles = list("Lawyer")
 
 	pdaslot=slot_belt

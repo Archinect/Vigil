@@ -11,10 +11,10 @@
 	req_admin_notify = 1
 	access = list(access_medical, access_morgue, access_genetics, access_heads,
 			access_chemistry, access_virology, access_cmo, access_surgery, access_RC_announce,
-			access_keycard_auth, access_sec_doors, access_paramedic, access_eva)
+			access_keycard_auth, access_sec_doors, access_paramedic, access_eva, access_maint_tunnels)
 	minimal_access = list(access_medical, access_morgue, access_genetics, access_heads,
 			access_chemistry, access_virology, access_cmo, access_surgery, access_RC_announce,
-			access_keycard_auth, access_sec_doors, access_paramedic)
+			access_keycard_auth, access_sec_doors, access_paramedic, access_maint_tunnels)
 	minimal_player_age = 7
 
 
@@ -58,8 +58,8 @@
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
 	idtype = /obj/item/weapon/card/id/medical
-	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_eva)
-	minimal_access = list(access_medical, access_morgue, access_surgery, access_virology)
+	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_maint_tunnels)
+	minimal_access = list(access_medical, access_morgue, access_surgery, access_virology, access_maint_tunnels)
 	alt_titles = list("Surgeon", "Emergency Physician", "Nurse")
 
 	pdaslot=slot_belt
@@ -126,8 +126,8 @@
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
 	idtype = /obj/item/weapon/card/id/medical
-	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_eva)
-	minimal_access = list(access_medical, access_chemistry)
+	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_eva, access_maint_tunnels)
+	minimal_access = list(access_medical, access_chemistry, access_maint_tunnels)
 	alt_titles = list("Pharmacist")
 
 	pdaslot=slot_belt
@@ -170,8 +170,8 @@
 	supervisors = "the chief medical officer and research director"
 	selection_color = "#ffeef0"
 	idtype = /obj/item/weapon/card/id/medical
-	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_science, access_eva)
-	minimal_access = list(access_medical, access_morgue, access_genetics, access_science)
+	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_science, access_maint_tunnels)
+	minimal_access = list(access_medical, access_morgue, access_genetics, access_science, access_maint_tunnels)
 
 	pdaslot=slot_belt
 	pdatype=/obj/item/device/pda/geneticist
@@ -209,8 +209,8 @@
 	spawn_positions = 1
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
-	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_eva)
-	minimal_access = list(access_medical, access_virology)
+	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_maint_tunnels)
+	minimal_access = list(access_medical, access_virology, access_maint_tunnels)
 	alt_titles = list("Pathologist", "Microbiologist")
 
 	pdaslot=slot_belt
@@ -240,7 +240,7 @@
 			H.equip_or_collect(new H.species.survival_gear(H.back), slot_in_backpack)
 		return 1
 
-/*
+
 /datum/job/psychiatrist
 	title = "Psychiatrist"
 	flag = PSYCHIATRIST
@@ -250,8 +250,8 @@
 	spawn_positions = 1
 	supervisors = "the chief medical officer"
 	selection_color = "#ffeef0"
-	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_psychiatrist)
-	minimal_access = list(access_medical, access_psychiatrist)
+	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_psychiatrist, access_maint_tunnels)
+	minimal_access = list(access_medical, access_psychiatrist, access_maint_tunnels)
 	alt_titles = list("Psychologist")
 
 	equip(var/mob/living/carbon/human/H)
@@ -275,4 +275,3 @@
 		else
 			H.equip_or_collect(new H.species.survival_gear(H.back), slot_in_backpack)
 		return 1
-*/
