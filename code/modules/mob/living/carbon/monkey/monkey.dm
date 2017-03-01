@@ -99,6 +99,10 @@
 	name = "Pun Pun"
 	namenumbers = FALSE
 
+/mob/living/carbon/monkey/deempisi
+	name = "Mr.Deempisi"
+	namenumbers = FALSE
+
 /mob/living/carbon/monkey/punpun/New()
 	var/obj/item/clothing/monkeyclothes/suit = new /obj/item/clothing/monkeyclothes
 	equip_to_slot(suit, slot_w_uniform)
