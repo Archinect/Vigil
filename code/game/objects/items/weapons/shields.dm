@@ -6,6 +6,7 @@
 	desc = "A shield adept at blocking blunt objects from connecting with the shield's wielder."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "riot"
+	inhand_states = list("left_hand" = 'icons/mob/in-hand/left/shields.dmi', "right_hand" = 'icons/mob/in-hand/right/shields.dmi')
 	flags = FPRINT
 	siemens_coefficient = 1
 	slot_flags = SLOT_BACK
