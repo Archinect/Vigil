@@ -302,7 +302,7 @@ var/global/list/cryo_health_indicator = list(	"full" = image("icon" = 'icons/obj
 			detach()
 
 	if(href_list["ejectOccupant"])
-		if(!occupant || isslime(usr) || ispAI(usr))
+		if(!occupant || isslime(usr) || ismetroid(usr) || ispAI(usr))
 			return 0 // don't update UIs attached to this object
 		go_out()
 

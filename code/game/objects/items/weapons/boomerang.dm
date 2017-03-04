@@ -77,7 +77,7 @@
 	..(original, range, speed, override, fly_speed = 1)
 
 /obj/item/weapon/boomerang/throw_impact(atom/hit_atom, var/speed, user)
-	if(iscarbon(hit_atom) && !isslime(hit_atom))
+	if(iscarbon(hit_atom) && !isslime(hit_atom) && !ismetroid(hit_atom))
 		if(user == hit_atom)
 			var/mob/living/carbon/L = hit_atom
 

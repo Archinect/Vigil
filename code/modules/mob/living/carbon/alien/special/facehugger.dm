@@ -360,7 +360,7 @@ var/const/MAX_ACTIVE_TIME = 400
 	if(iscorgi(M))
 		return 1
 
-	if(!iscarbon(M) || isalien(M) || isslime(M))
+	if(!iscarbon(M) || isalien(M) || isslime(M) || ismetroid(M))
 		return 0
 
 	var/mob/living/carbon/C = M

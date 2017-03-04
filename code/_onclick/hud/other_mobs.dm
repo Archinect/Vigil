@@ -74,6 +74,30 @@
 
 	mymob.client.screen += list(mymob.healths, mymob.pullin, mymob.zone_sel)
 
+/datum/hud/proc/metroid_hud()
+
+
+	mymob.healths = getFromPool(/obj/screen)
+	mymob.healths.icon = 'icons/mob/screen1_metroid.dmi'
+	mymob.healths.icon_state = "metroid_health0"
+	mymob.healths.name = "health"
+	mymob.healths.screen_loc = ui_construct_health
+
+	mymob.pullin = getFromPool(/obj/screen)
+	mymob.pullin.icon = 'icons/mob/screen1_metroid.dmi'
+	mymob.pullin.icon_state = "pull0"
+	mymob.pullin.name = "pull"
+	mymob.pullin.screen_loc = ui_construct_pull
+
+	mymob.zone_sel = getFromPool(/obj/screen/zone_sel)
+	mymob.zone_sel.icon = 'icons/mob/screen1_metroid.dmi'
+	mymob.zone_sel.overlays.len = 0
+	mymob.zone_sel.overlays += image('icons/mob/zone_sel.dmi', "[mymob.zone_sel.selecting]")
+
+	mymob.client.reset_screen()
+
+	mymob.client.screen += list(mymob.healths, mymob.pullin, mymob.zone_sel)
+
 /datum/hud/proc/shade_hud()
 
 

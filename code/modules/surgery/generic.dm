@@ -9,6 +9,8 @@
 	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		if (isslime(target))
 			return 0
+		if (ismetroid(target))
+			return 0
 		if (target_zone == "eyes")	//there are specific steps for eye surgery
 			return 0
 		if (!hasorgans(target))

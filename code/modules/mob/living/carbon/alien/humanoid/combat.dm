@@ -52,7 +52,7 @@
 	return ..()
 
 /mob/living/carbon/alien/humanoid/after_unarmed_attack(mob/living/target, damage, damage_type, organ, armor)
-	if(iscarbon(target) && !isslime(target))
+	if(iscarbon(target) && !isslime(target) || !ismetroid(target))
 		if(damage > 25)
 			visible_message("<span class='danger'>[src] has wounded [target]!</span>")
 			target.apply_effect(rand(0.5,3), WEAKEN, armor)

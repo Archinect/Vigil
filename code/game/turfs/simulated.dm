@@ -79,6 +79,9 @@
 		if(isslime(M)) //Slimes just don't slip, end of story
 			return ..()
 
+		if(ismetroid(M)) //Slimes just don't slip, end of story
+			return ..()
+
 		switch(src.wet)
 			if(1) //Water
 				if (M.Slip(5, 3))

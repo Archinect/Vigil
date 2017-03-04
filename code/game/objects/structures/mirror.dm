@@ -124,7 +124,7 @@
 
 
 /obj/structure/mirror/attack_slime(mob/user as mob)
-	if(!isslimeadult(user))
+	if(!isslimeadult(user) || !ismetroid(user))
 		return
 	if(shattered)
 		playsound(get_turf(src), 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)

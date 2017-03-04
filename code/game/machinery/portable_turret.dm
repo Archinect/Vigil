@@ -440,6 +440,9 @@ Status: []<BR>"},
 				if(isslime(L) && !(check_anomalies || attacked))
 					continue
 
+				if(ismetroid(L) && !(check_anomalies || attacked))
+					continue
+
 				if(L.lying) // if the perp is lying down, it's still a target but a less-important target
 					secondarytargets += L
 					continue
