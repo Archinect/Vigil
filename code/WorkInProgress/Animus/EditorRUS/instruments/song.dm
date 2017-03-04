@@ -79,9 +79,9 @@
 	player.apply_modifications_for(who, sound_copy, which, where, which_one)
 
 	who << sound_copy
-	#if DM_VERSION < 511
-		sound_copy.frequency = 1
-	#endif
+//	#if DM_VERSION < 511
+//		sound_copy.frequency = 1
+//	#endif
 	spawn(duration)
 		var/delta_volume = player.volume / sustain_timer
 		var/stored_soft_coeff = soft_coeff
