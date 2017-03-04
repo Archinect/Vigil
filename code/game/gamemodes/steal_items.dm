@@ -111,9 +111,19 @@
 	typepath = /obj/item/clothing/suit/space/nasavoid
 	protected_jobs = list("Research Director")
 
+/datum/theft_objective/traitor/documents
+	name = "a \"Top Secret\" Nanotrasen documents"
+	typepath = /obj/item/weapon/documents/nanotrasen
+	protected_jobs = list("Research Director")
+
 /datum/theft_objective/traitor/slime_extract
 	name = "a sample of slime extract"
 	typepath = /obj/item/slime_extract
+	protected_jobs = list("Research Director", "Scientist")
+
+/datum/theft_objective/traitor/metroid_core
+	name = "a sample of metroid core"
+	typepath = /obj/item/metroid_core
 	protected_jobs = list("Research Director", "Scientist")
 
 /datum/theft_objective/traitor/corgi
@@ -155,6 +165,11 @@
 	name = "the captain's pinpointer"
 	typepath = /obj/item/weapon/pinpointer
 	protected_jobs = list("Captain")
+
+/datum/theft_objective/traitor/barlicense
+	name = "the bartender's license"
+	typepath = /obj/item/weapon/documents/barlicense
+	protected_jobs = list("Bartender")
 
 /datum/theft_objective/traitor/ablative
 	name = "an ablative armor vest"

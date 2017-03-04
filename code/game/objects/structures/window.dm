@@ -237,7 +237,7 @@
 
 /obj/structure/window/attack_slime(mob/user as mob)
 
-	if(!isslimeadult(user))
+	if(!isslimeadult(user) || !ismetroid(user))
 		return
 	attack_generic(user, rand(10, 15))
 

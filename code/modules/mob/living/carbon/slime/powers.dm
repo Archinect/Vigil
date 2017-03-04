@@ -63,7 +63,7 @@
 			loc = M.loc
 
 			if(prob(15) && M.client && istype(M, /mob/living/carbon))
-				to_chat(M, "<span class='warning'>[pick("You can feel your body becoming weak!</span>", \
+				to_chat(M, "<span class='warning'>[pick("You can feel your body becoming weak!", \
 				"You feel like you're about to die!", \
 				"You feel every part of your body screaming in agony!", \
 				"A low, rolling pain passes through your body!", \
@@ -149,7 +149,7 @@
 			if(client)
 				to_chat(src, "<i>This subject does not have a strong enough life energy anymore...</i>")
 		else
-			M.update_canmove()
+			M.canmove = 1
 
 			if(client)
 				to_chat(src, "<i>I have stopped feeding...</i>")

@@ -395,6 +395,12 @@ trans_to_atmos(var/datum/gas_mixture/target, var/amount=1, var/multiplier=1, var
 
 						if(M.POWERFLAG == C.required_other && M.Uses > 0) // added a limit to slime cores -- Muskets requested this
 							matching_other = 1*/
+					if(istype(my_atom, /obj/item/metroid_core))
+						var/obj/item/metroid_core/M = my_atom
+
+						if(M.uses > 0) // added a limit to metroids cores -- Muskets requested this
+							matching_other = 1
+
 					if(istype(my_atom, /obj/item/slime_extract))
 						var/obj/item/slime_extract/M = my_atom
 

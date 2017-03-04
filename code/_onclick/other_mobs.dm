@@ -184,11 +184,15 @@
 /mob/living/carbon/slime/UnarmedAttack(var/atom/A)
 	A.attack_slime(src)
 	return
+/mob/living/carbon/metroid/UnarmedAttack(var/atom/A)
+	A.attack_slime(src)
+	return
 /atom/proc/attack_slime(mob/user as mob)
 	return
 /mob/living/carbon/slime/RestrainedClickOn(var/atom/A)
 	return
-
+/mob/living/carbon/metroid/RestrainedClickOn(var/atom/A)
+	return
 /*
 	New Players:
 	Have no reason to click on anything at all.

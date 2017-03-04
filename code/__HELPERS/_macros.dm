@@ -45,6 +45,8 @@
 
 #define isslimeadult(A) istype(A, /mob/living/carbon/slime/adult)
 
+#define ismetroid(A) istype(A, /mob/living/carbon/metroid)
+
 #define isrobot(A) istype(A, /mob/living/silicon/robot)
 
 #define isanimal(A) istype(A, /mob/living/simple_animal)
