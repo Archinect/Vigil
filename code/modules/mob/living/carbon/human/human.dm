@@ -1542,6 +1542,20 @@
 	make_robot_limbs_organic()
 	make_robot_internals_organic()
 
+/mob/living/carbon/human/proc/new_lay_down()
+	src.lay_down()
+	if(src.resting || src.sleeping)
+		lay_down.icon_state = "act_rest_on"
+	else
+		lay_down.icon_state = "act_rest"
+
+/mob/living/carbon/human/proc/new_mob_sleep()
+	src.mob_sleep()
+	if(src.sleeping)
+		mob_sleep.icon_state = "act_sleep_on"
+	else
+		mob_sleep.icon_state = "act_sleep"
+
 /mob/living/carbon/human/proc/set_attack_type(new_type = NORMAL_ATTACK)
 	kick_icon.icon_state = "act_kick"
 	bite_icon.icon_state = "act_bite"

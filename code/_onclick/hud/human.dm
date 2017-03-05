@@ -326,6 +326,24 @@
 	mymob.bite_icon.alpha = ui_alpha
 	src.hotkeybuttons += mymob.bite_icon
 
+	mymob.lay_down = getFromPool(/obj/screen)
+	mymob.lay_down.name = "rest"
+	mymob.lay_down.icon = ui_style
+	mymob.lay_down.icon_state = "act_rest"
+	mymob.lay_down.screen_loc = ui_kick_bite
+	mymob.lay_down.color = ui_color
+	mymob.lay_down.alpha = ui_alpha
+	src.hotkeybuttons += mymob.lay_down
+
+	mymob.mob_sleep = getFromPool(/obj/screen)
+	mymob.mob_sleep.name = "sleep"
+	mymob.mob_sleep.icon = ui_style
+	mymob.mob_sleep.icon_state = "act_sleep"
+	mymob.mob_sleep.screen_loc = ui_kick_bite
+	mymob.mob_sleep.color = ui_color
+	mymob.mob_sleep.alpha = ui_alpha
+	src.hotkeybuttons += mymob.mob_sleep
+
 	mymob.oxygen = getFromPool(/obj/screen)
 	mymob.oxygen.icon = ui_style
 	mymob.oxygen.icon_state = "oxy0"
@@ -412,7 +430,7 @@
 
 	mymob.client.reset_screen()
 
-	mymob.client.screen += list( mymob.throw_icon, mymob.kick_icon, mymob.bite_icon, mymob.zone_sel, mymob.oxygen, mymob.pressure, mymob.toxin, mymob.bodytemp, mymob.internals, mymob.fire, mymob.healths, mymob.nutrition_icon, mymob.pullin, mymob.gun_setting_icon) //, mymob.hands, mymob.rest, mymob.sleep) //, mymob.mach )
+	mymob.client.screen += list( mymob.throw_icon, mymob.kick_icon, mymob.bite_icon, mymob.lay_down, mymob.mob_sleep, mymob.zone_sel, mymob.oxygen, mymob.pressure, mymob.toxin, mymob.bodytemp, mymob.internals, mymob.fire, mymob.healths, mymob.nutrition_icon, mymob.pullin, mymob.gun_setting_icon) //, mymob.hands, mymob.rest, mymob.sleep) //, mymob.mach )
 	mymob.client.screen += src.adding + src.hotkeybuttons
 	inventory_shown = 0
 
