@@ -27,6 +27,7 @@
 	// VG: We dun changed dis so we can link simple machines. - N3X
 	var/obj/machinery/buffer // simple machine buffer for device linkage
 	var/clone				= 0 // If this is on cloning will happen, this is handled in machinery code.
+	var/is_used = 0
 
 /obj/item/device/multitool/proc/IsBufferA(var/typepath)
 	if(!buffer)

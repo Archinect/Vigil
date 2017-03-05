@@ -328,7 +328,6 @@
 		if("throw")
 			if(!usr.stat && isturf(usr.loc) && !usr.restrained())
 				usr:toggle_throw_mode()
-
 		if("kick")
 			if(ishuman(usr))
 				var/mob/living/carbon/human/H = usr
@@ -347,7 +346,14 @@
 					H.set_attack_type() //Reset
 				else
 					H.set_attack_type(ATTACK_BITE)
-
+		if("rest")
+			if(ishuman(usr))
+				var/mob/living/carbon/human/H = usr
+				H.new_lay_down()
+		if("sleep")
+			if(ishuman(usr))
+				var/mob/living/carbon/human/H = usr
+				H.new_mob_sleep()
 		if("drop")
 			usr.drop_item_v()
 
