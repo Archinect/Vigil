@@ -45,17 +45,23 @@ proc/sanitize_local(var/text, var/mode = SANITIZE_BROWSER)
 	I dunno, should every call be replaced, because maybe there some calls that isn`t used with users input.
 */
 
-/proc/rhtml_encode(var/text)
-	text = sanitize_local(text, SANITIZE_TEMP)
-	text = html_encode(text)
-	text = sanitize_local(text)
-	return text
+/proc/rhtml_encode(var/t)
+	var/index = findtext(t, "ÿ")
+	while(index)
+		t = copytext(t, 1, index) + "____255;" + copytext(t, index+1)
+		index = findtext(t, "ÿ")
+	t = html_encode(t)
+	t = replacetext(t, "____255;", "&#1103;")
+	return t
 
-/proc/rhtml_decode(var/text)
-	text = sanitize_local(text, SANITIZE_TEMP)
-	text = html_decode(text)
-	text = sanitize_local(text)
-	return text
+/proc/rhtml_decode(var/t)
+	var/index = findtext(t, "&#1103;")
+	while(index)
+		t = copytext(t, 1, index) + "____255;" + copytext(t, index+1)
+		index = findtext(t, "&#1103;")
+	t = html_decode(t)
+	t = replacetext(t, "____255;", "ÿ")
+	return t
 
 //From Rubay
 /proc/lowertext_alt(var/text)

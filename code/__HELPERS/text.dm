@@ -69,7 +69,7 @@
 		i = findtext(Haystack, Needle, i + 1, End)
 
 //Removes a few problematic characters
-/proc/sanitize_simple(var/t,var/list/repl_chars = list("\n"="#","\t"="#","ÿ"="¶"))
+/proc/sanitize_simple(var/t,var/list/repl_chars = list("\n"="#","\t"="#"))
 	for(var/char in repl_chars)
 		var/index = findtext(t, char)
 		while(index)

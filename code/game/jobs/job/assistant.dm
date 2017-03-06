@@ -7,8 +7,8 @@
 	spawn_positions = -1
 	supervisors = "absolutely everyone"
 	selection_color = "#dddddd"
-	access = list(access_maint_tunnels)			//See /datum/job/assistant/get_access()
-	minimal_access = list(access_maint_tunnels)	//See /datum/job/assistant/get_access()
+	access = list()			//See /datum/job/assistant/get_access()
+	minimal_access = list()	//See /datum/job/assistant/get_access()
 	alt_titles = list("Technical Assistant","Medical Intern","Research Assistant","Security Cadet")
 
 	no_random_roll = 1 //Don't become assistant randomly
