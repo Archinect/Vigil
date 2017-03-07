@@ -354,8 +354,7 @@ var/savefile/panicfile
 
 	s += {"<b>[station_name()]</b>"
 		(
-		<a href=\"http://ss13.ru\">"
-		/V/i/g/il"
+		<a href=\"http://ss13.ru\">Welcome to Lawful Green
 		</a>
 		)"}
 	var/list/features = list()

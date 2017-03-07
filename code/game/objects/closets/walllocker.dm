@@ -54,6 +54,32 @@
 	pixel_x = WORLD_ICON_SIZE
 	dir = EAST
 
+/obj/structure/closet/walllocker/module
+	desc = "It's a storage unit for operational gear."
+	icon = 'icons/obj/closet.dmi'
+	icon_state = "right-closed"
+	icon_closed = "right-closed"
+	icon_opened = "right-open"
+
+/obj/structure/closet/walllocker/module/New()
+	..()
+	sleep(2)
+//	new	/obj/item/weapon/aiModule/antimov(src)
+	new /obj/item/weapon/aiModule/targetted/safeguard(src)
+	new /obj/item/weapon/aiModule/targetted/oneHuman(src)
+	new /obj/item/weapon/aiModule/standard/protectStation(src)
+	new /obj/item/weapon/aiModule/standard/teleporterOffline(src)
+	new /obj/item/weapon/aiModule/standard/quarantine(src)
+	new /obj/item/weapon/aiModule/standard/oxygen(src)
+	new /obj/item/weapon/aiModule/freeform/core(src)
+//	new /obj/item/weapon/aiModule/purge(src)
+	new /obj/item/weapon/aiModule/core/nanotrasen(src)
+	new /obj/item/weapon/aiModule/core/corp(src)
+	new /obj/item/weapon/aiModule/core/paladin(src)
+	new	/obj/item/weapon/aiModule/core/robocop(src)
+	new /obj/item/weapon/aiModule/core/asimov(src)
+	new /obj/item/weapon/aiModule/reset(src)
+
 /obj/structure/closet/walllocker/defiblocker
 	name = "emergency defibrillator locker"
 	desc = "A wall mounted locker with a handheld defibrillator"

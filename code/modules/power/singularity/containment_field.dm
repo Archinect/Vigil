@@ -60,7 +60,7 @@
 
 	if(isliving(user))
 		hasShocked = 1
-		var/shock_damage = min(rand(30, 40), rand(30, 40))
+		var/shock_damage = min(rand(60, 80), rand(60, 80))
 		user.electrocute_act(shock_damage, src)
 
 		if(iscarbon(user))
