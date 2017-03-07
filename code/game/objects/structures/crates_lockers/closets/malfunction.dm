@@ -15,3 +15,13 @@
 	new /obj/item/weapon/crowbar(src)
 	new /obj/item/weapon/cell(src)
 	new /obj/item/device/multitool(src)
+
+/obj/structure/closet/malf/module
+	desc = "It's a storage unit for operational gear."
+
+	icon_state = "right-closed"
+	icon_closed = "right-closed"
+	icon_opened = "right-open"
+
+/obj/structure/closet/malf/module/New()
+	..()

@@ -22,7 +22,7 @@
 		usr.drop_item()
 		O.loc = src
 		update()
-		updateDialog()
+		updateUsrDialog()
 
 /obj/machinery/copier/attack_paw(user as mob)
 	return src.attack_hand(user)
@@ -138,8 +138,8 @@
 
 			sleep(30)
 			job_num_copies -= 1
-			updateDialog()
+			updateUsrDialog()
 		for(var/mob/O in hearers(src))
 			O.show_message("[name] beeps happily.", 2)
 		copying = 0
-		updateDialog()
+		src.updateUsrDialog()

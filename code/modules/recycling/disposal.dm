@@ -590,6 +590,7 @@
 			active = 0
 			// find the fat guys
 			for(var/mob/living/carbon/human/H in src)
+				H.take_overall_damage(20, 0, "Blunt Trauma")
 
 			break
 		sleep(1)		// was 1
