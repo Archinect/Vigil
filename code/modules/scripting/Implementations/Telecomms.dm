@@ -141,7 +141,7 @@
 				@param replacestring: 	the string to replace the substring with
 
 	*/
-	interpreter.SetProc("replace",		/proc/utf8_replace)
+	interpreter.SetProc("replace",		/proc/string_replacetext)
 
 	/*
 		-> Locates an element/substring inside of a list or string
@@ -178,7 +178,7 @@
 
 	interpreter.SetProc("pick",			/proc/n_pick)
 	interpreter.SetProc("prob",			/proc/prob_chance)
-	interpreter.SetProc("substr",		/proc/utf8_copy)
+	interpreter.SetProc("substr",		/proc/docopytext)
 
 	interpreter.SetProc("shuffle",		/proc/shuffle)
 	interpreter.SetProc("uniquevector",	/proc/uniquelist)
@@ -192,7 +192,7 @@
 	interpreter.SetProc("upper",		/proc/utf8_uppercase)
 	interpreter.SetProc("explode",		/proc/string_explode)
 	interpreter.SetProc("repeat",		/proc/n_repeat)
-	interpreter.SetProc("reverse",		/proc/utf8_reverse)
+	interpreter.SetProc("reverse",		/proc/n_reverse)
 	interpreter.SetProc("tonum",		/proc/n_str2num)
 	interpreter.SetProc("capitalize",	/proc/utf8_capitalize)
 	//interpreter.SetProc("replacetextEx",/proc/n_replacetextEx)
