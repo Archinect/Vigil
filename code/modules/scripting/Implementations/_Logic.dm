@@ -171,6 +171,17 @@ proc/n_str2num(var/string)
 	if(istext(string))
 		return text2num(string)
 
+proc/n_reverse(var/string)
+	if(istext(string))
+		var/newstring = ""
+		var/i
+		for(i=lentext(string), i>0, i--)
+			if(i>=1000)
+				break
+			newstring = newstring + copytext(string, i, i+1)
+
+		return newstring
+
 // Clamps N between min and max
 /proc/n_clamp(var/num, var/min = 0, var/max = 1)
 	if(isnum(num) && isnum(min) && isnum(max))
@@ -273,11 +284,8 @@ proc/n_round(var/num)
 			//CharCopy (dest + targetIndex, src + sourceIndex, count);
 			//CharCopy (dest + curPos, source + lastReadPos, precopy);
 			buf+=copytext(haystack,lastReadPos,precopy)
-			log_misc("buf+=copytext([haystack],[lastReadPos],[precopy])")
-			log_misc("[buf]")
 			lastReadPos = dat[i] + lena
 			//CharCopy (dest + curPos, replace, newValue.length);
 			buf+=b
-			log_misc("[buf]")
 		buf+=copytext(haystack,lastReadPos, 0)
 		return buf
