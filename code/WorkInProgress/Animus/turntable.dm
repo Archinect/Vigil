@@ -88,7 +88,7 @@
 			S.wait = 1
 			S.environment = 0
 
-			var/area/A = src.loc.loc:master
+			var/area/A = src.loc
 
 			for(var/area/RA in A.related)
 				for(var/obj/machinery/party/lasermachine/L in RA)
@@ -118,7 +118,7 @@
 				M << S
 				M.music = 0
 			playing = 0
-			var/area/A = src.loc.loc:master
+			var/area/A = src.loc
 			for(var/area/RA in A.related)
 				for(var/obj/machinery/party/lasermachine/L in RA)
 					L.turnoff()
@@ -275,7 +275,7 @@
 		S.falloff = 2
 		S.wait = 1
 		S.environment = 0
-		var/area/A = src.loc.loc:master
+		var/area/A = src.loc
 
 		for(var/area/RA in A.related)
 			playing = 1
@@ -301,5 +301,5 @@
 			M << S
 			M.music = 0
 		playing = 0
-		var/area/A = src.loc.loc:master
+		var/area/A = src.loc
 		for(var/area/RA in A.related)
