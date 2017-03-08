@@ -405,6 +405,7 @@ var/savefile/panicfile
 
 #define FAILED_DB_CONNECTION_CUTOFF 5
 var/failed_db_connections = 0
+var/failed_old_db_connections = 0
 
 /hook/startup/proc/connectDB()
 	if(!setup_database_connection())
