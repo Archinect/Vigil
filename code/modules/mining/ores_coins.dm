@@ -332,6 +332,13 @@
 	rec.addAmount(material, 0.2) // 5 coins per sheet.
 	return w_type
 
+/obj/item/weapon/coin/attack_self(mob/user as mob)
+	var/result = rand(1, 2)
+	var/comment = "Head!"
+	if(result == 2)
+		comment = "Tail!"
+	user.visible_message("<span class='notice'>[user] has flip [src]. Catch it in the air. [comment]</span>")
+
 /obj/item/weapon/coin/gold
 	material=MAT_GOLD
 	name = "Gold coin"

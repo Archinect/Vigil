@@ -13,29 +13,13 @@
 	var/obj/item/bluespace_crystal/amplifier=null
 	var/opened=0
 
-/obj/machinery/telepad/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(isscrewdriver(W))
-		if(opened)
-			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-			to_chat(user, "<span class = 'caution'>You secure the access port on \the [src].</span>")
-			opened = 0
-		else
-			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-			to_chat(user, "<span class = 'caution'>You open \the [src]'s access port.</span>")
-			opened = 1
-	if(istype(W, /obj/item/bluespace_crystal) && opened)
-		if(amplifier)
-			to_chat(user, "<span class='warning'>There's something in the booster coil already.</span>")
-			return
-		playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-		to_chat(user, "<span class = 'caution'>You jam \the [W] into \the [src]'s booster coil.</span>")
-		user.u_equip(W,1)
-		W.forceMove(src)
-		amplifier=W
-		return
-	if(iscrowbar(W) && opened && amplifier)
-		to_chat(user, "<span class='notice'>You carefully pry \the [amplifier] from \the [src].</span>")
-		var/obj/item/bluespace_crystal/C=amplifier
-		C.forceMove(get_turf(src))
-		amplifier=null
+/obj/machinery/telepad/attackby(obj/item/I, mob/user, params)
+
+	if(panel_open)
+		if(istype(I, /obj/item/device/multitool))
+			var/obj/item/device/multitool/M = I
+			M.buffer = src
+			user << "<span class = 'caution'>You save the data in the [I.name]'s buffer.</span>"
+
+	if(exchange_parts(user, I))
 		return
