@@ -21,6 +21,7 @@ var/area/space_area
 	area_turfs = list()
 	icon_state = ""
 	uid = ++global_uid
+	master = src
 	if (x) // If we're actually located in the world
 		areas |= src
 
