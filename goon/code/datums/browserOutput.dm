@@ -348,6 +348,8 @@ For the main html chat area
 		message = replacetext(message, "þ", "&#1102;")
 		message = replacetext(message, "¸", "&#1105;")
 		message = replacetext(message, "¨", "&#1025;")
+		message = replacetext(message, "&#255;", "&#1103;")
+		message = replacetext(message, "&#1103;", "ÿ")
 
 		// url_encode it TWICE, this way any UTF-8 characters are able to be decoded by the Javascript.
 		target << output(url_encode(url_encode(message)), "browseroutput:output")

@@ -105,3 +105,6 @@ proc/sanitize_local(var/text, var/mode = SANITIZE_BROWSER)
 		p++
 
 	return new_text
+
+/proc/russian_to_cp1251(var/msg)//CHATBOX
+	return replacetext(msg, "ÿ", "&#255;")
