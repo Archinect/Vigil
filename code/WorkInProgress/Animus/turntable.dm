@@ -76,6 +76,7 @@
 	return
 
 /obj/machinery/party/turntable/Topic(href, href_list)
+	var/area/RA = get_area(src)
 	..()
 	if( href_list["on"])
 		if(src.playing == 0)
@@ -88,7 +89,6 @@
 			S.wait = 1
 			S.environment = 0
 
-			var/area/RA = get_area(src)
 			for(RA)
 				for(var/obj/machinery/party/lasermachine/L in RA)
 					L.turnon()
