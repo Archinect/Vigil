@@ -108,7 +108,7 @@ For the main html chat area
 
 			// This seems to be the result on Japanese locales, but the client still seems to accept 1252.
 			else if (encoding == "_autodetect")
-				owner.encoding = "1252"
+				owner.encoding = "1251"
 
 			else
 				stack_trace("Unknown encoding received from client: \"[sanitize(encoding)]\". Please report this as a bug.")
