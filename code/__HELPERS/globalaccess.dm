@@ -1737,10 +1737,6 @@
 			return global.centcomm_store;
 		if("GPS_list")
 			return global.GPS_list;
-		if("SPS_list")
-			return global.SPS_list;
-		if("secure_GPS_count")
-			return global.secure_GPS_count;
 		if("telesci_warnings")
 			return global.telesci_warnings;
 		if("ANTIGENS")
@@ -3542,10 +3538,6 @@
 			global.centcomm_store=newval
 		if("GPS_list")
 			global.GPS_list=newval
-		if("SPS_list")
-			global.SPS_list=newval
-		if("secure_GPS_count")
-			global.secure_GPS_count=newval
 		if("telesci_warnings")
 			global.telesci_warnings=newval
 		if("ANTIGENS")
