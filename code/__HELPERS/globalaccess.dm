@@ -701,8 +701,6 @@
 			return global.dictionary_symptoms;
 		if("animal_butchering_products")
 			return global.animal_butchering_products;
-		if("revdata")
-			return global.revdata;
 		if("same_wires")
 			return global.same_wires;
 		if("wireColours")
@@ -2506,8 +2504,6 @@
 			global.dictionary_symptoms=newval
 		if("animal_butchering_products")
 			global.animal_butchering_products=newval
-		if("revdata")
-			global.revdata=newval
 		if("same_wires")
 			global.same_wires=newval
 		if("wireColours")

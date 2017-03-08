@@ -190,3 +190,13 @@
 					else
 						display_name = holder.fakekey
 			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>")
+
+/client/verb/motd()
+	set name = "MOTD"
+	set category = "OOC"
+	set desc ="Check the Message of the Day"
+
+	if(join_motd)
+		src << sanitize("<div class=\"motd\">[join_motd]</div>")
+	else
+		src << "<span class='notice'>The Message of the Day has not been set.</span>"

@@ -21,7 +21,6 @@ var/area/space_area
 	area_turfs = list()
 	icon_state = ""
 	uid = ++global_uid
-	related = list(src)
 	if (x) // If we're actually located in the world
 		areas |= src
 
@@ -64,12 +63,7 @@ var/area/space_area
 	if (!isarea(A))
 		return
 
-	var/list/contents = list()
-
-	for(var/area/LSA in A.related)
-		contents |= LSA.contents
-
-	return contents
+	return A.contents
 
 /area/proc/getAreaCenter(var/zLevel=1)
 	if(!area_turfs.len)

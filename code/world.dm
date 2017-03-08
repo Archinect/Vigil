@@ -198,7 +198,6 @@ var/savefile/panicfile
 		if(ticker)
 			s["gamestate"] = ticker.current_state
 		s["active_players"] = get_active_player_count()
-		s["revision"] = return_revision()
 		var/n = 0
 		var/admins = 0
 
@@ -211,8 +210,6 @@ var/savefile/panicfile
 			n++
 		s["players"] = n
 
-		if(revdata)
-			s["revision"] = revdata.revision
 		s["admins"] = admins
 
 		return list2params(s)
@@ -320,7 +317,7 @@ var/savefile/panicfile
 	return 1
 
 /world/proc/load_motd()
-	join_motd = russian_to_cp1251(file2text("config/motd.txt"))
+	join_motd = sanitize(file2text("config/motd.txt"))
 
 /world/proc/load_configuration()
 	config = new /datum/configuration()
