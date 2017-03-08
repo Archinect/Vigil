@@ -15,7 +15,7 @@
 	. = src.say_dead(message)
 
 /mob/dead/observer/say_quote(var/text)
-	var/ending = copytext(text, length(text))
+	var/ending = sanitize(copytext(text, length(text)))
 
 	if (ending == "?")
 		return "[pick("moans", "gripes", "grumps", "murmurs", "mumbles", "bleats")], [text]";

@@ -198,7 +198,6 @@ var/savefile/panicfile
 		if(ticker)
 			s["gamestate"] = ticker.current_state
 		s["active_players"] = get_active_player_count()
-		s["revision"] = return_revision()
 		var/n = 0
 		var/admins = 0
 
@@ -211,8 +210,6 @@ var/savefile/panicfile
 			n++
 		s["players"] = n
 
-		if(revdata)
-			s["revision"] = revdata.revision
 		s["admins"] = admins
 
 		return list2params(s)
@@ -315,8 +312,12 @@ var/savefile/panicfile
 	fdel(F)
 	F << the_mode
 
+/hook/startup/proc/loadMOTD()
+	world.load_motd()
+	return 1
+
 /world/proc/load_motd()
-	join_motd = file2text("config/motd.txt")
+	join_motd = sanitize(file2text("config/motd.txt"))
 
 /world/proc/load_configuration()
 	config = new /datum/configuration()
@@ -404,6 +405,7 @@ var/savefile/panicfile
 
 #define FAILED_DB_CONNECTION_CUTOFF 5
 var/failed_db_connections = 0
+var/failed_old_db_connections = 0
 
 /hook/startup/proc/connectDB()
 	if(!setup_database_connection())
@@ -446,5 +448,40 @@ proc/establish_db_connection()
 	else
 		return 1
 
+//These two procs are for the old database, while it's being phased out. See the tgstation.sql file in the SQL folder for more information.
+proc/setup_old_database_connection()
+
+
+	if(failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
+		return 0
+
+	if(!dbcon_old)
+		dbcon_old = new()
+
+	var/user = sqllogin
+	var/pass = sqlpass
+	var/db = sqldb
+	var/address = sqladdress
+	var/port = sqlport
+
+	dbcon_old.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
+	. = dbcon_old.IsConnected()
+	if ( . )
+		failed_old_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
+	else
+		failed_old_db_connections++		//If it failed, increase the failed connections counter.
+		world.log << dbcon_old.ErrorMsg()
+
+	return .
+
+//This proc ensures that the connection to the feedback database (global variable dbcon) is established
+proc/establish_old_db_connection()
+	if(failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)
+		return 0
+
+	if(!dbcon_old || !dbcon_old.IsConnected())
+		return setup_old_database_connection()
+	else
+		return 1
 
 #undef FAILED_DB_CONNECTION_CUTOFF

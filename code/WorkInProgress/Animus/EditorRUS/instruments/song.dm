@@ -79,9 +79,9 @@
 	player.apply_modifications_for(who, sound_copy, which, where, which_one)
 
 	who << sound_copy
-//	#if DM_VERSION < 511
-//		sound_copy.frequency = 1
-//	#endif
+	#if DM_VERSION < 511
+		sound_copy.frequency = 1
+	#endif
 	spawn(duration)
 		var/delta_volume = player.volume / sustain_timer
 		var/stored_soft_coeff = soft_coeff
@@ -111,7 +111,7 @@
 			var/cur_line = 1
 			for (var/line in lines)
 				var/cur_note = 1
-				for (var/notes in text2list(lowertext_alt(line), ","))
+				for (var/notes in text2list(lowertext(line), ","))
 					var/list/components = text2list(notes, "/")
 					var/delta = components.len==2 && text2num(components[2]) ? text2num(components[2]) : 1
 					var/duration = max(round(sanitize_tempo(tempo / delta)), 1)

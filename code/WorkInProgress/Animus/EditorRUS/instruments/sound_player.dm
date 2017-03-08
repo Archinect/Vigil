@@ -45,8 +45,7 @@
 			continue
 		var/dist = get_dist(some_hearer, src)
 		if (dist > forced_sound_in)
-			if (!(some_hearer.client.prefs.toggles))
-				continue
+			continue
 		eligible_mobs += some_hearer
 	return eligible_mobs
 

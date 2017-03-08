@@ -1141,14 +1141,6 @@ var/list/slot_equipment_priority = list( \
 //	M.Login()	//wat
 	return
 
-/client/verb/issue_report()
-	set name = "Github Report"
-	set category = "OOC"
-	var/dat = {"	<title>/vg/station Github Ingame Reporting</title>
-					Revision: [return_revision()]
-					<iframe src='http://ss13.moe/issues/?ckey=[ckey(key)]&address=[world.internet_address]:[world.port]' style='border:none' width='480' height='480' scroll=no></iframe>"}
-	src << browse(dat, "window=github;size=480x480")
-
 /client/verb/changes()
 	set name = "Changelog"
 	set category = "OOC"
@@ -1274,6 +1266,18 @@ var/list/slot_equipment_priority = list( \
 		if(istype(src, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M
 			H.handle_regular_hud_updates()
+
+// http://www.byond.com/forum/?post=2219001#comment22205313
+// TODO: Clean up and identify the args, document
+/mob/verb/DisableClick(argu = null as anything, sec = "" as text, number1 = 0 as num, number2 = 0 as num)
+	set name = ".click"
+	set category = null
+	return
+
+/mob/verb/DisableDblClick(argu = null as anything, sec = "" as text, number1 = 0 as num, number2 = 0 as num)
+	set name = ".dblclick"
+	set category = null
+	return
 
 /mob/Topic(href,href_list[])
 	if(href_list["mach_close"])

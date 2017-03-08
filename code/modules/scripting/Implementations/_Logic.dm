@@ -118,8 +118,7 @@
 
 		else
 			if(istext(haystack))
-				if(length(haystack) >= end && start > 0)
-					return findtext(haystack, needle, start, end)
+				return findtext(haystack, needle, start, end)
 
 // Clone of copytext()
 /proc/docopytext(var/string, var/start = 1, var/end = 0)
@@ -129,10 +128,11 @@
 
 // Clone of length()
 /proc/smartlength(var/container)
-	if(container)
-		if(istype(container, /list) || istext(container))
-			return length(container)
-	return 0
+	if (istext(container))
+		return lentext(container)
+
+	return length(container)
+
 // BY DONKIE~
 // String stuff
 /proc/n_lower(var/string)
@@ -170,6 +170,17 @@ proc/n_repeat(var/string, var/amount)
 proc/n_str2num(var/string)
 	if(istext(string))
 		return text2num(string)
+
+proc/n_reverse(var/string)
+	if(istext(string))
+		var/newstring = ""
+		var/i
+		for(i=lentext(string), i>0, i--)
+			if(i>=1000)
+				break
+			newstring = newstring + copytext(string, i, i+1)
+
+		return newstring
 
 // Clamps N between min and max
 /proc/n_clamp(var/num, var/min = 0, var/max = 1)
@@ -238,3 +249,43 @@ proc/n_round(var/num)
 		return replacetextEx(Haystack, Needle, Replacement, Start, End)
 	catch
 		return
+
+/proc/string_replacetext(var/haystack,var/a,var/b)
+	if(istext(haystack)&&istext(a)&&istext(b))
+		var/i = 1
+		var/lenh=lentext(haystack)
+		var/lena=lentext(a)
+		//var/lenb=lentext(b)
+		var/count = 0
+		var/list/dat = list()
+		while (i < lenh)
+			var/found = findtext(haystack, a, i, 0)
+			//log_misc("findtext([haystack], [a], [i], 0)=[found]")
+			if (found == 0) // Not found
+				break
+			else
+				if (count < SCRIPT_MAX_REPLACEMENTS_ALLOWED)
+					dat+=found
+					count+=1
+				else
+					//log_misc("Script found [a] [count] times, aborted")
+					break
+			//log_misc("Found [a] at [found]! Moving up...")
+			i = found + lena
+		if (count == 0)
+			return haystack
+		//var/nlen = lenh + ((lenb - lena) * count)
+		var/buf = copytext(haystack,1,dat[1]) // Prefill
+		var/lastReadPos = 0
+		for (i = 1, i <= count, i++)
+			var/precopy = dat[i] - lastReadPos-1
+			//internal static unsafe void CharCopy (String target, int targetIndex, String source, int sourceIndex, int count)
+			//fixed (char* dest = target, src = source)
+			//CharCopy (dest + targetIndex, src + sourceIndex, count);
+			//CharCopy (dest + curPos, source + lastReadPos, precopy);
+			buf+=copytext(haystack,lastReadPos,precopy)
+			lastReadPos = dat[i] + lena
+			//CharCopy (dest + curPos, replace, newValue.length);
+			buf+=b
+		buf+=copytext(haystack,lastReadPos, 0)
+		return buf
