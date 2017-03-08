@@ -77,6 +77,7 @@ var/secret_force_mode = "secret" // if this is anything but "secret", the secret
 
 var/host = null
 var/aliens_allowed = 1
+var/join_motd = null
 var/ooc_allowed = 1
 var/looc_allowed = 1
 var/dooc_allowed = 1
@@ -160,7 +161,6 @@ var/gravity_is_on = 1
 
 var/shuttlecoming = 0
 
-var/join_motd = null
 var/forceblob = 0
 
 var/polarstar = 0 //1 means that the polar star has been found, 2 means that the spur modification kit has been found
