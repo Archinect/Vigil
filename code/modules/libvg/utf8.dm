@@ -1,5 +1,5 @@
 /proc/_determine_encoding(var/mob_or_client)
-	. = "1252"
+	. = "1251"
 	if (isclient(mob_or_client))
 		var/client/C = mob_or_client
 		. = C.encoding
@@ -8,10 +8,6 @@
 		var/mob/M = mob_or_client
 		if (M.client)
 			. = M.client.encoding
-
-
-/proc/to_utf8(var/message)
-	return sanitize(message)
 
 // Converts a byte string to a UTF-8 string, sanitizes it and caps the length.
 /proc/utf8_sanitize(var/message)
