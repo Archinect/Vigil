@@ -10,12 +10,12 @@
 			. = M.client.encoding
 
 
-/proc/to_utf8(var/message, var/mob_or_client)
-	return replacetext(message, "ÿ", "&#1103;")
+/proc/to_utf8(var/message)
+	return rhtml_encode(message)
 
 // Converts a byte string to a UTF-8 string, sanitizes it and caps the length.
 /proc/utf8_sanitize(var/message)
-	return rhtml_encode(message)
+	return sanitize(message)
 
 /proc/utf8_uppercase(var/text)
 	text = uppertext(text)
