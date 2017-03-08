@@ -88,18 +88,19 @@
 			S.wait = 1
 			S.environment = 0
 
-			for(var/area/RA in src.loc)
+			var/area/RA = get_area(src)
+			for(RA)
 				for(var/obj/machinery/party/lasermachine/L in RA)
 					L.turnon()
 			playing = 1
 			while(playing == 1)
 				for(var/mob/M in world)
 					var/area/location = get_area(M)
-					if((location in src.loc) && M.music == 0)
+					if((location in RA) && M.music == 0)
 						//world << "Found the song..."
 						M << S
 						M.music = 1
-					else if(!(location in src.loc) && M.music == 1)
+					else if(!(location in RA) && M.music == 1)
 						var/sound/Soff = sound(null)
 						Soff.channel = 10
 						M << Soff
@@ -116,7 +117,7 @@
 				M << S
 				M.music = 0
 			playing = 0
-			for(var/area/RA in src.loc)
+			for(RA)
 				for(var/obj/machinery/party/lasermachine/L in RA)
 					L.turnoff()
 
@@ -262,6 +263,7 @@
 
 /obj/machinery/party/gramophone/attack_hand(mob/living/user as mob)
 
+	var/area/RA = get_area(src)
 	if (src.playing == 0)
 
 		var/sound/S
@@ -272,14 +274,14 @@
 		S.wait = 1
 		S.environment = 0
 
-		for(var/area/RA in src.loc)
+		for(RA)
 			playing = 1
 			while(playing == 1)
 				for(var/mob/M in world)
-					if((M.loc.loc in src.loc.loc) && M.music == 0)
+					if((M.loc in RA) && M.music == 0)
 						M << S
 						M.music = 1
-					else if(!(M.loc.loc in src.loc.loc) && M.music == 1)
+					else if(!(M.loc in RA) && M.music == 1)
 						var/sound/Soff = sound(null)
 						Soff.channel = 10
 						M << Soff
@@ -295,5 +297,5 @@
 		for(var/mob/M in world)
 			M << S
 			M.music = 0
+		for(RA)
 		playing = 0
-		for(var/area/RA in src.loc.loc)
