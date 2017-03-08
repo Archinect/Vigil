@@ -15,7 +15,7 @@
 
 // Converts a byte string to a UTF-8 string, sanitizes it and caps the length.
 /proc/utf8_sanitize(var/message)
-	return sanitize(message)
+	return rhtml_encode(message)
 
 /proc/utf8_uppercase(var/text)
 	text = uppertext(text)
