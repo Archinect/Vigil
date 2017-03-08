@@ -11,7 +11,7 @@
 
 
 /proc/to_utf8(var/message)
-	return rhtml_encode(message)
+	return sanitize(message)
 
 // Converts a byte string to a UTF-8 string, sanitizes it and caps the length.
 /proc/utf8_sanitize(var/message)
