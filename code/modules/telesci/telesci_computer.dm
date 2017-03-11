@@ -234,17 +234,20 @@ var/global/list/telesci_warnings = list(/obj/machinery/power/supermatter,
 
 			flick("pad-beam", telepad)
 			playsound(telepad.loc, 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
+			var/things=0
 			for(var/atom/movable/ROI in source)
 				// if is anchored, don't let through
+				if(ROI.anchored || things>=10)
+					if(isliving(ROI))
+						var/mob/living/L = ROI
+						if(L.anchored)
+							continue
 
-				if(ROI.anchored)
-					continue
-				if(is_type_in_list(ROI,telesci_warnings))
-					message_admins("[user.real_name]/([formatPlayerPanel(user,user.ckey)]) teleported a [ROI] to [formatJumpTo(dest)] from [formatJumpTo(source)]")
-					log_admin("[user.real_name]/([formatPlayerPanel(user,user.ckey)]) teleported a [ROI] to [formatJumpTo(dest)] from [formatJumpTo(source)]")
-					continue
-				if(!isobserver(ROI))
-					continue
+							log_msg += "[key_name(L)] (on a chair), "
+						else
+							continue
+					else if(!isobserver(ROI))
+						continue
 				if(ismob(ROI))
 					var/mob/T = ROI
 					log_msg += "[key_name(T)], "
@@ -264,16 +267,17 @@ var/global/list/telesci_warnings = list(/obj/machinery/power/supermatter,
 							log_msg = dd_limittext(log_msg, length(log_msg) - 2)
 							log_msg += ")"
 					log_msg += ", "
+					if(is_type_in_list(ROI,telesci_warnings))
+						log_admin("[user.real_name]/([formatPlayerPanel(user,user.ckey)]) teleported a [ROI] to [formatJumpTo(dest)] from [formatJumpTo(source)]")
+						message_admins("[user.real_name]/([formatPlayerPanel(user,user.ckey)]) teleported a [ROI] to [formatJumpTo(dest)] from [formatJumpTo(source)]")
 				do_teleport(ROI, dest)
-
+			things++
 			if (dd_hassuffix(log_msg, ", "))
 				log_msg = dd_limittext(log_msg, length(log_msg) - 2)
 			else
 				log_msg += "nothing"
 			log_msg += " [sending ? "to" : "from"] [trueX], [trueY], [z_co] ([A ? A.name : "null area"])"
-			log_admin(log_msg, "telesci")
-			updateDialog()
-
+			src.updateUsrDialog()
 
 /obj/machinery/computer/telescience/proc/teleport(mob/user)
 	if(rotation == null || angle == null || z_co == null)
@@ -298,6 +302,7 @@ var/global/list/telesci_warnings = list(/obj/machinery/power/supermatter,
 		temp_msg = "ERROR!<BR>Calibration required."
 		return
 	return
+
 
 /obj/machinery/computer/telescience/proc/eject()
 	for(var/obj/item/I in crystals)

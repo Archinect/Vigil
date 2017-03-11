@@ -15,11 +15,10 @@
 
 /obj/machinery/telepad/attackby(obj/item/I, mob/user, params)
 
-	if(panel_open)
-		if(istype(I, /obj/item/device/multitool))
-			var/obj/item/device/multitool/M = I
-			M.buffer = src
-			user << "<span class = 'caution'>You save the data in the [I.name]'s buffer.</span>"
+	if(istype(I, /obj/item/device/multitool))
+		var/obj/item/device/multitool/M = I
+		M.buffer = src
+		to_chat(user, "<span class = 'caution'>You save the data in the [I.name]'s buffer.</span>")
 
 	if(exchange_parts(user, I))
 		return
