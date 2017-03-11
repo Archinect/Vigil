@@ -16,7 +16,7 @@
 	var/stop = 0.0
 	var/screen = 0 // 0 - Main Menu, 1 - Cyborg Status, 2 - Kill 'em All! -- In text
 
-	light_color = LIGHT_COLOR_PINK
+	light_color = LIGHT_COLOR_GREEN
 
 
 /obj/machinery/computer/robotics/attack_ai(var/mob/user as mob)

@@ -24,6 +24,7 @@
 	var/icon/clicked //Because BYOND can't give us runtime icon access, this is basically just a click catcher
 	var/flipped = 0
 	var/health = 100
+	var/mob/tableclimber
 
 /obj/structure/table/proc/update_adjacent()
 	for(var/direction in alldirs)
@@ -289,6 +290,9 @@
 		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
 		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 		destroy()
+	if(tableclimber && tableclimber != user)
+		tableclimber.Knockdown(5)
+		tableclimber.visible_message("<span class='warning'>[tableclimber.name] has been knocked off the table", "You're knocked off the table!", "You see [tableclimber.name] get knocked off the table</span>")
 
 /obj/structure/table/attack_tk() // no telehulk sorry
 	return
@@ -355,6 +359,13 @@
 	return 1
 
 /obj/structure/table/MouseDrop_T(obj/O as obj, mob/user as mob)
+	if(ismob(O) && user == O && ishuman(user))
+		if(user.resting && !user.restrained())
+			crawl_table(user)
+			return
+		if(user.canmove)
+			climb_table(user)
+			return
 	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
 		return
 	if(user.drop_item())
@@ -532,6 +543,62 @@
 		"health")
 
 	reset_vars_after_duration(resettable_vars, duration)
+
+/*
+ * TABLE CLIMBING
+ */
+
+
+/obj/structure/table/proc/climb_table(mob/user)
+	src.add_fingerprint(user)
+	user.visible_message("<span class='warning'>[user] is trying to climb on [src].</span>", \
+								"<span class='notice'>You are trying to climb on [src].</span>")
+	var/climb_time = 20
+	if(user.restrained()) //Table climbing takes twice as long when restrained.
+		climb_time *= 2
+	tableclimber = user
+	if(do_mob(user, user, climb_time))
+		if(src.loc) //Checking if table has been destroyed
+			user.pass_flags += PASSTABLE
+			step(user,get_dir(user,src.loc))
+			user.pass_flags -= PASSTABLE
+			add_logs(user, src, "climbed onto")
+			tableclimber = null
+			return 1
+	tableclimber = null
+	return 0
+
+
+/*
+ * TABLE CRAWLING
+ */
+
+/obj/structure/table/proc/crawl_table(mob/user)
+	src.add_fingerprint(user)
+	var/obj/structure/table/G = locate() in usr.loc
+	if(user.layer == TURF_LAYER + 0.2 && user.resting && G)
+		usr << "<span class='notice'>You are already lie under [G], click on other tables to crawl, or on near tiles to crawl out.</span>"
+		return
+	else if(G==src)
+		usr << "<span class='notice'>You can`t move through table!</span>"
+		return
+
+	user.visible_message("<span class='warning'>[user] is trying to crawl under [src].</span>", \
+								"<span class='notice'>You are trying to crawl under [src].</span>")
+	var/crawl_time = 20
+	if(user.restrained())
+		crawl_time *= 2
+	if(do_after(user, crawl_time, 5, 0))
+		if(src.loc && user.resting) //Checking if table has been destroyed
+			user.layer = TURF_LAYER + 0.2
+			user.pass_flags += PASSTABLE
+			step(user,get_dir(user,src.loc))
+			user.pass_flags -= PASSTABLE
+//			add_logs(user, src, "climbed onto")
+			return 1
+	return 0
+
+
 
 /*
  * Wooden tables
