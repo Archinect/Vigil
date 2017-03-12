@@ -8,6 +8,7 @@
 	spawn_positions = 1
 	supervisors = "The God(s), the Head of Personnel too."
 	selection_color = "#dddddd"
+	idtype = /obj/item/weapon/card/id/civilian
 	access = list(access_morgue, access_chapel_office, access_crematorium, access_maint_tunnels)
 	minimal_access = list(access_morgue, access_chapel_office, access_crematorium, access_maint_tunnels)
 	pdaslot = slot_belt

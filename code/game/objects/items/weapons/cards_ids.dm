@@ -362,6 +362,7 @@
 							"medical",
 							"HoS",
 							"research",
+							"civilian",
 							"engineering",
 							"CMO",
 							"RD",
@@ -509,6 +510,13 @@
 	desc = "Finders, keepers."
 	access = list(access_salvage_captain)
 	base_access = list(access_salvage_captain)
+
+/obj/item/weapon/card/id/civilian
+	name = "Civilian ID"
+	registered_name = "Assistant"
+	icon_state = "civilian"
+	desc = "Holy shit. Where am I?"
+	access = list(access_hydroponics, access_bar, access_kitchen, access_hydroponics, access_morgue, access_weapons, access_maint_tunnels)
 
 /obj/item/weapon/card/id/medical
 	name = "Medical ID"
