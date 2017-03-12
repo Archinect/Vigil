@@ -580,18 +580,15 @@
 /obj/structure/disposalholder/proc/move()
 	var/obj/structure/disposalpipe/last
 	while(active)
-		/* vg edit
+
 		if(hasmob && prob(3))
 			for(var/mob/living/H in src)
-				H.take_overall_damage(20, 0, "Blunt Trauma")//horribly maim any living creature jumping down disposals.  c'est la vie
-				*/
+				H.take_overall_damage(20, 0, used_weapon = "Blunt Trauma")//horribly maim any living creature jumping down disposals.  c'est la vie
+
 
 		if(has_fat_guy && prob(2)) // chance of becoming stuck per segment if contains a fat guy
 			active = 0
 			// find the fat guys
-			for(var/mob/living/carbon/human/H in src)
-				H.take_overall_damage(20, 0, "Blunt Trauma")
-
 			break
 		sleep(1)		// was 1
 		if(!loc || isnull(loc))
