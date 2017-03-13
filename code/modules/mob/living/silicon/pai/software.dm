@@ -324,10 +324,10 @@
 					card.set_light(0)
 		if("pps")
 			if(href_list["tag"])
-				var/tag = input("Please enter desired tag.", name, ppstag) as text|null
+				var/tag = sanitize(input("Please enter desired tag.", name, ppstag) as text|null, MAX_MESSAGE_LEN)
 				if (!tag) //what a check
 					return
-				tag = strict_ascii(tag)
+
 				if(length(tag) != 4)
 					to_chat(src, "<span class = 'caution'>The tag must be four characters long!</span>")
 					return
