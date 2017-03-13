@@ -69,7 +69,7 @@ var/global/obj/screen/clicker/catcher = new()
 			if(H.gloves)
 				H.gloves.screen_loc = ui_gloves
 			if(H.ears)
-				H.ears.screen_loc = ui_ears
+				H.ears.screen_loc = ui_l_ear
 			if(H.glasses)
 				H.glasses.screen_loc = ui_glasses
 			if(H.w_uniform)

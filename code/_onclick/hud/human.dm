@@ -259,7 +259,7 @@
 	inv_box.name = "ears"
 	inv_box.icon = ui_style
 	inv_box.icon_state = "ears"
-	inv_box.screen_loc = ui_ears
+	inv_box.screen_loc = ui_l_ear
 	inv_box.slot_id = slot_ears
 	inv_box.layer = HUD_BASE_LAYER
 	inv_box.color = ui_color
