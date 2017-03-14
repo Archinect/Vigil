@@ -26,7 +26,7 @@
 	if(recording && speech.speaker != src)
 		timestamp += timerecorded
 		storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] \"[rhtml_encode(speech.message)]\""
-
+		storedinfo = sanitize(storedinfo)
 /obj/item/device/taperecorder/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/weapon/card/emag))
@@ -144,7 +144,7 @@
 			break
 		if(storedinfo.len < i)
 			break
-		sanitize(recorder_message("[storedinfo[i]]"))
+		recorder_message("[storedinfo[i]]")
 		if(storedinfo.len < i+1)
 			playsleepseconds = 1
 			sleep(10)

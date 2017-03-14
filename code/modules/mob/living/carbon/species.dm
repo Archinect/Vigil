@@ -322,7 +322,7 @@ var/global/list/whitelisted_species = list("Human")
 	icobase = 'icons/mob/human_races/r_skeleton.dmi'
 	deform = 'icons/mob/human_races/r_skeleton.dmi'  // TODO: Need deform.
 	known_languages = list(LANGUAGE_CLATTER)
-	flags = IS_WHITELISTED | NO_BREATHE
+	flags = NO_BREATHE
 	anatomy_flags = HAS_LIPS | NO_SKIN | NO_BLOOD
 
 	chem_flags = NO_DRINK | NO_EAT | NO_INJECT
@@ -486,7 +486,7 @@ var/global/list/whitelisted_species = list("Human")
 
 	primitive = /mob/living/carbon/monkey/grey // TODO
 
-	flags = IS_WHITELISTED
+
 	anatomy_flags = HAS_LIPS | CAN_BE_FAT | HAS_SWEAT_GLANDS
 
 	// Both must be set or it's only a 45% chance of manifesting.
@@ -923,7 +923,7 @@ var/global/list/whitelisted_species = list("Human")
 	deform = 'icons/mob/human_races/r_def_grue.dmi'	// Mutated icon set.
 	eyes = "grue_eyes_s"
 	attack_verb = "claws"
-	flags = NO_PAIN | IS_WHITELISTED | HYPOTHERMIA_IMMUNE
+	flags = NO_PAIN | HYPOTHERMIA_IMMUNE
 	anatomy_flags = HAS_LIPS
 	punch_damage = 7
 	darksight = 8
