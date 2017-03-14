@@ -233,7 +233,7 @@
 		return
 
 	var/mob/living/carbon/human/H = user
-	if(H.ears != src)
+	if(H.ears != src && H.r_ear != src)
 		..()
 		return
 
@@ -241,6 +241,14 @@
 		return
 
 	var/obj/item/clothing/ears/O = src
+	if(slot_flags & SLOT_TWOEARS )
+		O = (H.ears == src ? H.r_ear : H.ears)
+		user.u_equip(O)
+		if(!istype(src,/obj/item/clothing/ears))
+			qdel(O)
+			O = src
+	else
+		O = src
 
 	user.u_equip(src,0)
 
@@ -343,16 +351,16 @@ BLIND     // can't see anything
 	var/ignore_flip = 0
 	actions_types = list(/datum/action/item_action/toggle_mask)
 	heat_conductivity = MASK_HEAT_CONDUCTIVITY
-	
+
 /datum/action/item_action/toggle_mask
 	name = "Toggle Mask"
-	
+
 /datum/action/item_action/toggle_mask/Trigger()
 	var/obj/item/clothing/mask/T = target
 	if(!istype(T))
 		return
 	T.togglemask()
-	
+
 /obj/item/clothing/mask/proc/togglemask()
 	if(ignore_flip)
 		return
@@ -573,7 +581,7 @@ BLIND     // can't see anything
 /obj/item/clothing/under/AltClick()
 	if(is_holder_of(usr, src))
 		set_sensors(usr)
-		
+
 /datum/action/item_action/toggle_minimap
 	name = "Toggle Minimap"
 
@@ -583,7 +591,7 @@ BLIND     // can't see anything
 		return
 	for(var/obj/item/clothing/accessory/holomap_chip/HC in T.accessories)
 		HC.togglemap()
-		
+
 /obj/item/clothing/under/rank/New()
 	. = ..()
 	sensor_mode = pick(0, 1, 2, 3)
@@ -595,5 +603,5 @@ BLIND     // can't see anything
 	w_class = W_CLASS_SMALL
 	throwforce = 2
 	slot_flags = SLOT_BACK
-	
+
 

@@ -103,15 +103,16 @@ var/list/department_radio_keys = list(
 	if (!ishuman(src))
 		return
 	var/mob/living/carbon/human/H = src
-	if (H.ears)
+	if (H.ears || H.r_ear)
 		var/obj/item/device/radio/headset/dongle
 		if(istype(H.ears,/obj/item/device/radio/headset))
 			dongle = H.ears
+		else
+			dongle = H.r_ear
 		if(!istype(dongle))
 			return
 		if(dongle.translate_hive)
 			return 1
-
 
 // /vg/edit: Added forced_by for handling braindamage messages and meme stuff
 /mob/living/say(var/message, bubble_type)

@@ -489,6 +489,7 @@ var/global/list/damage_icon_parts = list()
 	update_inv_gloves(0)
 	update_inv_glasses(0)
 	update_inv_ears(0)
+	update_inv_r_ear(0)
 	update_inv_shoes(0)
 	update_inv_s_store(0)
 	update_inv_wear_mask(0)
@@ -732,6 +733,40 @@ var/global/list/damage_icon_parts = list()
 		if(ears.dynamic_overlay)
 			if(ears.dynamic_overlay["[EARS_LAYER]"])
 				var/image/dyn_overlay = ears.dynamic_overlay["[EARS_LAYER]"]
+				O.overlays += dyn_overlay
+		obj_to_plane_overlay(O,EARS_LAYER)
+		//overlays_standing[EARS_LAYER] = standing
+	//else
+		//overlays_standing[EARS_LAYER] = null
+
+	if(update_icons)
+		update_icons()
+
+/mob/living/carbon/human/update_inv_r_ear(var/update_icons=1)
+
+	overlays -= obj_overlays[EARS_LAYER]
+	if(r_ear && !check_hidden_head_flags(HIDETWOEARS) && r_ear.is_visible())
+		var/image/standing = image("icon" = ((r_ear.icon_override) ? r_ear.icon_override : 'icons/mob/ears.dmi'), "icon_state" = "[r_ear.icon_state]")
+
+		var/obj/item/I = r_ear
+
+		var/datum/species/S = species
+		for(var/datum/organ/external/OE in get_organs_by_slot(slot_head, src)) //Display species-exclusive species correctly on attached limbs
+			if(OE.species)
+				S = OE.species
+				break
+
+		if(S.name in I.species_fit) //Allows clothes to display differently for multiple species
+			if(S.ears_icons)
+				standing.icon = S.ears_icons
+
+		var/obj/Overlays/O = obj_overlays[EARS_LAYER]
+		O.icon = standing
+		O.icon_state = standing.icon_state
+		O.overlays.len = 0
+		if(r_ear.dynamic_overlay)
+			if(r_ear.dynamic_overlay["[EARS_LAYER]"])
+				var/image/dyn_overlay = r_ear.dynamic_overlay["[EARS_LAYER]"]
 				O.overlays += dyn_overlay
 		obj_to_plane_overlay(O,EARS_LAYER)
 		//overlays_standing[EARS_LAYER] = standing
@@ -1193,6 +1228,8 @@ var/global/list/damage_icon_parts = list()
 		update_inv_glasses()
 	if(is_slot_hidden(W.body_parts_covered, (HIDEEARS)))
 		update_inv_ears()
+	if(is_slot_hidden(W.body_parts_covered, (HIDEEARS)))
+		update_inv_r_ear()
 
 proc/is_slot_hidden(var/clothes, var/slot = -1,var/ignore_slot = 0)
 	if(!clothes)
@@ -1217,6 +1254,8 @@ proc/is_slot_hidden(var/clothes, var/slot = -1,var/ignore_slot = 0)
 		update_inv_belt()
 	if(slot_flags & SLOT_EARS)
 		update_inv_ears()
+	if(slot_flags & SLOT_TWOEARS)
+		update_inv_r_ear()
 	if(slot_flags & SLOT_EYES)
 		update_inv_glasses()
 	if(slot_flags & SLOT_GLOVES)

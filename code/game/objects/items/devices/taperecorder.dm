@@ -144,7 +144,7 @@
 			break
 		if(storedinfo.len < i)
 			break
-		recorder_message("[storedinfo[i]]")
+		sanitize(recorder_message("[storedinfo[i]]"))
 		if(storedinfo.len < i+1)
 			playsleepseconds = 1
 			sleep(10)

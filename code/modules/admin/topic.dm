@@ -2228,7 +2228,7 @@
 		var/receive_type
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M
-			if(!istype(H.ears, /obj/item/device/radio/headset))
+			if(!istype(H.ears, /obj/item/device/radio/headset) || !istype(H.r_ear, /obj/item/device/radio/headset))
 				to_chat(usr, "<span class='warning'>The person you are trying to contact is not wearing a headset.</span>")
 				return
 			receive_type = "headset"
@@ -2255,7 +2255,7 @@
 		var/receive_type
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M
-			if(!istype(H.ears, /obj/item/device/radio/headset))
+			if(!istype(H.ears, /obj/item/device/radio/headset) || !istype(H.r_ear, /obj/item/device/radio/headset))
 				to_chat(usr, "<span class='warning'>The person you are trying to contact is not wearing a headset.</span>")
 				return
 			receive_type = "headset"

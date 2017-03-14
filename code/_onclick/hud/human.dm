@@ -267,6 +267,17 @@
 	src.other += inv_box
 
 	inv_box = getFromPool(/obj/screen/inventory)
+	inv_box.name = "r_ear"
+	inv_box.icon = ui_style
+	inv_box.icon_state = "ears"
+	inv_box.screen_loc = ui_r_ear
+	inv_box.slot_id = slot_twoears
+	inv_box.layer = HUD_BASE_LAYER
+	inv_box.color = ui_color
+	inv_box.alpha = ui_alpha
+	src.other += inv_box
+
+	inv_box = getFromPool(/obj/screen/inventory)
 	inv_box.name = "head"
 	inv_box.icon = ui_style
 	inv_box.icon_state = "hair"

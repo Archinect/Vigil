@@ -616,6 +616,7 @@ var/list/slot_equipment_priority = list( \
 		slot_shoes,\
 		slot_gloves,\
 		slot_ears,\
+		slot_twoears,\
 		slot_glasses,\
 		slot_belt,\
 		slot_s_store,\
@@ -748,6 +749,15 @@ var/list/slot_equipment_priority = list( \
 					return 0
 				if(H.ears)
 					if(H.ears.canremove)
+						return 2
+					else
+						return 0
+				return 1
+			if(slot_twoears)
+				if( !(slot_flags & slot_twoears) )
+					return 0
+				if(H.r_ear)
+					if(H.r_ear.canremove)
 						return 2
 					else
 						return 0

@@ -70,6 +70,8 @@ var/global/obj/screen/clicker/catcher = new()
 				H.gloves.screen_loc = ui_gloves
 			if(H.ears)
 				H.ears.screen_loc = ui_l_ear
+			if(H.r_ear)
+				H.r_ear.screen_loc = ui_r_ear
 			if(H.glasses)
 				H.glasses.screen_loc = ui_glasses
 			if(H.w_uniform)
@@ -87,6 +89,8 @@ var/global/obj/screen/clicker/catcher = new()
 				H.gloves.screen_loc = null
 			if(H.ears)
 				H.ears.screen_loc = null
+			if(H.r_ear)
+				H.r_ear.screen_loc = null
 			if(H.glasses)
 				H.glasses.screen_loc = null
 			if(H.w_uniform)
