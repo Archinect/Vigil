@@ -8,8 +8,6 @@
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
 
-	message = sanitize(message)
-
 	if(isDead())
 		return
 
