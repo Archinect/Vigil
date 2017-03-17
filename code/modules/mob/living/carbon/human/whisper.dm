@@ -35,7 +35,7 @@
 	if(!can_speak(message))
 		return
 
-	speech.message = "[sanitize(message)]"
+	speech.message = "[message]"
 
 	if (src.client)
 		if (src.client.prefs.muted & MUTE_IC)

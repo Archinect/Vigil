@@ -22,8 +22,13 @@ var/list/fracture_sound = list('sound/effects/bonebreak1.ogg','sound/effects/bon
 var/list/machete_hit_sound = list('sound/weapons/machete_hit01.ogg', 'sound/weapons/machete_hit02.ogg', 'sound/weapons/machete_hit03.ogg', 'sound/weapons/machete_hit04.ogg', 'sound/weapons/machete_hit05.ogg', 'sound/weapons/machete_hit06.ogg', 'sound/weapons/machete_hit07.ogg', 'sound/weapons/machete_hit08.ogg', 'sound/weapons/machete_hit09.ogg', 'sound/weapons/machete_hit10.ogg',)
 var/list/machete_throw_sound = list('sound/weapons/hfmachete_throw01.ogg', 'sound/weapons/hfmachete_throw02.ogg', 'sound/weapons/hfmachete_throw03.ogg')
 var/list/machete_throw_hit_sound = list('sound/weapons/hfmachete_throw_hit01.ogg', 'sound/weapons/hfmachete_throw_hit02.ogg', 'sound/weapons/hfmachete_throw_hit03.ogg')
-
-
+var/list/erikafootsteps_sound = list('sound/effects/footsteps/tile1.wav','sound/effects/footsteps/tile2.wav','sound/effects/footsteps/tile3.wav','sound/effects/footsteps/tile4.wav')
+var/list/grassfootsteps_sound = list('sound/effects/footsteps/grass/grass1.wav','sound/effects/footsteps/grass/grass2.wav','sound/effects/footsteps/grass/grass3.wav','sound/effects/footsteps/grass/grass4.wav')
+var/list/dirtfootsteps_sound = list('sound/effects/footsteps/dirt/dirt1.wav','sound/effects/footsteps/dirt/dirt2.wav','sound/effects/footsteps/dirt/dirt3.wav','sound/effects/footsteps/dirt/dirt4.wav')
+var/list/waterfootsteps_sound = list('sound/effects/footsteps/water/slosh1.wav','sound/effects/footsteps/water/slosh2.wav','sound/effects/footsteps/water/slosh3.wav','sound/effects/footsteps/water/slosh4.wav')
+var/list/sandfootsteps_sound = list('sound/effects/footsteps/sand/sand_step1.ogg','sound/effects/footsteps/sand/sand_step2.ogg','sound/effects/footsteps/sand/sand_step3.ogg','sound/effects/footsteps/sand/sand_step4.ogg','sound/effects/footsteps/sand/sand_step5.ogg','sound/effects/footsteps/sand/sand_step6.ogg','sound/effects/footsteps/sand/sand_step7.ogg','sound/effects/footsteps/sand/sand_step8.ogg')
+var/list/woodfootsteps_sound = list('sound/effects/footsteps/wood/wood_step1.ogg','sound/effects/footsteps/wood/wood_step2.ogg','sound/effects/footsteps/wood/wood_step3.ogg','sound/effects/footsteps/wood/wood_step4.ogg','sound/effects/footsteps/wood/wood_step5.ogg','sound/effects/footsteps/wood/wood_step6.ogg','sound/effects/footsteps/wood/wood_step7.ogg','sound/effects/footsteps/wood/wood_step8.ogg')
+var/list/carpetfootsteps_sound = list('sound/effects/footsteps/carpet/carpet_step1.ogg','sound/effects/footsteps/carpet/carpet_step2.ogg','sound/effects/footsteps/carpet/carpet_step3.ogg','sound/effects/footsteps/carpet/carpet_step4.ogg','sound/effects/footsteps/carpet/carpet_step5.ogg','sound/effects/footsteps/carpet/carpet_step6.ogg','sound/effects/footsteps/carpet/carpet_step7.ogg','sound/effects/footsteps/carpet/carpet_step8.ogg')
 //var/list/gun_sound = list('sound/weapons/Gunshot.ogg', 'sound/weapons/Gunshot2.ogg','sound/weapons/Gunshot3.ogg','sound/weapons/Gunshot4.ogg')
 
 //gas_modified controls if a sound is affected by how much gas there is in the atmosphere of the source
@@ -196,5 +201,20 @@ var/const/SURROUND_CAP = 7
 				soundin = pick(machete_throw_sound)
 			if ("machete_throw_hit")
 				soundin = pick(machete_throw_hit_sound)
+			if ("erikafootsteps")
+				soundin = pick(erikafootsteps_sound)
+			if ("grassfootsteps")
+				soundin = pick(grassfootsteps_sound)
+			if ("dirtfootsteps")
+				soundin = pick(dirtfootsteps_sound)
+			if ("waterfootsteps")
+				soundin = pick(waterfootsteps_sound)
+			if ("sandfootsteps")
+				soundin = pick(sandfootsteps_sound)
+			if ("woodfootsteps")
+				soundin = pick(woodfootsteps_sound)
+			if ("carpetfootsteps")
+				soundin = pick(carpetfootsteps_sound)
+
 			//if ("gunshot") soundin = pick(gun_sound)
 	return soundin

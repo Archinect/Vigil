@@ -420,6 +420,7 @@ BLIND     // can't see anything
 	species_restricted = list("exclude","Unathi","Tajaran","Muton")
 	var/step_sound = ""
 	var/stepstaken = 1
+	var/footstep = 1	//used for squeeks whilst walking
 
 /obj/item/clothing/shoes/proc/step_action()
 	stepstaken++
