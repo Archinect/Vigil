@@ -25,7 +25,7 @@
 /obj/item/device/taperecorder/Hear(var/datum/speech/speech, var/rendered_speech="")
 	if(recording && speech.speaker != src)
 		timestamp += timerecorded
-		storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] \"[rhtml_encode(speech.message)]\""
+		storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] \"[speech.message]\""
 
 /obj/item/device/taperecorder/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
@@ -143,7 +143,7 @@
 			break
 		if(storedinfo.len < i)
 			break
-		sanitize(recorder_message("[storedinfo[i]]"))
+		recorder_message("[storedinfo[i]]")
 		if(storedinfo.len < i+1)
 			playsleepseconds = 1
 			sleep(10)
@@ -190,7 +190,7 @@
 	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(src))
 	var/t1 = "<B>Transcript:</B><BR><BR>"
 	for(var/i=1,storedinfo.len >= i,i++)
-		t1 += "[storedinfo[i]]<BR>"
+		t1 += "[rhtml_encode(storedinfo[i])]<BR>"
 	P.info = t1
 	P.name = "paper- 'Transcript'"
 	canprint = 0
