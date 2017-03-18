@@ -120,7 +120,6 @@
 		to_chat(usr, "<span class='notice'>Memory cleared.</span>")
 		return
 
-
 /obj/item/device/taperecorder/verb/playback_memory()
 	set name = "Playback Memory"
 	set category = "Object"
@@ -144,7 +143,7 @@
 			break
 		if(storedinfo.len < i)
 			break
-		recorder_message("[storedinfo[i]]")
+		sanitize(recorder_message("[storedinfo[i]]"))
 		if(storedinfo.len < i+1)
 			playsleepseconds = 1
 			sleep(10)
@@ -244,3 +243,4 @@
 
 /obj/item/device/taperecorder/proc/recorder_message(var/msg)
 	say(msg, class = "maroon")
+
