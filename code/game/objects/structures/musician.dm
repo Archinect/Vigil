@@ -173,6 +173,7 @@
 	popup.set_content(dat)
 	popup.set_title_image(user.browse_rsc_icon(instrumentObj.icon, instrumentObj.icon_state))
 	popup.open()
+
 /datum/song/Topic(href, href_list)
 	if(!instrumentObj.Adjacent(usr) || usr.stat)
 		usr << browse(null, "window=instrument")
