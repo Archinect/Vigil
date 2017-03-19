@@ -371,8 +371,8 @@
 			if(scanner.cache)
 				var/choice = input("Are you certain you wish to upload this title to the Archive?") in list("Confirm", "Abort")
 				if(choice == "Confirm")
-					establish_db_connection()
-					if(!dbcon.IsConnected())
+					establish_old_db_connection()
+					if(!dbcon_old.IsConnected())
 						alert("Connection to Archive has been severed. Aborting.")
 					else
 						var/sqltitle = sanitizeSQL(scanner.cache.name)
