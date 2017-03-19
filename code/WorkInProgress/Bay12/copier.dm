@@ -22,7 +22,7 @@
 		usr.drop_item()
 		O.loc = src
 		update()
-		updateUsrDialog()
+	src.updateUsrDialog()
 
 /obj/machinery/copier/attack_paw(user as mob)
 	return src.attack_hand(user)
@@ -31,10 +31,15 @@
 	return src.attack_hand(user)
 
 /obj/machinery/copier/attack_hand(mob/user as mob)
-	// da UI
-	var/dat
 	if(..())
 		return
+
+	user.machine = src
+	interact(user)
+	return
+
+/obj/machinery/copier/interact(var/mob/user)
+	var/dat = ""
 	user.machine = src
 
 	if(src.stat)
@@ -75,10 +80,10 @@
 	else
 		icon_state = "copier_o"
 
+
 /obj/machinery/copier/Topic(href, href_list)
 	if(..())
 		return
-	usr.machine = src
 
 	if(href_list["num"])
 		num_copies += text2num(href_list["num"])
@@ -86,13 +91,13 @@
 			num_copies = 1
 		else if(num_copies > max_copies)
 			num_copies = max_copies
-		updateDialog()
+		updateUsrDialog()
 	if(href_list["open"])
 		if(copying)
 			return
 		template.loc = src.loc
 		template = null
-		updateDialog()
+		updateUsrDialog()
 		update()
 	if(href_list["copy"])
 		if(copying)
@@ -103,11 +108,12 @@
 
 	if(href_list["cancel"])
 		job_num_copies = 0
+		updateUsrDialog()
 
 /obj/machinery/copier/proc/do_copy(mob/user)
 	if(!copying && job_num_copies > 0)
 		copying = 1
-		updateDialog()
+		updateUsrDialog()
 		while(job_num_copies > 0)
 			if(stat)
 				copying = 0
@@ -138,8 +144,8 @@
 
 			sleep(30)
 			job_num_copies -= 1
-			updateUsrDialog()
+
 		for(var/mob/O in hearers(src))
 			O.show_message("[name] beeps happily.", 2)
 		copying = 0
-		src.updateUsrDialog()
+		updateUsrDialog()
