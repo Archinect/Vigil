@@ -49,7 +49,7 @@ var/datum/controller/gameticker/ticker
 	var/oursong = file(pick(
 		'sound/music/space.ogg',
 		'sound/music/traitor.ogg',
-		'sound/music/space_oddity.ogg',
+		'sound/music/david_bowie-space_oddity_original.ogg',
 		'sound/music/title1.ogg',
 		'sound/music/title2.ogg',
 		'sound/music/clown.ogg',
