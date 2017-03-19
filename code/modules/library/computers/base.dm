@@ -48,7 +48,7 @@
 		//sql += " [query.toSQL()]"
 	// Pagination
 //	to_chat(world, sql)
-	var/DBQuery/_query = dbcon_old.NewQuery(sql)
+	var/DBQuery/_query = dbcon.NewQuery(sql)
 	_query.Execute()
 	if(_query.ErrorMsg())
 		world.log << _query.ErrorMsg()
@@ -60,8 +60,7 @@
 			"id"      =_query.item[1],
 			"author"  =_query.item[2],
 			"title"   =_query.item[3],
-			"category"=_query.item[4],
-			"ckey"    =_query.item[5]
+			"category"=_query.item[4]
 		))
 		results += CB
 	return results
@@ -71,7 +70,7 @@
 	//if(query)
 		//sql += query.toSQL()
 
-	var/DBQuery/_query = dbcon_old.NewQuery(sql)
+	var/DBQuery/_query = dbcon.NewQuery(sql)
 	_query.Execute()
 	while(_query.NextRow())
 		return text2num(_query.item[1])

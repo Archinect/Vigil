@@ -13,27 +13,27 @@
 
 	var/current_track = ""
 	var/list/tracks = list(
-		"Grain of Sand in Sandwich"			= list('sound/turntable/AGrainOfSandInSandwich.ogg'),
-		"Beyond the Sea"	= list('sound/turntable/BeyondTheSea.ogg'),
+		"GrainofSandinSandwich"			= list('sound/turntable/AGrainOfSandInSandwich.ogg'),
+		"BeyondtheSea"	= list('sound/turntable/BeyondTheSea.ogg'),
 		"Cantina"			= list('sound/turntable/Cantina.ogg'),
-		"Children in the shadows"			= list('sound/turntable/Children_in_the_shadows.ogg'),
-		"Piano Black&White"			= list('sound/turntable/Cowboy_Bebop_-_Piano_Black.ogg'),
-		"Space Sickness"		= list('sound/turntable/down_with_the_sickness.ogg'),
-		"Remember the Moon"			= list('sound/turntable/Fly_me_to_the_moon.ogg'),
+		"ChildrenInTheShadows"			= list('sound/turntable/Children_in_the_shadows.ogg'),
+		"PianoBlack&White"			= list('sound/turntable/Cowboy_Bebop_-_Piano_Black.ogg'),
+		"SpaceSickness"		= list('sound/turntable/down_with_the_sickness.ogg'),
+		"RememberTheMoon"			= list('sound/turntable/Fly_me_to_the_moon.ogg'),
 		"Groovy"			= list('sound/turntable/GroovyTime.ogg'),
-		"Had to be you"			= list('sound/turntable/ItHadToBeYou.ogg'),
-		"Jazz under your skin"	= list('sound/turntable/IveGotYouUnderMySkin.ogg'),
-		"Kyou Wa Yuuhi Yarou"		= list('sound/turntable/KyouWaYuuhiYarou.ogg'),
+		"HadtobeYou"			= list('sound/turntable/ItHadToBeYou.ogg'),
+		"JazzUnderTourSkin"	= list('sound/turntable/IveGotYouUnderMySkin.ogg'),
+		"KyouWaYuuhiYarou"		= list('sound/turntable/KyouWaYuuhiYarou.ogg'),
 		"Mutebeat"			= list('sound/turntable/MuteBeat.ogg'),
-		"Onizuka Blues"		= list('sound/turntable/OnizukasBlues.ogg'),
-		"That's all"		= list('sound/turntable/ThatsAll.ogg'),
-		"Space Oddity"		= list('sound/music/david_bowie-space_oddity_original.ogg'),
-		"The skeleton in the closet"		= list('sound/turntable/The_sceleton_in_the_closet.ogg'),
-		"Jesse James Eulogy"			= list('sound/turntable/TheAssassinationofJesseJames.ogg'),
-		"The Entertainer"				= list('sound/turntable/TheEntertainer.ogg'),
-		"The Way You Look Tonight"	= list('sound/turntable/TheWayYouLookTonight.ogg'),
-		"They Were All Dead"		= list('sound/turntable/TheyWereAllDead.ogg'),
-		"Wade in the Water"	= list('sound/turntable/WadeInTheWater.ogg')
+		"OnizukaBlues"		= list('sound/turntable/OnizukasBlues.ogg'),
+		"That'sall"		= list('sound/turntable/ThatsAll.ogg'),
+		"SpaceOddity"		= list('sound/music/david_bowie-space_oddity_original.ogg'),
+		"TheSkeletonInTheCloset"		= list('sound/turntable/The_sceleton_in_the_closet.ogg'),
+		"JesseJamesEulogy"			= list('sound/turntable/TheAssassinationofJesseJames.ogg'),
+		"TheEntertainer"				= list('sound/turntable/TheEntertainer.ogg'),
+		"TheWayYouLookTonight"	= list('sound/turntable/TheWayYouLookTonight.ogg'),
+		"TheyWereAllDead"		= list('sound/turntable/TheyWereAllDead.ogg'),
+		"WadeintheWater"	= list('sound/turntable/WadeInTheWater.ogg')
 	)
 
 /obj/machinery/party/turntable/Destroy()
@@ -389,7 +389,7 @@
 	ui_interact(user)
 
 /obj/machinery/party/gramophone/ui_interact(mob/user, ui_key = "jukebox", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/title = "RetroBox - Space Style"
+	var/title = "Gramophone — Old Style"
 	var/data[0]
 
 	if(!(stat & (NOPOWER|BROKEN)))
