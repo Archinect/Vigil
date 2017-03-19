@@ -29,9 +29,11 @@
 		return 0
 
 	proc/common_instruments_Topic(href, href_list)
+		..()
+
 		var/send_control = 1
 
-		if(!usr.canUseTopic(src))
+		if(!src.Adjacent(usr) || usr.stat)
 			send_control = 0
 			usr << browse(null, "window=instrument")
 			usr.unset_machine()
@@ -178,7 +180,7 @@
 	proc/common_instruments_Topic(href, href_list)
 		var/send_control = 1
 
-		if(!usr.canUseTopic(src))
+		if(!src.Adjacent(usr) || usr.stat)
 			send_control = 0
 			usr << browse(null, "window=instrument")
 			usr.unset_machine()
