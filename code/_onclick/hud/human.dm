@@ -256,11 +256,22 @@
 	src.other += inv_box
 
 	inv_box = getFromPool(/obj/screen/inventory)
-	inv_box.name = "ears"
+	inv_box.name = "left ear"
 	inv_box.icon = ui_style
 	inv_box.icon_state = "ears"
-	inv_box.screen_loc = ui_ears
+	inv_box.screen_loc = ui_l_ear
 	inv_box.slot_id = slot_ears
+	inv_box.layer = HUD_BASE_LAYER
+	inv_box.color = ui_color
+	inv_box.alpha = ui_alpha
+	src.other += inv_box
+
+	inv_box = getFromPool(/obj/screen/inventory)
+	inv_box.name = "right ear"
+	inv_box.icon = ui_style
+	inv_box.icon_state = "ears"
+	inv_box.screen_loc = ui_r_ear
+	inv_box.slot_id = slot_twoears
 	inv_box.layer = HUD_BASE_LAYER
 	inv_box.color = ui_color
 	inv_box.alpha = ui_alpha

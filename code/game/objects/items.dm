@@ -531,6 +531,8 @@
 			if(slot_ears)
 				if( !(slot_flags & SLOT_EARS) )
 					return CANNOT_EQUIP
+				if( (slot_flags & SLOT_TWOEARS) && H.r_ear )
+					return CANNOT_EQUIP
 				if(H.ears)
 					if(automatic)
 						if(H.check_for_open_slot(src))
@@ -539,28 +541,13 @@
 						return CAN_EQUIP_BUT_SLOT_TAKEN
 					else
 						return CANNOT_EQUIP
-				return CAN_EQUIP
-			/* In case it's ever unfucked.
-			if(slot_ears)
-				if( !(slot_flags & SLOT_EARS) )
-					return CANNOT_EQUIP
-				if( (slot_flags & SLOT_TWOEARS) && H.r_ear )
-					return CANNOT_EQUIP
-				if(H.l_ear)
-					if(automatic)
-						if(H.check_for_open_slot(src))
-							return CANNOT_EQUIP
-					if(H.l_ear.canremove)
-						return CAN_EQUIP_BUT_SLOT_TAKEN
-					else
-						return CANNOT_EQUIP
 				if( w_class < W_CLASS_SMALL	)
 					return CAN_EQUIP
 				return CAN_EQUIP
-			if(slot_r_ear)
+			if(slot_twoears)
 				if( !(slot_flags & SLOT_EARS) )
 					return CANNOT_EQUIP
-				if( (slot_flags & SLOT_TWOEARS) && H.l_ear )
+				if( (slot_flags & SLOT_TWOEARS) && H.ears )
 					return CANNOT_EQUIP
 				if(H.r_ear)
 					if(automatic)
@@ -573,7 +560,7 @@
 				if( w_class < W_CLASS_SMALL )
 					return CAN_EQUIP
 				return CAN_EQUIP
-			*/
+
 			if(slot_w_uniform)
 				if( !(slot_flags & SLOT_ICLOTHING) )
 					return CANNOT_EQUIP

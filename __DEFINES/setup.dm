@@ -355,7 +355,7 @@ var/MAX_EXPLOSION_RANGE = 14
 #define slot_in_backpack 16
 #define slot_legcuffed 17
 #define slot_legs 18
-
+#define slot_twoears 19
 #define is_valid_hand_index(index) ((index > 0) && (index <= held_items.len))
 
 //Cant seem to find a mob bitflags area other than the powers one
@@ -366,6 +366,8 @@ var/MAX_EXPLOSION_RANGE = 14
 #define EYES			2048
 #define MOUTH			4096
 #define EARS			8192
+#define TWOEARS			65536
+
 
 #define UPPER_TORSO		2
 #define LOWER_TORSO		4
@@ -400,9 +402,10 @@ var/MAX_EXPLOSION_RANGE = 14
 #define HIDESHOES		FEET
 #define HIDEMASK		FACE
 #define HIDEEARS		EARS
+#define HIDETWOEARS		TWOEARS
 #define HIDEEYES		EYES
 #define HIDEFACE		FACE
-#define HIDEHEADHAIR 	EARS|HEAD
+#define HIDEHEADHAIR 	EARS|HEAD|TWOEARS
 #define HIDEBEARDHAIR	BEARD
 #define HIDEHAIR		HIDEHEADHAIR|HIDEBEARDHAIR
 #define	HIDESUITSTORAGE	LOWER_TORSO
@@ -456,6 +459,7 @@ var/global/list/BODY_COVER_VALUE_LIST=list("[HEAD]" = COVER_PROTECTION_HEAD,"[EY
 #define DISABILITY_FLAG_EPILEPTIC   4
 #define DISABILITY_FLAG_DEAF        8
 #define DISABILITY_FLAG_BLIND       16
+#define DISABILITY_FLAG_MUTE		32
 
 ///////////////////////////////////////
 // MUTATIONS

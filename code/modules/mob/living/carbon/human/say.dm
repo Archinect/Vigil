@@ -92,10 +92,12 @@
 	return special_voice
 
 /mob/living/carbon/human/binarycheck()
-	if(ears)
-		var/obj/item/device/radio/headset/dongle = ears
-		if(!istype(dongle))
-			return 0
+	if(ears || r_ear)
+		var/obj/item/device/radio/headset/dongle
+		if(istype(ears,/obj/item/device/radio/headset))
+			dongle = ears
+		else
+			dongle = r_ear
 		if(dongle.translate_binary)
 			return 1
 
@@ -109,24 +111,37 @@
 			if (ears)
 				say_testing(src, "Talking into our headset (MODE_HEADSET)")
 				ears.talk_into(speech, message_mode)
+			else if (r_ear)
+				say_testing(src, "Talking into our headset (MODE_HEADSET)")
+				r_ear.talk_into(speech, message_mode)
 			return ITALICS | REDUCE_RANGE
 
 		if(MODE_SECURE_HEADSET)
 			if (ears)
 				say_testing(src, "Talking into our headset (MODE_SECURE_HEADSET)")
 				ears.talk_into(speech, message_mode)
+			else if (r_ear)
+				say_testing(src, "Talking into our headset (MODE_SECURE_HEADSET)")
+				r_ear.talk_into(speech, message_mode)
 			return ITALICS | REDUCE_RANGE
 
 		if(MODE_DEPARTMENT)
 			if (ears)
 				say_testing(src, "Talking into our dept headset")
 				ears.talk_into(speech, message_mode)
+			else if (r_ear)
+				say_testing(src, "Talking into our dept headset")
+				r_ear.talk_into(speech, message_mode)
 			return ITALICS | REDUCE_RANGE
 
 	if(message_mode in radiochannels)
 		if(ears)
 			say_testing(src, "Talking through a radio channel")
 			ears.talk_into(speech, message_mode)
+			return ITALICS | REDUCE_RANGE
+		else if (r_ear)
+			say_testing(src, "Talking through a radio channel")
+			r_ear.talk_into(speech, message_mode)
 			return ITALICS | REDUCE_RANGE
 
 	return 0

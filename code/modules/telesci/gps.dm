@@ -99,3 +99,7 @@ var/list/GPS_list = list()
 	desc = "A more rugged looking GPS device. Useful for finding miners. Or their corpses."
 	icon_state = "gps-m"
 	gpstag = "MIN0"
+
+/obj/item/device/gps/secure
+	icon_state = "gps-s"
+	gpstag = "SEC0"

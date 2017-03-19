@@ -38,7 +38,8 @@
 		head,
 		wear_mask,
 		glasses,
-		ears
+		ears,
+		r_ear
 		)
 
 //everything on the mob that is not in its pockets, hands and belt.
@@ -72,6 +73,8 @@
 			obscured |= slot_glasses
 		if(is_slot_hidden(head.body_parts_covered,HIDEEARS))
 			obscured |= slot_ears
+		if(is_slot_hidden(head.body_parts_covered,HIDEEARS))
+			obscured |= slot_twoears
 	if(obscured.len > 0)
 		return obscured
 	else
@@ -142,6 +145,8 @@
 			return wear_id
 		if(slot_ears)
 			return ears
+		if(slot_twoears)
+			return r_ear
 		if(slot_glasses)
 			return glasses
 		if(slot_gloves)
@@ -175,6 +180,8 @@
 			return wear_id
 		if(SLOT_EARS)
 			return ears
+		if(SLOT_TWOEARS)
+			return r_ear
 		if(SLOT_EYES)
 			return glasses
 		if(SLOT_GLOVES)
@@ -210,6 +217,8 @@
 			// the only relevant check for this is the uniform check
 			return 1
 		if(slot_ears)
+			return has_organ(LIMB_HEAD)
+		if(slot_twoears)
 			return has_organ(LIMB_HEAD)
 		if(slot_glasses)
 			return has_organ(LIMB_HEAD)
@@ -281,6 +290,11 @@
 		success = 1
 		slot = slot_ears
 		update_inv_ears()
+	else if(W == r_ear)
+		r_ear = null
+		success = 1
+		slot = slot_twoears
+		update_inv_r_ear()
 	else if (W == shoes)
 		shoes = null
 		success = 1
@@ -442,6 +456,9 @@
 		if(slot_ears)
 			ears = W
 			update_inv_ears(redraw_mob)
+		if(slot_twoears)
+			r_ear = W
+			update_inv_r_ear(redraw_mob)
 		if(slot_glasses)
 			src.glasses = W
 			update_inv_glasses(redraw_mob)

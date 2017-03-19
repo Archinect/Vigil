@@ -25,6 +25,7 @@
 	tracks.AddTracks(bloodDNA,comingdir,goingdir,bloodcolor)
 
 /turf/simulated/Entered(atom/A, atom/OL)
+	var/footstepsound
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
 		to_chat(usr, "<span class='warning'>Movement is admin-disabled.</span>")//This is to identify lag problems
 
@@ -36,6 +37,34 @@
 			return
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M
+
+			//shoes
+			if(istype(src, /turf/simulated/floor/grass || /turf/simulated/floor/holofloor/grass))
+				footstepsound = "grassfootsteps"
+			else if(istype(src, /turf/unsimulated/beach/sand))
+				footstepsound = "sandfootsteps"
+			else if(istype(src, /turf/unsimulated/beach/water))
+				footstepsound = "waterfootsteps"
+			else if(istype(src, /turf/unsimulated/floor/asteroid))
+				footstepsound = "sandfootsteps"
+			else if(istype(src, /turf/simulated/floor/wood))
+				footstepsound = "woodfootsteps"
+			else if(istype(src, /turf/simulated/floor/carpet))
+				footstepsound = "carpetfootsteps"
+			else
+				footstepsound = "erikafootsteps"
+//				if(icon == "natureicons.dmi")
+//					footstepsound = "concretefootsteps"
+
+			if(istype(H.shoes, /obj/item/clothing/shoes))
+				if(M.m_intent == "run")
+					if(M.footstep >= 2)
+						M.footstep = 0
+						playsound(src, footstepsound, 100, 1) // this will get annoying very fast.
+					else
+						M.footstep++
+				else
+					playsound(src, footstepsound, 40, 1)
 
 			// Tracking blood
 			var/list/bloodDNA = null
