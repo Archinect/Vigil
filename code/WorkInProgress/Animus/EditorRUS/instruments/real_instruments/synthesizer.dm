@@ -316,13 +316,10 @@
 						"}
 			else
 				dat += "<B><A href='?src=\ref[src];help=2'>Show Help</A></B><BR>"
-/*
 		var/datum/browser/popup = new(user, "instrument", name, 700, 500)
 		popup.set_content(dat)
 		popup.set_title_image(user.browse_rsc_icon(icon, icon_state))
 		popup.open()
-*/
-		user << browse(dat, "window=instrument")
 
 	Topic(href, href_list)
 		if (!common_instruments_Topic(href, href_list))
