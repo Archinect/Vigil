@@ -20,7 +20,7 @@
 	emote_see = list("honks sadly")
 	speak_chance = 1
 	a_intent = I_HELP
-	var/footstep=0 // For clownshoe noises
+	footstep = 0 // For clownshoe noises
 	//deny_client_move=1 // HONK // Doesn't work right yet
 
 	stop_automated_movement_when_pulled = 1

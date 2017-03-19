@@ -145,6 +145,7 @@
 	var/m_int = null//Living
 	var/m_intent = "run"//Living
 	var/lastKnownIP = null
+	var/footstep = 1
 
 	var/active_hand = 1 //Current active hand. Contains an index of the held_items list
 	var/list/obj/item/held_items = list(null, null) //Contains items held in hands

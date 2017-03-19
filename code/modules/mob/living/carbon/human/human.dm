@@ -391,9 +391,13 @@
 	else
 		dat += "<BR><B>Eyes:</B> <A href='?src=\ref[src];item=[slot_glasses]'>[makeStrippingButton(glasses)]</A>"
 	if(slot_ears in obscured)
-		dat += "<BR><font color=grey><B>Ears:</B> Obscured by [head]</font>"
+		dat += "<BR><font color=grey><B>Left ear:</B> Obscured by [head]</font>"
 	else
-		dat += "<BR><B>Ears:</B> <A href='?src=\ref[src];item=[slot_ears]'>[makeStrippingButton(ears)]</A>"
+		dat += "<BR><B>Left ear:</B> <A href='?src=\ref[src];item=[slot_ears]'>[makeStrippingButton(ears)]</A>"
+	if(slot_twoears in obscured)
+		dat += "<BR><font color=grey><B>Right ear:</B> Obscured by [head]</font>"
+	else
+		dat += "<BR><B>Right ear:</B> <A href='?src=\ref[src];item=[slot_twoears]'>[makeStrippingButton(ears)]</A>"
 	dat += "<BR>"
 	dat += "<BR><B>Exosuit:</B> <A href='?src=\ref[src];item=[slot_wear_suit]'>[makeStrippingButton(wear_suit)]</A>"
 	if(wear_suit)
@@ -1762,7 +1766,7 @@
 		"r_store",
 		"l_store",
 		"s_store",
-		"l_ear",
+		"ears",
 		"r_ear",
 		"said_last_words",
 		"failed_last_breath",

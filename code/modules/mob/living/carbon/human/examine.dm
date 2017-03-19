@@ -160,6 +160,10 @@
 	if(ears && !(slot_ears in obscured) && ears.is_visible())
 		msg += "[t_He] [t_has] [bicon(ears)] \a [ears] on [t_his] ears.[ears.description_accessories()]\n"
 
+	if(r_ear && !(slot_twoears in obscured) && r_ear.is_visible())
+		msg += "[t_He] [t_has] [bicon(r_ear)] \a [r_ear] on [t_his] ears.[ears.description_accessories()]\n"
+
+
 	//ID
 	if(wear_id)
 		/*var/id

@@ -35,7 +35,7 @@
 
 	asset_files = list(
 		'nano/css/icons.css',
-		"code/modules/html_interface/jquery.min.js",
+		'code/modules/html_interface/jquery.min.js',
 		"goon/browserassets/js/json2.min.js",
 		"goon/browserassets/js/browserOutput.js",
 		"goon/browserassets/css/fonts/fontawesome-webfont.eot",
