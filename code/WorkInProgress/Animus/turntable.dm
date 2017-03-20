@@ -1,7 +1,7 @@
 /obj/machinery/party/turntable/
-	name = "space turntable"
+	name = "Space Jukebox"
 	icon = 'icons/ss13_dark_alpha7_old.dmi'
-	icon_state = "turntable"
+	icon_state = "Jukebox7"
 	anchored = 1
 	density = 1
 	power_channel = EQUIP
