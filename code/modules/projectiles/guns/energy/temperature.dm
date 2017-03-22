@@ -2,7 +2,7 @@
 	name = "temperature gun"
 	icon = 'icons/obj/gun_temperature.dmi'
 	icon_state = "tempgun_4"
-	item_state = "tempgun_4"
+	item_state = "m1911-p"
 	slot_flags = SLOT_BACK
 	w_class = W_CLASS_LARGE
 	fire_sound = 'sound/weapons/pulse3.ogg'
