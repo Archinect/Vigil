@@ -1711,11 +1711,11 @@ var/global/list/obj/item/device/pda/PDAs = list()
 //MESSENGER/NOTE FUNCTIONS===================================
 
 			if ("Edit")
-				var/n = sanitize(U, "Please enter message", name, note)
+				var/n = sanitize(stripped_multiline_input(U, "Please enter message", name, note))
 				if (in_range(src, U) && loc == U)
 					n = copytext(adminscrub(n), 1, MAX_MESSAGE_LEN)
 					if (mode == 1)
-						note = copytext(n, 1)
+						note = sanitize(n, 1)
 						notehtml = rhtml_encode(note)
 
 						var/log = replacetext(n, "\n", "(new line)")//no intentionally spamming admins with 100 lines, nice try
@@ -1992,8 +1992,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 /obj/item/device/pda/proc/create_message(var/mob/living/U = usr, var/obj/item/device/pda/P)
 
 
-	var/t = rhtml_encode(rhtml_decode(U, "Please enter message", name, null, MAX_MESSAGE_LEN), 1)
-	t = sanitize(copytext(rhtml_decode(t), 1, MAX_MESSAGE_LEN))
+	var/t = sanitize(stripped_input(U, "Please enter message", name, null, MAX_MESSAGE_LEN), 1)
+	t = rhtml_encode(copytext(stripped_input(t), 1, MAX_MESSAGE_LEN))
 	if (!t || !istype(P))
 		return
 	if (!in_range(src, U) && loc != U)
