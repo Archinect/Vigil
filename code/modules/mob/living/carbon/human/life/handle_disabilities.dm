@@ -36,43 +36,43 @@
 		if(prob(3))
 			switch(pick(1,2,3)) //All of those REALLY ought to be variable lists, but that would be too smart I guess
 				if(1)
-					say(pick("IM A PONY NEEEEEEIIIIIIIIIGH", \
-					"without oxigen blob don't evoluate?", \
-					"CAPTAINS A COMDOM", "[pick("", "that faggot traitor")] [pick("joerge", "george", "gorge", "gdoruge")] [pick("mellens", "melons", "mwrlins")] is grifing me HAL;P!!!", \
-					"can u give me [pick("telikesis","halk","eppilapse")]?", \
-					"THe saiyans screwed", "Bi is THE BEST OF BOTH WORLDS>", \
-					"I WANNA PET TEH monkeyS", "stop grifing me!!!!", \
-					"SOTP IT#"))
+					say(sanitize(pick("Тваю маму ибал!", \
+					"Я не смалгей!", \
+					"ХОС ХУЕСОС!", "[pick("", "ебучий трейтор")] [pick("морган", "моргун", "морген", "мрогун")] [pick("джемес", "джамес", "джаемес")] грефонет миня шпасит;е!!!", \
+					"ти можыш дать мне [pick("тилипатию","халку","эпиллепсию")]?", \
+					"ХАчу стать боргом!", "ПОЗОвите детектива!",  \
+					"Хочу стать мартышкой!", "ХВАТЕТ ГРИФОНЕТЬ МИНЯ!!!!", \
+					"ШТАП!")))
 				if(2)
-					say(pick("FUS RO DAH", \
-						"fucking 4rries!", \
-						"stat me", \
-						">my face", \
-						"roll it easy!", \
-						"waaaaaagh!!!", \
-						"red wonz go fasta", \
-						"FOR TEH EMPRAH", \
-						"lol2cat", \
-						"dem dwarfs man, dem dwarfs", \
-						"SPESS MAHREENS", \
-						"hwee did eet fhor khayosss", \
-						"lifelike texture ;_;", \
-						"luv can bloooom", \
-						"PACKETS!!!", \
-						"SARAH HALE DID IT!!!", \
-						"Don't tell Chase", \
-						"not so tough now huh", \
-						"WERE NOT BAY!!", \
-						"BLAME HOSHI!!!", \
-						"ARRPEE IZ DED!!!", \
-						"THERE ALL JUS MEATAFRIENDS!", \
-						"SOTP MESING WITH THE ROUNS SHITMAN!!!", \
-						"SKELINGTON IS 4 SHITERS!", \
-						"MOMMSI R THE WURST SCUM!!", \
-						"How do we engiener=", \
-						"try to live freely and automatically good bye", \
-						"why woud i take a pin pointner??", \
-						"OMG I SED LAW 2 U FAG MOMIM LAW 2!!!"))
+					say(sanitize(pick("Как минять руки?", \
+						"ебучие фурри!", \
+						"Подебил", \
+						"Проклятые трапы!", \
+						"Эта жи грин!", \
+						"вжжжжжжжжжух!!!", \
+						"джеф скваааад!", \
+						"БРАНДЕНБУРГ!", \
+						"БУДАПЕШТ!", \
+						"ПАУУУУУК!!!!", \
+						"ПУКАН БОМБАНУЛ!", \
+						"клятые шепардисты", \
+						"ПУШКА", \
+						"РЕВА ПОЦОНЫ", \
+						"Пати на хопа!", \
+						"Ку, я от стриммера, го в скуп!!!", \
+						"Свабодный асистент", \
+						"Пазавити ижиниров, я весть горю!!!", \
+						"ДА ТЫ ЖЕ УПОРТЫЙ, СУКА!!", \
+						"ХОС ХУЕСОС!", \
+						"Чики-брики и в дамки!", \
+						"ВИЗЫВАЮ ЩИТШТОРМ НА СЕБЯ!", \
+						"НАРЕКАЮ ТЕБЯ КАЛОВРАТОМ!!!", \
+						"ИДИ ПИШИ В ФОРНУРИЗОН, ГРИФЕРОК КОМНАТНЫЙ!", \
+						"ДА ТЫ НАРЫВАЕШЬСЯ, СУКА!!", \
+						"Я ТЕБЯ В ЖОПЕ ЩА ЗАКАПАЮ", \
+						"ДА БЛЯ, Я ВИЗАРД!!! ВСЕ ВЫ МОИ РАБЫ!!!", \
+						"Чо такое пинпаинтер???", \
+						"ТЫ ЧО, НАВАЛЬНЫЙ ДОХУЯ???")))
 				if(3)
 					emote("drool")
 

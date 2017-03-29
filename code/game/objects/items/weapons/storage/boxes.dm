@@ -87,6 +87,7 @@
 	new /obj/item/stack/medical/bruise_pack/bandaid(src)
 	new /obj/item/device/flashlight/emergency(src)
 
+
 /obj/item/weapon/storage/box/survival/engineer
 	icon_state = "box_eva"
 
