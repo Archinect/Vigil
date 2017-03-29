@@ -105,6 +105,16 @@
 	brightness_on = 2
 	has_sound = 0
 
+/obj/item/device/flashlight/emergency
+	name = "emergency light"
+	desc = "A small emergency flashlight."
+	icon_state = "emlight"
+	item_state = ""
+	flags = FPRINT
+	siemens_coefficient = 1
+	brightness_on = 2
+	has_sound = 0
+
 /obj/item/device/flashlight/tactical
 	name = "tactical light"
 	desc = "A compact, helmet-mounted flashlight attachment."

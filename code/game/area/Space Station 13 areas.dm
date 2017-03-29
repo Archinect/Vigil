@@ -52,6 +52,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/no_air = null
 //	var/list/lights				// list of all lights on this area
 	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
+	var/list/related
 
 	// /vg/: Bitmap of subsystems asking for firedoors.
 	var/door_alerts=0

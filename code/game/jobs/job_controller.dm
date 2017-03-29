@@ -505,8 +505,8 @@ var/global/datum/controller/occupations/job_master
 			job = J
 			break
 
-	if(!job || !job.no_pda)
-		H.equip_or_collect(new job.pdatype(H), job.pdaslot)
+//	if(!job || !job.no_pda)
+//		H.equip_or_collect(new job.pdatype(H), job.pdaslot)
 
 	if(job)
 		if(job.no_id)
