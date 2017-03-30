@@ -338,6 +338,7 @@ BLIND     // can't see anything
 	body_parts_covered = HEAD
 	slot_flags = SLOT_HEAD
 	species_restricted = list("exclude","Muton")
+	inhand_states = list("left_hand" = 'icons/mob/items/lefthand_uniforms.dmi', "right_hand" = 'icons/mob/items/righthand_hats.dmi')
 
 //Mask
 /obj/item/clothing/mask
@@ -491,10 +492,12 @@ BLIND     // can't see anything
 	siemens_coefficient = 0.9
 	species_restricted = list("exclude","Diona","Muton")
 	heat_conductivity = SPACESUIT_HEAT_CONDUCTIVITY
+	inhand_states = list("left_hand" = 'icons/mob/items/lefthand_spacesuits.dmi', "right_hand" = 'icons/mob/items/lefthand_spacesuits.dmi')
 
 //Under clothing
 /obj/item/clothing/under
 	icon = 'icons/obj/clothing/uniforms.dmi'
+	inhand_states = list("left_hand" = 'icons/mob/items/lefthand_uniforms.dmi', "right_hand" = 'icons/mob/items/righthand_uniforms.dmi')
 	name = "under"
 	body_parts_covered = ARMS|LEGS|FULL_TORSO
 	permeability_coefficient = 0.90
