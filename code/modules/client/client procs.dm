@@ -543,6 +543,7 @@
 		'nano/templates/telescience_console.tmpl',
 		'nano/templates/transfer_valve.tmpl',
 		'nano/templates/uplink.tmpl',
+		'nano/templates/jukebox.tmpl',
 		'nano/templates/vote.tmpl'
 	)
 

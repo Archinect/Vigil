@@ -404,6 +404,8 @@ var/area/space_area
 		if(ENVIRON)
 			used_environ += amount
 
+var/list/mob/living/forced_ambiance_list = new
+
 /area/Entered(atom/movable/Obj, atom/OldLoc)
 	var/area/oldArea = Obj.areaMaster
 	Obj.areaMaster = src
@@ -463,6 +465,33 @@ var/area/space_area
 		else if(istype(Obj, /obj/structure/bed/chair/vehicle))
 			turretTargets |= Obj
 		return 1
+
+/area/proc/play_ambience(var/mob/living/L)
+	// Ambience goes down here
+	// make sure to list each area seperately for ease of adding things in later, thanks!
+	// Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
+	if(!(L && L.client && (L.client.prefs.toggles & SOUND_AMBIENCE)))	return
+
+	// If we previously were in an area with force-played ambiance, stop it.
+	if(L in forced_ambiance_list)
+		L << sound(null, channel = 1)
+		forced_ambiance_list -= L
+
+	if(!L.client.ambience_playing)
+		L.client.ambience_playing = 1
+		L << sound('sound/ambience/shipambience.ogg', repeat = 1, wait = 0, volume = 35, channel = 2)
+
+	if(forced_ambience)
+		if(forced_ambience.len)
+			forced_ambiance_list |= L
+			L << sound(pick(forced_ambience), repeat = 1, wait = 0, volume = 25, channel = 1)
+		else
+			L << sound(null, channel = 1)
+	else if(src.ambience.len && prob(35))
+		if((world.time >= L.client.played + 600))
+			var/sound = pick(ambience)
+			L << sound(sound, repeat = 0, wait = 0, volume = 25, channel = 1)
+			L.client.played = world.time
 
 /area/Exited(atom/movable/Obj)
 	if(turret_protected)

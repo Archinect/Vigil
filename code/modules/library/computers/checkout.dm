@@ -93,7 +93,7 @@
 				<A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"}
 		if(4)
 			dat += "<h3>External Archive</h3>"
-			if(!dbcon_old.IsConnected())
+			if(!dbcon.IsConnected())
 				dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font>"
 			else
 				num_results = src.get_num_results()
@@ -265,34 +265,13 @@
 		var/datum/cachedbook/target = getBookByID(href_list["del"]) // Sanitized in getBookByID
 		var/ans = alert(usr, "Are you sure you wish to delete \"[target.title]\", by [target.author]? This cannot be undone.", "Library System", "Yes", "No")
 		if(ans=="Yes")
-			var/DBQuery/query = dbcon_old.NewQuery("DELETE FROM library WHERE id=[target.id]")
+			var/DBQuery/query = dbcon.NewQuery("DELETE FROM library WHERE id=[target.id]")
 			var/response = query.Execute()
 			if(!response)
 				to_chat(usr, query.ErrorMsg())
 				return
 			log_admin("LIBRARY: [usr.name]/[usr.key] has deleted \"[target.title]\", by [target.author] ([target.ckey])!")
 			message_admins("[key_name_admin(usr)] has deleted \"[target.title]\", by [target.author] ([target.ckey])!")
-			src.updateUsrDialog()
-			return
-
-	if(href_list["delbyckey"])
-		if(!usr.check_rights(R_ADMIN))
-			to_chat(usr, "You aren't an admin, piss off.")
-			return
-		var/tckey = ckey(href_list["delbyckey"])
-		var/ans = alert(usr,"Are you sure you wish to delete all books by [tckey]? This cannot be undone.", "Library System", "Yes", "No")
-		if(ans=="Yes")
-			var/DBQuery/query = dbcon_old.NewQuery("DELETE FROM library WHERE ckey='[sanitizeSQL(tckey)]'")
-			var/response = query.Execute()
-			if(!response)
-				to_chat(usr, query.ErrorMsg())
-				return
-			var/affected=query.RowsAffected()
-			if(affected==0)
-				to_chat(usr, "<span class='danger'>Unable to find any matching rows.</span>")
-				return
-			log_admin("LIBRARY: [usr.name]/[usr.key] has deleted [affected] books written by [tckey]!")
-			message_admins("[key_name_admin(usr)] has deleted [affected] books written by [tckey]!")
 			src.updateUsrDialog()
 			return
 
@@ -379,7 +358,7 @@
 						var/sqlauthor = sanitizeSQL(scanner.cache.author)
 						var/sqlcontent = sanitizeSQL(scanner.cache.dat)
 						var/sqlcategory = sanitizeSQL(upload_category)
-						var/DBQuery/query = dbcon_old.NewQuery("INSERT INTO library (author, title, content, category, ckey) VALUES ('[sqlauthor]', '[sqltitle]', '[sqlcontent]', '[sqlcategory]', '[ckey(usr.key)]')")
+						var/DBQuery/query = dbcon.NewQuery("INSERT INTO library (author, title, content, category) VALUES ('[sqlauthor]', '[sqltitle]', '[sqlcontent]', '[sqlcategory]', '[ckey(usr.key)]')")
 						var/response = query.Execute()
 						if(!response)
 							to_chat(usr, query.ErrorMsg())
@@ -394,7 +373,7 @@
 			if(!href_list["id"])
 				return
 
-		if(!dbcon_old.IsConnected())
+		if(!dbcon.IsConnected())
 			alert("Connection to Archive has been severed. Aborting.")
 			return
 
@@ -419,7 +398,7 @@
 			return
 		var/bookid = href_list["manual"]
 
-		if(!dbcon_old.IsConnected())
+		if(!dbcon.IsConnected())
 			alert("Connection to Archive has been severed. Aborting.")
 			return
 

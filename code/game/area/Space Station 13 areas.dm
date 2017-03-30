@@ -70,6 +70,13 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/holomap_color = null
 	var/holomap_marker = null
 	var/list/holomap_filter = list()
+	var/list/ambience = list(
+		'sound/ambience/ambigen1.ogg','sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg',
+		'sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg',
+		'sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg',
+		'sound/ambience/ambigen11.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambigen14.ogg'
+	)
+	var/list/forced_ambience = null
 
 /*Adding a wizard area teleport list because motherfucking lag -- Urist*/
 /*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/

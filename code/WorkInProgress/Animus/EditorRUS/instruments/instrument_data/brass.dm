@@ -21,6 +21,6 @@
 /datum/instrument/brass/crisis_trumpet
 	name = "Crisis Trumpet"
 	id = "crtrumpet"
-	samples = list("60"='sound/samples/brass/crisis_trombone/C4.ogg',
-				   "72"='sound/samples/brass/crisis_trombone/C5.ogg')
+	samples = list("60"='sound/samples/brass/crisis_trumpet/C4.ogg',
+				   "72"='sound/samples/brass/crisis_trumpet/C5.ogg')
 
