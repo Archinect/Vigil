@@ -105,15 +105,17 @@
 	var/title = "RetroBox - Space Style"
 	var/data[0]
 
-	if(!(stat & (NOPOWER|BROKEN)))
-		data["current_track"] = current_track ? current_track : ""
-		data["playing"] = playing
+	if(stat & (NOPOWER|BROKEN))
+		return
 
-		var/list/nano_tracks = list()
-		for(var/T in tracks)
-			nano_tracks += T
+	data["current_track"] = current_track ? current_track : ""
+	data["playing"] = playing
 
-		data["tracks"] = nano_tracks
+	var/list/nano_tracks = list()
+	for(var/T in tracks)
+		nano_tracks += T
+
+	data["tracks"] = nano_tracks
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -389,18 +391,20 @@
 	ui_interact(user)
 
 /obj/machinery/party/gramophone/ui_interact(mob/user, ui_key = "jukebox", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/title = "Gramophone — Old Style"
+	var/title = "Gramophone ? Old Style"
 	var/data[0]
 
-	if(!(stat & (NOPOWER|BROKEN)))
-		data["current_track"] = current_track ? current_track : ""
-		data["playing"] = playing
+	if(stat & (NOPOWER|BROKEN))
+		return
 
-		var/list/nano_tracks = list()
-		for(var/T in tracks)
-			nano_tracks += T
+	data["current_track"] = current_track ? current_track : ""
+	data["playing"] = playing
 
-		data["tracks"] = nano_tracks
+	var/list/nano_tracks = list()
+	for(var/T in tracks)
+		nano_tracks += T
+
+	data["tracks"] = nano_tracks
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)

@@ -40,7 +40,7 @@
 
 /obj/machinery/copier/interact(var/mob/user)
 	var/dat = ""
-	user.machine = src
+	user.set_machine(src)
 
 	if(src.stat)
 		user << "[name] does not seem to be responding to your button mashing."
@@ -50,21 +50,21 @@
 
 	if(copying)
 		dat += "[job_num_copies] copies remaining.<br><br>"
-		dat += "<A href='?src=\ref[src];cancel=1'>Cancel</A>"
+		dat += "<a href='byond://?src=\ref[src];cancel=1'>Cancel</A>"
 	else
 		if(template)
-			dat += "<A href='?src=\ref[src];open=1'>Open Lid</A>"
+			dat += "<a href='byond://?src=\ref[src];open=1'>Open Lid</A>"
 		else
 			dat += "<b>No paper to be copied.<br>"
 			dat += "Please place a paper or photograph on top and close the lid.</b>"
 
 
 		dat += "<br><br>Number of Copies: "
-		dat += "<A href='?src=\ref[src];num=-10'>-</A>"
-		dat += "<A href='?src=\ref[src];num=-1'>-</A>"
+		dat += "<a href='byond://?src=\ref[src];num=-10'>-</A>"
+		dat += "<a href='byond://?src=\ref[src];num=-1'>-</A>"
 		dat += " [num_copies] "
-		dat += "<A href='?src=\ref[src];num=1'>+</A>"
-		dat += "<A href='?src=\ref[src];num=10'>+</A><br>"
+		dat += "<a href='byond://?src=\ref[src];num=1'>+</A>"
+		dat += "<a href='byond://?src=\ref[src];num=10'>+</A><br>"
 
 		if(template)
 			dat += "<A href='?src=\ref[src];copy=1'>Copy</a>"

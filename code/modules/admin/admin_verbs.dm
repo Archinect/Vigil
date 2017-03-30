@@ -6,6 +6,9 @@ var/list/admin_verbs_default = list(
 	/client/proc/hide_most_verbs,		/*hides all our hideable adminverbs*/
 	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
 	/client/proc/check_antagonists,		/*shows all antags*/
+	/client/proc/advwho,				/*in addition to listing connected ckeys, shows character name and living/dead/antag status for each*/
+//	/datum/admins/proc/checkCID,
+//	/datum/admins/proc/checkCKEY
 //	/client/proc/deadchat				/*toggles deadchat on/off*/
 	)
 var/list/admin_verbs_admin = list(
@@ -55,7 +58,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
 	/client/proc/secrets,
 	/client/proc/shuttle_magic,
-	/datum/admins/verb/update_playlist,
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/togglelooc, /*toggles looc on/off for everyone*/
 	/datum/admins/proc/toggleoocdead,	/*toggles ooc on/off for everyone who is dead*/
@@ -74,7 +76,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/response_team, // Response Teams admin verb
 	/client/proc/toggle_antagHUD_use,
 	/client/proc/toggle_antagHUD_restrictions,
-	/client/proc/allow_character_respawn
+	/client/proc/allow_character_respawn,    /* Allows a ghost to respawn */
+	/client/proc/watchdog_force_restart		/*forces restart using watchdog feature*/
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
@@ -287,6 +290,7 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/show_player_info,
 	/client/proc/player_panel_new,
 	/client/proc/vv_marked_datum,
+//	/datum/admins/proc/view_mob_attack_log /* Allow you to view attack logs since doing it in VV sucks */
 )
 /client/proc/add_admin_verbs()
 	if(holder)
@@ -555,7 +559,7 @@ var/list/admin_verbs_mod = list(
 		to_chat(src, "<font color='red'>Error: warn(): No such ckey found.</font>")
 		return
 
-	var/warn_reason = sanitize(stripped_input("Reason for warning?", "Admin abuuuuuuuse"), 1)
+	var/warn_reason = input("Reason for warning?", "Admin abuuuuuuuse") as null|text
 	if(!warn_reason)
 		return
 	notes_add(warned_ckey,warn_reason,src.mob)
@@ -735,7 +739,7 @@ var/list/admin_verbs_mod = list(
 	set category = "Special Verbs"
 	set name = "OSay"
 	set desc = "Make an object say something"
-	var/message = sanitize(input(usr, "What do you want the message to be?", "Make Sound") as text | null)
+	var/message = input(usr, "What do you want the message to be?", "Make Sound") as text | null
 	if(!message)
 		return
 	var/mob/living/M

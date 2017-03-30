@@ -16,17 +16,11 @@
 #define JUKEBOX_RELOAD_COOLDOWN 600 // 60s
 
 var/global/global_playlists = list()
-
-/datum/admins/verb/update_playlist()
-	set name = "Update Playlists"
-	set category = "Fun"
-	load_juke_playlists()
-
 /proc/load_juke_playlists()
 	if(!config.media_base_url)
 		return
 	for(var/playlist_id in list("bar", "jazz", "rock", "muzak", "emagged", "endgame", "clockwork", "vidyaone", "vidyatwo", "vidyathree", "vidyafour"))
-		var/url="[config.media_base_url]/jukebox.php?playlist=[playlist_id]"
+		var/url="[config.media_base_url]/index.php?playlist=[playlist_id]"
 		testing("Updating playlist from [url]...")
 
 		//  Media Server 2 requires a secret key in order to tell the jukebox
@@ -62,7 +56,7 @@ var/global/global_playlists = list()
 		playlist = temp.Copy()
 
 	else
-		var/url="[config.media_base_url]/jukebox.php?playlist=[playlist_id]"
+		var/url="[config.media_base_url]/index.php?playlist=[playlist_id]"
 		testing("[src] - Updating playlist from [url]...")
 
 		//  Media Server 2 requires a secret key in order to tell the jukebox

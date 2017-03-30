@@ -73,6 +73,7 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/weapon/tank/emergency_oxygen(src)
 	new /obj/item/stack/medical/bruise_pack/bandaid(src)
+	new /obj/item/device/flashlight/emergency(src)
 
 /obj/item/weapon/storage/box/survival/vox
 	icon_state = "box_vox"
@@ -84,6 +85,8 @@
 	new /obj/item/clothing/mask/breath/vox(src)
 	new /obj/item/weapon/tank/emergency_nitrogen(src)
 	new /obj/item/stack/medical/bruise_pack/bandaid(src)
+	new /obj/item/device/flashlight/emergency(src)
+
 
 /obj/item/weapon/storage/box/survival/engineer
 	icon_state = "box_eva"
@@ -95,6 +98,7 @@
 	new /obj/item/clothing/mask/breath(src)
 	new /obj/item/weapon/tank/emergency_oxygen/engi(src)
 	new /obj/item/stack/medical/bruise_pack/bandaid(src)
+	new /obj/item/device/flashlight/emergency(src)
 
 /obj/item/weapon/storage/box/survival/ert
 	icon_state = "box_ERT"
@@ -106,6 +110,7 @@
 	new /obj/item/clothing/mask/gas/ert(src)
 	new /obj/item/weapon/tank/emergency_oxygen/double(src)
 	new /obj/item/stack/medical/bruise_pack/bandaid(src)
+	new /obj/item/device/flashlight/emergency(src)
 
 /obj/item/weapon/storage/box/gloves
 	name = "box of latex gloves"

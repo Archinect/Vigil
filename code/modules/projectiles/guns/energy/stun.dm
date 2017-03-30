@@ -4,6 +4,7 @@
 	desc = "A small, low capacity gun used for non-lethal takedowns."
 	icon_state = "taser"
 	item_state = null	//so the human update icon uses the icon_state instead.
+	inhand_states = list("left_hand" = 'icons/mob/in-hand/left/guns.dmi', "right_hand" = 'icons/mob/in-hand/right/guns.dmi')
 	fire_sound = 'sound/weapons/Taser.ogg'
 	charge_cost = 100
 	projectile_type = "/obj/item/projectile/energy/electrode"

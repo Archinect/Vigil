@@ -197,6 +197,6 @@
 	set desc ="Check the Message of the Day"
 
 	if(join_motd)
-		to_chat(src, "<div class=\"motd\">[sanitize(join_motd)]</div>")
+		to_chat(src, "<div class=\"motd\">[join_motd]</div>")
 	else
 		to_chat(src, "<span class='notice'>The Message of the Day has not been set.</span>")
