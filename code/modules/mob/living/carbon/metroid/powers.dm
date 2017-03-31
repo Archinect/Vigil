@@ -13,8 +13,11 @@
 	for(var/mob/living/C in view(1,src))
 		if(C!=src && !istype(C,/mob/living/carbon/metroid))
 			choices += C
-
-	var/mob/living/carbon/M = input(src,"Who do you wish to feed on?") in null|choices
+	var/mob/living/carbon/M
+	if (choices)
+		M = choices[1]
+		if (choices.len > 1)
+			M = input(src,"Who do you wish to feed on?") in null|choices
 	if(!M)
 		return
 	if(M in view(1, src))
@@ -162,7 +165,6 @@
 	if(Victim)
 		if(Victim == M)
 			loc = M.loc // simple "attach to head" effect!
-
 
 /mob/living/carbon/metroid/verb/Evolve()
 	set category = "Metroid"
