@@ -23,6 +23,8 @@ var/list/all_doors = list()
 	var/autoclose = 0
 	var/glass = 0
 	var/normalspeed = 1
+	var/synDoorHacked = 0 // Has it been hacked? bool 1 = yes / 0 = no
+	var/synHacking = 0 // Is hack in process y/n?
 
 	machine_flags = SCREWTOGGLE
 

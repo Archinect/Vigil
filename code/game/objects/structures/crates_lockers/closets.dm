@@ -249,7 +249,7 @@
 		return src.attack_hand(user)
 	..(user)
 
-/obj/machinery/closet/attack_ai(mob/user as mob)
+/obj/structure/closet/attack_ai(mob/user as mob)
 	if(isMoMMI(user))
 		src.add_hiddenprint(user)
 		add_fingerprint(user)
